@@ -1,0 +1,9 @@
+#Execute migrations files
+
+1 ) Command migrations files
+
+- Root project -> CMD : dotnet ef migrations add <file_name> -c Karami.Persistence.Contexts.C.SQLContext --output-dir Migrations\C
+
+2 ) Query migrations files
+
+- Root project -> CMD : dotnet ef migrations add <file_name> -c Karami.Persistence.Contexts.Q.SQLContext --output-dir Migrations\Q

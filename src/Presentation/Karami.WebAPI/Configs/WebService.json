@@ -1,0 +1,21 @@
+{
+  "HTTP" : 
+  {
+    
+  }
+  ,
+  "RPC" : 
+  {
+    
+  }
+  ,
+  "TCP" : 
+  {
+    "Production.NotificationService"  : "https://host.docker.internal:1999" ,
+    "Development.NotificationService" : "http://127.0.0.1:5008"
+  },
+  "SOAP" : 
+  {
+    
+  }
+}

@@ -1,0 +1,43 @@
+Deploy ( With docker | Windows OS by Linux container )
+
+#HTTPS Config ( SSL )
+
+1 . Make sure ( application.UseHttpsRedirection() ) is enabled in ( Programm.cs ) file
+
+2 . Open powershell ( Administrator ) & run below commands
+
+dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\Karami.WebAPI.pfx -p [ CrypticPassword ]
+dotnet dev-certs https --trust
+
+3 . Next, see the docker-compose.yml in this directory
+
+===================================================================================================
+
+Docker usefule commands
+
+1 . docker network create [ Network's name ]
+
+2 . docker network ls
+
+3 . docker network inspect [ Network's id ]
+
+4 . IP Container : docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' [ Container's id ]
+
+5 . Run composer file : docker compose up --build
+
+===================================================================================================
+
+Start project
+
+1 . Go to the [ TriggerService -> Karami.Init.Docker -> Core.Rabbit ] path & open up cmd & run [ docker compose up ]
+    Go to the [ TriggerService -> Karami.Init.MessageBroker ] path & run project
+
+2 . Using the [ docker compose up --build ] command
+
+===================================================================================================
+
+Install private domic packages ( Github )
+
+1 . ( CMD ) -> dotnet nuget add source --username {Github Username} --password {Github Token} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/{Github Username}/index.json"
+
+2 . In ( .csproj ) file & ( CMD ) -> dotnet add package {Package Name} --version {Version Number} --source github

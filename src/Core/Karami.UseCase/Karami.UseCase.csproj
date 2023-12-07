@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Karami.Common\Karami.Common.csproj" />
+    <ProjectReference Include="..\Karami.Domain\Karami.Domain.csproj" />
+  </ItemGroup>
+
+  <!--CorePackage | UseCase-->
+  <ItemGroup>
+    <PackageReference Include="Domic.Architecture.UseCase" Version="1.0.7" />
+  </ItemGroup>
+  <!--CorePackage | UseCase-->
+
+</Project>

@@ -1,0 +1,101 @@
+name: 'user_service'
+
+services:
+  
+  domic.user.api:
+    networks:
+      - domic
+    image: user_service:1.0.0
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          memory: 150M
+        reservations:
+          memory: 150M
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "1160-1180:443"
+    volumes:
+      - log:/app/CoreLogs
+      - ~\.aspnet\https\:/https/
+    environment:
+      - E-RabbitMQ-Host=host.docker.internal
+      - E-RabbitMQ-Port=5672
+      - E-RabbitMQ-Username=guest
+      - E-RabbitMQ-Password=guest
+      - I-RabbitMQ-Host=domic.user.rabbit
+      - I-RabbitMQ-Port=5672
+      - I-RabbitMQ-Username=guest
+      - I-RabbitMQ-Password=guest
+      - RedisConnectionString=domic.user.redis:6379
+      - MongoConnectionString=
+      - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Hasan313@@313!!;Persist Security Info=True;MultipleActiveResultSets=True;
+      - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Hasan313@@313!!;Persist Security Info=True;MultipleActiveResultSets=True;
+      - Host=domic.user.api
+      - Port=443
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Dotris313@313%%
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Karami.WebAPI.pfx
+    depends_on:
+      - domic.user.command.sql.server
+      - domic.user.query.sql.server
+      - domic.user.redis
+      - domic.user.rabbit
+  
+  domic.user.command.sql.server:
+    networks:
+      - domic
+    image: 'mcr.microsoft.com/mssql/server'
+    container_name: 'user_command_sql_server'
+    restart: on-failure
+    ports:
+      - 1435:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Hasan313@@313!!
+  
+  domic.user.query.sql.server:
+    networks:
+      - domic
+    image: 'mcr.microsoft.com/mssql/server'
+    container_name: 'user_query_sql_server'
+    restart: on-failure
+    ports:
+      - 1400:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Hasan313@@313!!
+  
+  domic.user.redis:
+    networks:
+      - domic
+    image: 'redis'
+    container_name: 'user_redis'
+    command: 'redis-server'
+    ports:
+      - 6380:6379
+  
+  domic.user.rabbit:
+    networks:
+      - domic
+    image: 'rabbitmq:3-management'
+    container_name: 'user_rabbit'
+    restart: on-failure
+    ports:
+      - '15660:15672'
+      - '5660:5672'
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+
+volumes:
+  log:
+    
+networks:
+  domic:
+    external: true
