@@ -3,7 +3,7 @@ using FluentAssertions;
 using Grpc.Core;
 using Karami.Core.Common.ClassConsts;
 using Karami.Core.Grpc.User;
-using Karami.Core.UseCase.DTOs;
+using Shouldly;
 using Xunit;
 
 namespace Presentation.API;
@@ -18,7 +18,7 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
     }
 
     [Theory]
-    [InlineData("Hasan", "Karami", 
+    [InlineData("Hasan", "Karami",
         "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r",
         "HasanProgrammer", "Hasan@123@313@@", "09026676147", "hasankarami2020313@gmail.com"
     )]
@@ -28,16 +28,7 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
     {
         //Arrange
 
-        var token = _testBase.JsonWebToken.Generate(
-            new TokenParameterDto {
-                Key      = "1996_1375_1996",
-                Issuer   = "Dotris",
-                Audience = "Dotris",
-                Expires  = 60
-            }
-        );
-
-        Metadata metadata = new() { { Header.Token, token } };
+        Metadata metadata = new() { { Header.Token, _testBase.GenerateToken() } };
 
         CreateRequest request = new() {
             FirstName   = new String { Value = firstName }   ,
@@ -49,14 +40,15 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
             Email       = new String { Value = email }
         };
 
-        var userClient = new UserService.UserServiceClient(_testBase.Channel);
+        var userGrpcClient = new UserService.UserServiceClient(_testBase.Channel);
 
         //Act
 
-        var result = await userClient.CreateAsync(request, metadata);
+        var result = await userGrpcClient.CreateAsync(request, metadata);
 
         //Assert
 
+        result.ShouldNotBeNull();
         result.Code.Should().Be(200);
     }
 }
