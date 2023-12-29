@@ -1,28 +1,31 @@
 #pragma warning disable CS8604
 
 using System;
-using System.Net.Http;
 using Grpc.Net.Client;
+using Karami.Core.UseCase.Contracts.Interfaces;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Presentation;
 
 public class IntegrationTestBase : IDisposable
 {
-    private readonly WebApplicationFactory<Program> _Factory;
-
     public readonly GrpcChannel Channel;
+
+    public readonly IJsonWebToken JsonWebToken;
+    
+    private readonly WebApplicationFactory<Program> _applicationFactory;
 
     public IntegrationTestBase()
     {
-        _Factory = new WebApplicationFactory<Program>(); // In Memory Host
-
-        HttpClient Client = _Factory.CreateDefaultClient();
+        _applicationFactory = new WebApplicationFactory<Program>(); // In Memory Host
         
-        Channel = GrpcChannel.ForAddress(Client.BaseAddress, new GrpcChannelOptions {
-            HttpClient = Client
-        });
+        var client = _applicationFactory.CreateDefaultClient();
+
+        Channel = GrpcChannel.ForAddress(client.BaseAddress, new GrpcChannelOptions { HttpClient = client });
+
+        JsonWebToken = _applicationFactory.Services.GetRequiredService<IJsonWebToken>();
     }
 
-    public void Dispose() => _Factory.Dispose();
+    public void Dispose() => _applicationFactory.Dispose();
 }

@@ -12,15 +12,15 @@ namespace Infrastructure.Domain;
 
 public class UserRepositoryTests
 {
-    private readonly SQLContext _MoqContext;
+    private readonly SQLContext _moqContext;
 
     public UserRepositoryTests()
     {
-        _MoqContext = Substitute.For<SQLContext>(
+        _moqContext = Substitute.For<SQLContext>(
             new DbContextOptionsBuilder<SQLContext>().UseInMemoryDatabase(Guid.NewGuid().ToString()).Options
         );
 
-        _MoqContext.Users = _MoqContext.Set<User>();
+        _moqContext.Users = _moqContext.Set<User>();
     }
 
     [Fact]
@@ -28,7 +28,7 @@ public class UserRepositoryTests
     {
         //Arrange
 
-        UserCommandRepository Repository = new UserCommandRepository(_MoqContext);
+        UserCommandRepository Repository = new UserCommandRepository(_moqContext);
 
         //Act
 
@@ -36,7 +36,7 @@ public class UserRepositoryTests
 
         //Assert
 
-        await _MoqContext.Users.ReceivedWithAnyArgs(1).AddAsync(default);
+        await _moqContext.Users.ReceivedWithAnyArgs(1).AddAsync(default);
     }
     
     [Fact]
@@ -44,7 +44,7 @@ public class UserRepositoryTests
     {
         //Arrange
 
-        UserCommandRepository Repository = new UserCommandRepository(_MoqContext);
+        UserCommandRepository Repository = new UserCommandRepository(_moqContext);
 
         //Act
 
@@ -52,6 +52,6 @@ public class UserRepositoryTests
 
         //Assert
         
-        _MoqContext.Users.ReceivedWithAnyArgs(1).Update( default );
+        _moqContext.Users.ReceivedWithAnyArgs(1).Update( default );
     }
 }

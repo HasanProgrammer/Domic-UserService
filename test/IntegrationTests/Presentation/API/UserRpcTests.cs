@@ -1,41 +1,62 @@
+using System.Threading.Tasks;
 using FluentAssertions;
+using Grpc.Core;
+using Karami.Core.Common.ClassConsts;
 using Karami.Core.Grpc.User;
+using Karami.Core.UseCase.DTOs;
 using Xunit;
 
 namespace Presentation.API;
 
 public class UserRpcTests : IClassFixture<IntegrationTestBase>
 {
-    private readonly IntegrationTestBase _TestBase;
+    private readonly IntegrationTestBase _testBase;
 
     public UserRpcTests(IntegrationTestBase TestBase)
     {
-        _TestBase = TestBase;
+        _testBase = TestBase;
     }
 
-    [Fact]
-    public void Should_CreateUser_WhenCallCreateMethodOfUserRpc()
+    [Theory]
+    [InlineData("Hasan", "Karami", 
+        "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r",
+        "HasanProgrammer", "Hasan@123@313@@", "09026676147", "hasankarami2020313@gmail.com"
+    )]
+    public async Task Should_CreateUser_WhenCallCreateMethodOfUserRpc(string firstName, string lastName, 
+        string description, string username, string password, string phoneNumber, string email
+    )
     {
         //Arrange
 
-        CreateRequest Request = new() {
-            FirstName   = new String { Value = "Hasan" }  ,
-            LastName    = new String { Value = "Karami" } ,
-            Description = new String { Value = "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r" } ,
-            Username    = new String { Value = "HasanProgrammer" } ,
-            Password    = new String { Value = "Hasan@123@313@@" } ,
-            PhoneNumber = new String { Value = "09026676147" }     ,
-            Email       = new String { Value = "hasankarami2020313@gmail.com" }
+        var token = _testBase.JsonWebToken.Generate(
+            new TokenParameterDto {
+                Key      = "1996_1375_1996",
+                Issuer   = "Dotris",
+                Audience = "Dotris",
+                Expires  = 60
+            }
+        );
+
+        Metadata metadata = new() { { Header.Token, token } };
+
+        CreateRequest request = new() {
+            FirstName   = new String { Value = firstName }   ,
+            LastName    = new String { Value = lastName }    ,
+            Description = new String { Value = description } ,
+            Username    = new String { Value = username }    ,
+            Password    = new String { Value = password }    ,
+            PhoneNumber = new String { Value = phoneNumber } ,
+            Email       = new String { Value = email }
         };
 
-        var UserClient = new UserService.UserServiceClient(_TestBase.Channel);
+        var userClient = new UserService.UserServiceClient(_testBase.Channel);
 
         //Act
 
-        var Result = UserClient.Create(Request);
+        var result = await userClient.CreateAsync(request, metadata);
 
         //Assert
 
-        Result.Code.Should().Be(200);
+        result.Code.Should().Be(200);
     }
 }
