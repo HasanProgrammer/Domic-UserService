@@ -4,7 +4,7 @@ using Karami.Domain.Role.Entities;
 
 namespace Karami.Domain.Permission.Entities;
 
-public class PermissionQuery : BaseEntityQuery<string>
+public class PermissionQuery : EntityQuery<string>
 {
     public string RoleId { get; set; }
     public string Name   { get; set; }

@@ -1,4 +1,5 @@
-﻿using Karami.Core.Common.ClassConsts;
+﻿using System.Data;
+using Karami.Core.Common.ClassConsts;
 using Karami.Core.UseCase.Attributes;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Domain.Commons.Contracts.Interfaces;
@@ -12,7 +13,7 @@ public class DeleteUserConsumerEventBusHandler : IConsumerEventBusHandler<UserDe
 
     public DeleteUserConsumerEventBusHandler(IQueryUnitOfWork queryUnitOfWork) => _queryUnitOfWork = queryUnitOfWork;
     
-    [WithTransaction]
+    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = Cache.Users)]
     public void Handle(UserDeleted @event)
     {

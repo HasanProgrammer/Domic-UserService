@@ -1,4 +1,5 @@
-﻿using Karami.Core.Common.ClassConsts;
+﻿using System.Data;
+using Karami.Core.Common.ClassConsts;
 using Karami.Core.Domain.Enumerations;
 using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Attributes;
@@ -28,8 +29,7 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
-    [WithMaxRetry(Count = 5)]
-    [WithTransaction]
+    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     [WithCleanCache(Keies = Cache.Users)]
     public void Handle(UserUpdated @event)
     {

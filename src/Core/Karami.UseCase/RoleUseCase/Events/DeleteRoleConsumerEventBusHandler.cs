@@ -1,4 +1,5 @@
-﻿using Karami.Core.Domain.Enumerations;
+﻿using System.Data;
+using Karami.Core.Domain.Enumerations;
 using Karami.Core.UseCase.Attributes;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Domain.Permission.Contracts.Interfaces;
@@ -27,7 +28,7 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
-    [WithTransaction]
+    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(RoleDeleted @event)
     {
         var targetRole = _roleQueryRepository.FindByIdEagerLoadingAsync(@event.Id, default).Result;

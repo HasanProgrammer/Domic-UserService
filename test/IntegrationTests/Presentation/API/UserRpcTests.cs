@@ -7,14 +7,13 @@ using Grpc.Core;
 using Karami.Core.Common.ClassConsts;
 using Karami.Core.Grpc.User;
 using Karami.Core.Infrastructure.Extensions;
-using Karami.Domain.Permission.Entities;
 using Karami.Domain.Role.Entities;
-using Karami.Persistence.Contexts.C;
 using Microsoft.EntityFrameworkCore;
 using Shouldly;
 using Xunit;
+
+using String     = Karami.Core.Grpc.User.String;
 using Permission = Karami.Domain.Permission.Entities.Permission;
-using String = Karami.Core.Grpc.User.String;
 
 namespace Presentation.API;
 
@@ -31,7 +30,7 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
     [InlineData("Hasan", "Karami",
         "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r",
         "HasanProgrammer", "Hasan@123@313@@", "09026676147", "hasankarami2020313@gmail.com", 
-        new [] { "SuperAdmin"  }, 
+        new [] { "SuperAdmin"  },
         new [] { "User.Create" }
     )]
     public async Task ShouldBe_CreatedUser_WhenCallCreateMethodOfUserRpc(string firstName, string lastName, 

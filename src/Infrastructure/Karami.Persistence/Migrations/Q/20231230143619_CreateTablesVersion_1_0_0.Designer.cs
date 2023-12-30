@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karami.Persistence.Migrations.Q
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20230319133246_CreateTablesVersion_1_0_0")]
+    [Migration("20231230143619_CreateTablesVersion_1_0_0")]
     partial class CreateTablesVersion_1_0_0
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,8 +29,17 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("IsDeleted")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -38,9 +47,22 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
+
+                    b.HasIndex("Id", "IsDeleted");
 
                     b.ToTable("Permissions", (string)null);
                 });
@@ -50,20 +72,42 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("IsDeleted")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("PermissionId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("PermissionId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("Id", "IsDeleted");
 
                     b.ToTable("PermissionUsers", (string)null);
                 });
@@ -73,13 +117,35 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("IsDeleted")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Id", "IsDeleted");
 
                     b.ToTable("Roles", (string)null);
                 });
@@ -89,20 +155,42 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("CreatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint");
+
+                    b.Property<byte>("IsDeleted")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("RoleId")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedAt_PersianDate")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RoleId");
 
                     b.HasIndex("UserId");
+
+                    b.HasIndex("Id", "IsDeleted");
 
                     b.ToTable("RoleUsers", (string)null);
                 });
@@ -127,11 +215,11 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("IsActive")
-                        .HasColumnType("int");
+                    b.Property<byte>("IsActive")
+                        .HasColumnType("tinyint");
 
-                    b.Property<int>("IsDeleted")
-                        .HasColumnType("int");
+                    b.Property<byte>("IsDeleted")
+                        .HasColumnType("tinyint");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -151,7 +239,14 @@ namespace Karami.Persistence.Migrations.Q
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("Id", "IsDeleted");
 
                     b.ToTable("Users", (string)null);
                 });

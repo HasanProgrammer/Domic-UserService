@@ -6,7 +6,7 @@ using Karami.Domain.RoleUser.Entities;
 
 namespace Karami.Domain.Role.Entities;
 
-public class RoleQuery : BaseEntityQuery<string>
+public class RoleQuery : EntityQuery<string>
 {
     public string Name { get; set; }
     

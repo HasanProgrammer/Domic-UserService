@@ -1,23 +1,22 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.User.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.C;
 
-public class UserConfig : IEntityTypeConfiguration<User>
+public class UserConfig : BaseEntityConfig<User, string>
 {
-    public void Configure(EntityTypeBuilder<User> builder)
+    public override void Configure(EntityTypeBuilder<User> builder)
     {
-        builder.HasKey(user => user.Id);
-
-        builder.ToTable("Users");
+        base.Configure(builder);
         
         /*-----------------------------------------------------------*/
         
         //Configs
-        
+
+        builder.ToTable("Users");
+
         builder.OwnsOne(user => user.FirstName)
                .Property(firstName => firstName.Value)
                .IsRequired()
@@ -58,24 +57,6 @@ public class UserConfig : IEntityTypeConfiguration<User>
                .IsRequired()
                .HasMaxLength(30)
                .HasColumnName("Email");
-        
-        builder.OwnsOne(user => user.CreatedAt, createdAt => {
-               createdAt.Property(vo => vo.EnglishDate).IsRequired().HasColumnName("CreatedAt_EnglishDate");
-               createdAt.Property(vo => vo.PersianDate).IsRequired().HasColumnName("CreatedAt_PersianDate");
-        });
-        
-        builder.OwnsOne(user => user.UpdatedAt, updatedAt => {
-               updatedAt.Property(vo => vo.EnglishDate).IsRequired().HasColumnName("UpdatedAt_EnglishDate");
-               updatedAt.Property(vo => vo.PersianDate).IsRequired().HasColumnName("UpdatedAt_PersianDate");
-        });
-
-        builder.Property(user => user.IsActive)
-               .HasConversion(new EnumToNumberConverter<IsActive , int>())
-               .IsRequired();
-        
-        builder.Property(user => user.IsDeleted)
-               .HasConversion(new EnumToNumberConverter<IsDeleted , int>())
-               .IsRequired();
 
         /*-----------------------------------------------------------*/
         
@@ -88,9 +69,5 @@ public class UserConfig : IEntityTypeConfiguration<User>
         builder.HasMany(user => user.PermissionUsers)
                .WithOne(permissionUser => permissionUser.User)
                .HasForeignKey(permissionUser => permissionUser.UserId);
-        
-        /*-----------------------------------------------------------*/
-        
-        builder.HasQueryFilter(user => user.IsDeleted == IsDeleted.UnDelete);
     }
 }

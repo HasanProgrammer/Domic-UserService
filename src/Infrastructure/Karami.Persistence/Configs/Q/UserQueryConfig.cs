@@ -1,24 +1,21 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.User.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.Q;
 
-public class UserQueryConfig : IEntityTypeConfiguration<UserQuery>
+public class UserQueryConfig : BaseEntityQueryConfig<UserQuery, string>
 {
-    public void Configure(EntityTypeBuilder<UserQuery> builder)
+    public override void Configure(EntityTypeBuilder<UserQuery> builder)
     {
-        builder.HasKey(user => user.Id);
+        base.Configure(builder);
 
-        builder.ToTable("Users");
-        
         /*-----------------------------------------------------------*/
 
-        builder.Property(user => user.IsActive).HasConversion(new EnumToNumberConverter<IsActive , int>());
+        //Configs
         
-        builder.Property(user => user.IsDeleted).HasConversion(new EnumToNumberConverter<IsDeleted, int>());
+        builder.ToTable("Users");
 
         /*-----------------------------------------------------------*/
         
@@ -31,9 +28,5 @@ public class UserQueryConfig : IEntityTypeConfiguration<UserQuery>
         builder.HasMany(user => user.PermissionUsers)
                .WithOne(permissionUser => permissionUser.User)
                .HasForeignKey(permissionUser => permissionUser.UserId);
-        
-        /*-----------------------------------------------------------*/
-
-        builder.HasQueryFilter(user => user.IsDeleted == IsDeleted.UnDelete);
     }
 }

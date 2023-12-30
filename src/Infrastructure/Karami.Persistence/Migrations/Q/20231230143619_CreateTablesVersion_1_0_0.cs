@@ -15,7 +15,13 @@ namespace Karami.Persistence.Migrations.Q
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<int>(type: "int", nullable: false)
+                    IsDeleted = table.Column<byte>(type: "tinyint", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -34,8 +40,9 @@ namespace Karami.Persistence.Migrations.Q
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<int>(type: "int", nullable: false),
-                    IsActive = table.Column<int>(type: "int", nullable: false),
+                    IsDeleted = table.Column<byte>(type: "tinyint", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<byte>(type: "tinyint", nullable: false),
                     CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -53,7 +60,13 @@ namespace Karami.Persistence.Migrations.Q
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     RoleId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    IsDeleted = table.Column<int>(type: "int", nullable: false)
+                    IsDeleted = table.Column<byte>(type: "tinyint", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,7 +85,13 @@ namespace Karami.Persistence.Migrations.Q
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     RoleId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    IsDeleted = table.Column<int>(type: "int", nullable: false)
+                    IsDeleted = table.Column<byte>(type: "tinyint", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -96,7 +115,13 @@ namespace Karami.Persistence.Migrations.Q
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     PermissionId = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    IsDeleted = table.Column<int>(type: "int", nullable: false)
+                    IsDeleted = table.Column<byte>(type: "tinyint", nullable: false),
+                    Version = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<byte>(type: "tinyint", nullable: false),
+                    CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -114,9 +139,19 @@ namespace Karami.Persistence.Migrations.Q
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Permissions_Id_IsDeleted",
+                table: "Permissions",
+                columns: new[] { "Id", "IsDeleted" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Permissions_RoleId",
                 table: "Permissions",
                 column: "RoleId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PermissionUsers_Id_IsDeleted",
+                table: "PermissionUsers",
+                columns: new[] { "Id", "IsDeleted" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_PermissionUsers_PermissionId",
@@ -129,6 +164,16 @@ namespace Karami.Persistence.Migrations.Q
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Roles_Id_IsDeleted",
+                table: "Roles",
+                columns: new[] { "Id", "IsDeleted" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RoleUsers_Id_IsDeleted",
+                table: "RoleUsers",
+                columns: new[] { "Id", "IsDeleted" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_RoleUsers_RoleId",
                 table: "RoleUsers",
                 column: "RoleId");
@@ -137,6 +182,11 @@ namespace Karami.Persistence.Migrations.Q
                 name: "IX_RoleUsers_UserId",
                 table: "RoleUsers",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_Id_IsDeleted",
+                table: "Users",
+                columns: new[] { "Id", "IsDeleted" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

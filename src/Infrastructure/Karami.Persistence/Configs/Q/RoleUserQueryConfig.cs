@@ -1,26 +1,22 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.RoleUser.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.Q;
 
-public class RoleUserQueryConfig : IEntityTypeConfiguration<RoleUserQuery>
+public class RoleUserQueryConfig : BaseEntityQueryConfig<RoleUserQuery, string>
 {
-    public void Configure(EntityTypeBuilder<RoleUserQuery> builder)
+    public override void Configure(EntityTypeBuilder<RoleUserQuery> builder)
     {
-        builder.ToTable("RoleUsers");
-        
-        builder.HasKey(roleUser => roleUser.Id);
+        base.Configure(builder);
         
         /*-----------------------------------------------------------*/
         
         //Configs
         
-        builder.Property(roleUser => roleUser.IsDeleted)
-               .HasConversion(new EnumToNumberConverter<IsDeleted, int>());
-        
+        builder.ToTable("RoleUsers");
+
         /*-----------------------------------------------------------*/
         
         //Relations

@@ -1,4 +1,5 @@
-﻿using Karami.Core.UseCase.Attributes;
+﻿using System.Data;
+using Karami.Core.UseCase.Attributes;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Domain.Permission.Contracts.Interfaces;
 using Karami.Domain.Permission.Entities;
@@ -13,7 +14,7 @@ public class CreatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
     public CreatePermissionConsumerEventBusHandler(IPermissionQueryRepository permissionQueryRepository) 
         => _permissionQueryRepository = permissionQueryRepository;
 
-    [WithTransaction]
+    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(PermissionCreated @event)
     {
         var targetPermission =

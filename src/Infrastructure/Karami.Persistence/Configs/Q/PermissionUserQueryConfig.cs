@@ -1,27 +1,25 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.PermissionUser.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.Q;
 
-public class PermissionUserQueryConfig : IEntityTypeConfiguration<PermissionUserQuery>
+public class PermissionUserQueryConfig : BaseEntityQueryConfig<PermissionUserQuery, string>
 {
-    public void Configure(EntityTypeBuilder<PermissionUserQuery> builder)
+    public override void Configure(EntityTypeBuilder<PermissionUserQuery> builder)
     {
-        builder.ToTable("PermissionUsers");
-        
-        builder.HasKey(permissionUser => permissionUser.Id);
+        base.Configure(builder);
         
         /*-----------------------------------------------------------*/
         
         //Configs
         
-        builder.Property(permissionUser => permissionUser.IsDeleted)
-               .HasConversion(new EnumToNumberConverter<IsDeleted, int>());
-        
+        builder.ToTable("PermissionUsers");
+
         /*-----------------------------------------------------------*/
+        
+        //Relations
         
         builder.HasOne(permissionUser => permissionUser.Permission)
                .WithMany(permission => permission.PermissionUsers)

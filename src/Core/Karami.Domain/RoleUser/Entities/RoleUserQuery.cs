@@ -4,7 +4,7 @@ using Karami.Domain.User.Entities;
 
 namespace Karami.Domain.RoleUser.Entities;
 
-public class RoleUserQuery : BaseEntityQuery<string>
+public class RoleUserQuery : EntityQuery<string>
 {
     public string UserId { get; set; }
     public string RoleId { get; set; }

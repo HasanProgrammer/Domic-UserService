@@ -1,35 +1,21 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.PermissionUser.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.C;
 
-public class PermissionUserConfig : IEntityTypeConfiguration<PermissionUser>
+public class PermissionUserConfig : BaseEntityConfig<PermissionUser, string>
 {
-    public void Configure(EntityTypeBuilder<PermissionUser> builder)
+    public override void Configure(EntityTypeBuilder<PermissionUser> builder)
     {
-        builder.ToTable("PermissionUsers");
-        
-        builder.HasKey(permissionUser => permissionUser.Id);
+        base.Configure(builder);
         
         /*-----------------------------------------------------------*/
         
         //Configs
         
-        builder.OwnsOne(permissionUser => permissionUser.CreatedAt, createdAt => {
-               createdAt.Property(vo => vo.EnglishDate).IsRequired().HasColumnName("CreatedAt_EnglishDate");
-               createdAt.Property(vo => vo.PersianDate).IsRequired().HasColumnName("CreatedAt_PersianDate");
-        });
-        
-        builder.OwnsOne(permissionUser => permissionUser.UpdatedAt, updatedAt => {
-               updatedAt.Property(vo => vo.EnglishDate).IsRequired().HasColumnName("UpdatedAt_EnglishDate");
-               updatedAt.Property(vo => vo.PersianDate).IsRequired().HasColumnName("UpdatedAt_PersianDate");
-        });
-        
-        builder.Property(permissionUser => permissionUser.IsDeleted)
-               .HasConversion(new EnumToNumberConverter<IsDeleted, int>());
+        builder.ToTable("PermissionUsers");
         
         /*-----------------------------------------------------------*/
         

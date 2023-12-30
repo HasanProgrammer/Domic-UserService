@@ -1,4 +1,5 @@
-﻿using Karami.Core.UseCase.Attributes;
+﻿using System.Data;
+using Karami.Core.UseCase.Attributes;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Domain.Role.Contracts.Interfaces;
 using Karami.Domain.Role.Entities;
@@ -13,7 +14,7 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
     public CreateRoleConsumerEventBusHandler(IRoleQueryRepository roleQueryRepository) 
         => _roleQueryRepository = roleQueryRepository;
 
-    [WithTransaction]
+    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
     public void Handle(RoleCreated @event)
     {
         var targetRole = _roleQueryRepository.FindByIdAsync(@event.Id, default).Result;

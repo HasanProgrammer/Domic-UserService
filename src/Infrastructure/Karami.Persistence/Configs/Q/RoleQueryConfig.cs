@@ -1,25 +1,21 @@
-using Karami.Core.Domain.Enumerations;
+using Karami.Core.Persistence.Configs;
 using Karami.Domain.Role.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.Q;
 
-public class RoleQueryConfig : IEntityTypeConfiguration<RoleQuery>
+public class RoleQueryConfig : BaseEntityQueryConfig<RoleQuery, string>
 {
-    public void Configure(EntityTypeBuilder<RoleQuery> builder)
+    public override void Configure(EntityTypeBuilder<RoleQuery> builder)
     {
-        builder.ToTable("Roles");
+        base.Configure(builder);
 
-        builder.HasKey(role => role.Id);
-        
         /*-----------------------------------------------------------*/
         
         //Configs
         
-        builder.Property(role => role.IsDeleted)
-               .HasConversion(new EnumToNumberConverter<IsDeleted, int>());
+        builder.ToTable("Roles");
 
         /*-----------------------------------------------------------*/
         
@@ -32,9 +28,5 @@ public class RoleQueryConfig : IEntityTypeConfiguration<RoleQuery>
         builder.HasMany(role => role.Permissions)
                .WithOne(permissions => permissions.Role)
                .HasForeignKey(permissions => permissions.RoleId);
-        
-        /*-----------------------------------------------------------*/
-
-        builder.HasQueryFilter(role => role.IsDeleted == IsDeleted.UnDelete);
     }
 }
