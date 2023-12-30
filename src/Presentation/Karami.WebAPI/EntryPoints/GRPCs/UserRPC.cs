@@ -3,7 +3,6 @@ using Karami.Core.Common.ClassHelpers;
 using Karami.Core.Grpc.User;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Core.WebAPI.Extensions;
-using Karami.UseCase.UserUseCase.AsyncCommands.Create;
 using Karami.UseCase.UserUseCase.Commands.Active;
 using Karami.UseCase.UserUseCase.Commands.CheckExist;
 using Karami.UseCase.UserUseCase.Commands.Create;

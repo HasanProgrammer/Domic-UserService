@@ -13,7 +13,7 @@
 
   <!--CorePackage | Infrastructure-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Infrastructure" Version="1.1.9" />
+    <PackageReference Include="Domic.Architecture.Infrastructure" Version="1.2.3" />
   </ItemGroup>
   <!--CorePackage | Infrastructure-->
 
