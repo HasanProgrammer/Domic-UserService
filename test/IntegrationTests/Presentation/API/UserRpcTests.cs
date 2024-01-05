@@ -100,7 +100,7 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
         isCurrentUserRolesAdded.ShouldBeTrue();
         isCurrentUserPermissionsAdded.ShouldBeTrue();
     }
-    
+
     /*---------------------------------------------------------------*/
 
     private async Task<(List<string> roles, List<string> permissions)> 
