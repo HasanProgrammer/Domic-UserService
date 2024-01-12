@@ -8,7 +8,7 @@
 
   <!--CorePackage | Common-->
   <ItemGroup>
-    <PackageReference Include="Domic.Common" Version="1.0.7" />
+    <PackageReference Include="Domic.Common" Version="1.1.0" />
   </ItemGroup>
   <!--CorePackage | Common-->
 
