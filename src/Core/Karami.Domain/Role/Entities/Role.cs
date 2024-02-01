@@ -30,28 +30,30 @@ public class Role : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
     /// <param name="id"></param>
+    /// <param name="createdBy"></param>
+    /// <param name="createdRole"></param>
     /// <param name="name"></param>
-    public Role(IDotrisDateTime dotrisDateTime, string id, string name)
+    public Role(IDateTime dateTime, string id, string createdBy, string createdRole, string name)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
-        Id        = id;
-        Name      = new Name(name);
-        CreatedAt = new CreatedAt(nowDateTime, nowPersianDateTime);
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
-        IsActive  = IsActive.Active;
+        Id          = id;
+        Name        = new Name(name);
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
+        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new RoleCreated {
                 Id                    = id                 ,
+                CreatedBy             = createdBy          , 
+                CreatedRole           = createdRole        , 
                 Name                  = name               ,
                 CreatedAt_EnglishDate = nowDateTime        ,
-                UpdatedAt_EnglishDate = nowDateTime        ,
-                CreatedAt_PersianDate = nowPersianDateTime ,
-                UpdatedAt_PersianDate = nowPersianDateTime
+                CreatedAt_PersianDate = nowPersianDateTime
             }
         );
     }
@@ -63,22 +65,27 @@ public class Role : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
     /// <param name="name"></param>
-    public void Change(IDotrisDateTime dotrisDateTime, string name)
+    /// <param name="updatedBy"></param>
+    /// <param name="updatedRole"></param>
+    public void Change(IDateTime dateTime, string name, string updatedBy, string updatedRole)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
-        Name      = new Name(name);
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
-        IsActive  = IsActive.Active;
+        Name        = new Name(name);
+        UpdatedBy   = updatedBy;
+        UpdatedRole = updatedRole;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new RoleUpdated {
-                Id                    = Id   ,
-                Name                  = name ,
-                UpdatedAt_EnglishDate = nowDateTime  ,
+                Id                    = Id          ,
+                UpdatedBy             = updatedBy   ,
+                UpdatedRole           = updatedRole , 
+                Name                  = name        ,
+                UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }
         );
@@ -87,18 +94,24 @@ public class Role : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
-    public void Delete(IDotrisDateTime dotrisDateTime)
+    /// <param name="dateTime"></param>
+    /// <param name="updatedBy"></param>
+    /// <param name="updatedRole"></param>
+    public void Delete(IDateTime dateTime, string updatedBy, string updatedRole)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        IsDeleted = IsDeleted.Delete;
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
+        IsDeleted   = IsDeleted.Delete;
+        UpdatedBy   = updatedBy;
+        UpdatedRole = updatedRole;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new RoleDeleted {
                 Id                    = Id          ,
+                UpdatedBy             = updatedBy   ,
+                UpdatedRole           = updatedRole ,
                 UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }

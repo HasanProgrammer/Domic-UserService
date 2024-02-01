@@ -6,8 +6,7 @@ using Karami.Core.Domain.Enumerations;
 namespace Karami.Domain.Role.Events;
 
 [MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Role_Exchange, Queue = Broker.User_Role_Queue)]
-public class RoleCreated : CreateDomainEvent
+public class RoleCreated : CreateDomainEvent<string>
 {
-    public string Id   { get; init; }
     public string Name { get; init; }
 }

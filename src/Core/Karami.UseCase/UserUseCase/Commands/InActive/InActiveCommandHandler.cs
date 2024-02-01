@@ -18,20 +18,18 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
 {
     private readonly object _validationResult;
 
-    private readonly IDotrisDateTime         _dotrisDateTime;
+    private readonly IDateTime               _dateTime;
     private readonly ISerializer             _serializer;
     private readonly IJsonWebToken           _jsonWebToken;
     private readonly IUserCommandRepository  _userCommandRepository;
     private readonly IEventCommandRepository _eventCommandRepository;
 
-    public InActiveCommandHandler(IUserCommandRepository userCommandRepository,
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime, 
-        ISerializer serializer, 
+    public InActiveCommandHandler(IUserCommandRepository userCommandRepository, 
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
         IJsonWebToken jsonWebToken
     )
     {
-        _dotrisDateTime         = dotrisDateTime;
+        _dateTime               = dateTime;
         _serializer             = serializer;
         _jsonWebToken           = jsonWebToken;
         _userCommandRepository  = userCommandRepository;
@@ -42,15 +40,17 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
     [WithTransaction]
     public async Task<string> HandleAsync(InActiveCommand command, CancellationToken cancellationToken)
     {
-        var targetUser = _validationResult as User;
+        var targetUser  = _validationResult as User;
+        var updatedBy   = _jsonWebToken.GetIdentityUserId(command.Token);
+        var updatedRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         
-        targetUser.InActive(_dotrisDateTime, _jsonWebToken.GetUsername(command.Token));
+        targetUser.InActive(_dateTime, updatedBy, updatedRole, _jsonWebToken.GetUsername(command.Token));
 
         _userCommandRepository.Change(targetUser);
 
         #region OutBox
 
-        var events = targetUser.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.UserService,
+        var events = targetUser.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService,
             Table.UserTable, Action.Update, _jsonWebToken.GetUsername(command.Token)
         );
 

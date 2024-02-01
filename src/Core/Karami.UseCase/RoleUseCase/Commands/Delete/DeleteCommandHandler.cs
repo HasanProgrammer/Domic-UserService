@@ -21,9 +21,9 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 {
     private readonly object _validationResult;
 
-    private readonly IDotrisDateTime                  _dotrisDateTime;
-    private readonly ISerializer                      _serializer;
-    private readonly IJsonWebToken                        _jsonWebToken;
+    private readonly IDateTime                       _dateTime;
+    private readonly ISerializer                     _serializer;
+    private readonly IJsonWebToken                   _jsonWebToken;
     private readonly IRoleCommandRepository           _roleCommandRepository;
     private readonly IPermissionCommandRepository     _permissionCommandRepository;
     private readonly IRoleUserCommandRepository       _roleUserCommandRepository;
@@ -31,18 +31,15 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     private readonly IEventCommandRepository          _eventCommandRepository;
 
     public DeleteCommandHandler(IRoleCommandRepository roleCommandRepository,
-        IPermissionCommandRepository permissionCommandRepository,
-        IRoleUserCommandRepository roleUserCommandRepository,
+        IPermissionCommandRepository permissionCommandRepository, IRoleUserCommandRepository roleUserCommandRepository,
         IPermissionUserCommandRepository permissionUserCommandRepository, 
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime,
-        ISerializer serializer, 
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
         IJsonWebToken jsonWebToken
     )
     {
-        _dotrisDateTime                  = dotrisDateTime;
+        _dateTime                        = dateTime;
         _serializer                      = serializer;
-        _jsonWebToken = jsonWebToken;
+        _jsonWebToken                    = jsonWebToken;
         _roleCommandRepository           = roleCommandRepository;
         _permissionCommandRepository     = permissionCommandRepository;
         _roleUserCommandRepository       = roleUserCommandRepository;
@@ -54,11 +51,13 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     [WithTransaction]
     public async Task<string> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
     {
-        var targetRole = _validationResult as Role;
+        var targetRole  = _validationResult as Role;
+        var updatedBy   = _jsonWebToken.GetIdentityUserId(command.Token);
+        var updatedRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
 
         #region SoftDelete Role
 
-        targetRole.Delete(_dotrisDateTime);
+        targetRole.Delete(_dateTime, updatedBy, updatedRole);
         
         _roleCommandRepository.Change(targetRole);
 
@@ -71,7 +70,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         foreach (var permission in permissions)
         {
-            permission.Delete(_dotrisDateTime, false);
+            permission.Delete(_dateTime, updatedBy, updatedRole, false);
             
             _permissionCommandRepository.Change(permission);
         }
@@ -100,7 +99,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         #region OutBox
 
-        var events = targetRole.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.UserService, 
+        var events = targetRole.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService, 
             Table.RoleTable, Action.Delete, _jsonWebToken.GetUsername(command.Token)
         );
 

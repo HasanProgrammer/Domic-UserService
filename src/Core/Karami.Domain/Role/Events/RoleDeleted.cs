@@ -6,7 +6,6 @@ using Karami.Core.Domain.Enumerations;
 namespace Karami.Domain.Role.Events;
 
 [MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Role_Exchange, Queue = Broker.User_Role_Queue)]
-public class RoleDeleted : DeleteDomainEvent
+public class RoleDeleted : UpdateDomainEvent<string>
 {
-    public string Id { get; set; }
 }

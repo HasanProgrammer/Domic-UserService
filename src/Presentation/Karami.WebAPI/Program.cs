@@ -1,7 +1,6 @@
 using Karami.Core.Infrastructure.Extensions;
 using Karami.Core.WebAPI.Extensions;
 using Karami.Infrastructure.Extensions.C;
-using Karami.Infrastructure.Extensions.Q;
 using Karami.WebAPI.EntryPoints.GRPCs;
 using Karami.WebAPI.Frameworks.Extensions;
 
@@ -49,7 +48,6 @@ WebApplication application = builder.Build();
 //Primary processing
 
 application.Services.AutoMigration<C_SQLContext>(context => context.Seed());
-application.Services.AutoMigration<Q_SQLContext>(context => context.Seed());
 
 /*-------------------------------------------------------------------*/
 

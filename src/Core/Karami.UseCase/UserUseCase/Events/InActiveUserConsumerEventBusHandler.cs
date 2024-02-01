@@ -20,6 +20,8 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
         var targetUser = _userQueryRepository.FindById(@event.Id);
 
         targetUser.IsActive              = IsActive.InActive;
+        targetUser.UpdatedBy             = @event.UpdatedBy;
+        targetUser.UpdatedRole           = @event.UpdatedRole;
         targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 

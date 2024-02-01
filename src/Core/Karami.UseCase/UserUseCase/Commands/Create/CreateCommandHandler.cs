@@ -20,41 +20,45 @@ namespace Karami.UseCase.UserUseCase.Commands.Create;
 
 public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 {
-    private readonly IDotrisDateTime                  _dotrisDateTime;
+    private readonly IDateTime                        _dateTime;
     private readonly IJsonWebToken                    _jsonWebToken;
     private readonly ISerializer                      _serializer;
     private readonly IUserCommandRepository           _userCommandRepository;
     private readonly IRoleUserCommandRepository       _roleUserCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
     private readonly IEventCommandRepository          _eventCommandRepository;
+    private readonly IGlobalUniqueIdGenerator         _globalUniqueIdGenerator;
 
     public CreateCommandHandler(IUserCommandRepository userCommandRepository,
         IRoleUserCommandRepository roleUserCommandRepository, 
-        IPermissionUserCommandRepository permissionUserCommandRepository,
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime,
-        ISerializer serializer, 
-        IJsonWebToken jsonWebToken
+        IPermissionUserCommandRepository permissionUserCommandRepository, 
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
+        IJsonWebToken jsonWebToken, IGlobalUniqueIdGenerator globalUniqueIdGenerator
     )
     {
-        _dotrisDateTime                  = dotrisDateTime;
+        _dateTime                        = dateTime;
         _serializer                      = serializer;
         _jsonWebToken                    = jsonWebToken;
         _userCommandRepository           = userCommandRepository;
         _roleUserCommandRepository       = roleUserCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
         _eventCommandRepository          = eventCommandRepository;
+        _globalUniqueIdGenerator         = globalUniqueIdGenerator;
     }
 
     [WithValidation]
     [WithTransaction]
     public async Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
-        string userId = Guid.NewGuid().ToString();
+        string userId   = _globalUniqueIdGenerator.GetRandom();
+        var createdBy   = _jsonWebToken.GetIdentityUserId(command.Token);
+        var createdRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         
         var newUser = new User(
-            _dotrisDateTime     ,
+            _dateTime           ,
             userId              ,
+            createdBy           ,
+            createdRole         ,
             command.FirstName   ,
             command.LastName    ,
             command.Description ,
@@ -68,12 +72,12 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
         
         await _userCommandRepository.AddAsync(newUser, cancellationToken);
         
-        await _roleUserBuilderAsync(userId, command.Roles, cancellationToken);
-        await _permissionUserBuilderAsync(userId, command.Permissions, cancellationToken);
+        await _roleUserBuilderAsync(createdBy, createdRole, userId, command.Roles, cancellationToken);
+        await _permissionUserBuilderAsync(createdBy, createdRole, userId, command.Permissions, cancellationToken);
 
         #region OutBox
 
-        var events = newUser.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.UserService, 
+        var events = newUser.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService, 
             Table.UserTable, Action.Create, _jsonWebToken.GetUsername(command.Token)
         );
 
@@ -89,25 +93,29 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
     /*---------------------------------------------------------------*/
 
-    private async Task _roleUserBuilderAsync(string userId, IEnumerable<string> roleIds, 
-        CancellationToken cancellationToken
+    private async Task _roleUserBuilderAsync(string createdBy, string createdRole, 
+        string userId, IEnumerable<string> roleIds, CancellationToken cancellationToken
     )
     {
         foreach (var roleId in roleIds)
         {
-            var newRoleUser = new RoleUser(_dotrisDateTime, Guid.NewGuid().ToString(), userId, roleId);
+            var newRoleUser = new RoleUser(
+                _dateTime, _globalUniqueIdGenerator.GetRandom(), createdBy, createdRole, userId, roleId
+            );
 
             await _roleUserCommandRepository.AddAsync(newRoleUser, cancellationToken);
         }
     }
     
-    private async Task _permissionUserBuilderAsync(string userId, IEnumerable<string> permissionIds, 
-        CancellationToken cancellationToken
+    private async Task _permissionUserBuilderAsync(string createdBy, string createdRole, string userId, 
+        IEnumerable<string> permissionIds, CancellationToken cancellationToken
     )
     {
         foreach (var permissionId in permissionIds)
         {
-            var newPermissionUser = new PermissionUser(_dotrisDateTime, Guid.NewGuid().ToString(), userId, permissionId);
+            var newPermissionUser = new PermissionUser(
+                _dateTime, _globalUniqueIdGenerator.GetRandom(), createdBy, createdRole, userId, permissionId
+            );
 
             await _permissionUserCommandRepository.AddAsync(newPermissionUser, cancellationToken);
         }

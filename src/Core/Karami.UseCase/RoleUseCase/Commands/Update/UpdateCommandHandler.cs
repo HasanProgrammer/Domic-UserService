@@ -18,22 +18,20 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 {
     private readonly object _validationResult;
 
-    private readonly IDotrisDateTime         _dotrisDateTime;
+    private readonly IDateTime               _dateTime;
     private readonly ISerializer             _serializer;
-    private readonly IJsonWebToken               _jsonWebToken;
+    private readonly IJsonWebToken           _jsonWebToken;
     private readonly IRoleCommandRepository  _roleCommandRepository;
     private readonly IEventCommandRepository _eventCommandRepository;
 
     public UpdateCommandHandler(IRoleCommandRepository roleCommandRepository,
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime, 
-        ISerializer serializer, 
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer,
         IJsonWebToken jsonWebToken
     )
     {
-        _dotrisDateTime         = dotrisDateTime;
+        _dateTime               = dateTime;
         _serializer             = serializer;
-        _jsonWebToken               = jsonWebToken;
+        _jsonWebToken           = jsonWebToken;
         _roleCommandRepository  = roleCommandRepository;
         _eventCommandRepository = eventCommandRepository;
     }
@@ -43,12 +41,14 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
         var targetRole = _validationResult as Role;
+        var updateBy   = _jsonWebToken.GetIdentityUserId(command.Token);
+        var updateRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
 
-        targetRole.Change(_dotrisDateTime, command.Name);
+        targetRole.Change(_dateTime, updateBy, updateRole, command.Name);
 
         #region OutBox
 
-        var events = targetRole.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.UserService,
+        var events = targetRole.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService,
             Table.RoleTable, Action.Update, _jsonWebToken.GetUsername(command.Token)
         );
 

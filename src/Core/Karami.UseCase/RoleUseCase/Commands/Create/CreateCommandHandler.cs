@@ -14,35 +14,39 @@ namespace Karami.UseCase.RoleUseCase.Commands.Create;
 
 public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 {
-    private readonly IDotrisDateTime         _dotrisDateTime;
-    private readonly ISerializer             _serializer;
-    private readonly IJsonWebToken               _jsonWebToken;
-    private readonly IRoleCommandRepository  _roleCommandRepository;
-    private readonly IEventCommandRepository _eventCommandRepository;
+    private readonly IDateTime                _dateTime;
+    private readonly ISerializer              _serializer;
+    private readonly IJsonWebToken            _jsonWebToken;
+    private readonly IRoleCommandRepository   _roleCommandRepository;
+    private readonly IEventCommandRepository  _eventCommandRepository;
+    private readonly IGlobalUniqueIdGenerator _globalUniqueIdGenerator;
 
     public CreateCommandHandler(IRoleCommandRepository roleCommandRepository, 
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime,
-        ISerializer serializer, 
-        IJsonWebToken jsonWebToken
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
+        IJsonWebToken jsonWebToken, IGlobalUniqueIdGenerator globalUniqueIdGenerator
     )
     {
-        _dotrisDateTime         = dotrisDateTime;
-        _serializer             = serializer;
-        _jsonWebToken = jsonWebToken;
-        _roleCommandRepository  = roleCommandRepository;
-        _eventCommandRepository = eventCommandRepository;
+        _dateTime                = dateTime;
+        _serializer              = serializer;
+        _jsonWebToken            = jsonWebToken;
+        _roleCommandRepository   = roleCommandRepository;
+        _eventCommandRepository  = eventCommandRepository;
+        _globalUniqueIdGenerator = globalUniqueIdGenerator;
     }
 
     [WithValidation]
     [WithTransaction]
     public async Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
-        var role = new Role(_dotrisDateTime, Guid.NewGuid().ToString(), command.Name);
+        string roleId   = _globalUniqueIdGenerator.GetRandom();
+        var createdBy   = _jsonWebToken.GetIdentityUserId(command.Token);
+        var createdRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
+        
+        var role = new Role(_dateTime, roleId, createdBy, createdRole, command.Name);
 
         #region OutBox
 
-        var events = role.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.UserService,
+        var events = role.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService,
             Table.RoleTable, Action.Create, _jsonWebToken.GetUsername(command.Token)
         );
 

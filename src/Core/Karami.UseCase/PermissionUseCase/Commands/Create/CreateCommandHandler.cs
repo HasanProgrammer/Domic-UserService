@@ -14,35 +14,39 @@ namespace Karami.UseCase.PermissionUseCase.Commands.Create;
 
 public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 {
-    private readonly IDotrisDateTime              _dotrisDateTime;
+    private readonly IDateTime                    _dateTime;
     private readonly ISerializer                  _serializer;
-    private readonly IJsonWebToken                    _jsonWebToken;
+    private readonly IJsonWebToken                _jsonWebToken;
     private readonly IEventCommandRepository      _eventCommandRepository;
     private readonly IPermissionCommandRepository _permissionCommandRepository;
+    private readonly IGlobalUniqueIdGenerator     _globalUniqueIdGenerator;
 
     public CreateCommandHandler(IPermissionCommandRepository permissionCommandRepository,
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime,
-        IJsonWebToken jsonWebToken,
-        ISerializer serializer
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, IJsonWebToken jsonWebToken,
+        ISerializer serializer, IGlobalUniqueIdGenerator globalUniqueIdGenerator
     )
     {
-        _dotrisDateTime              = dotrisDateTime;
+        _dateTime                    = dateTime;
         _serializer                  = serializer;
-        _jsonWebToken                    = jsonWebToken;
+        _jsonWebToken                = jsonWebToken;
         _eventCommandRepository      = eventCommandRepository;
         _permissionCommandRepository = permissionCommandRepository;
+        _globalUniqueIdGenerator     = globalUniqueIdGenerator;
     }
 
     [WithValidation]
     [WithTransaction]
     public async Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
-        var permission = new Permission(_dotrisDateTime, Guid.NewGuid().ToString(), command.Name, command.RoleId);
+        var createdBy       = _jsonWebToken.GetIdentityUserId(command.Token);
+        var createdRole     = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
+        string permissionId = _globalUniqueIdGenerator.GetRandom();
+        
+        var permission = new Permission(_dateTime, permissionId, createdBy, createdRole, command.Name, command.RoleId);
 
         #region OutBox
 
-        var events = permission.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.UserService, 
+        var events = permission.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService, 
             Table.PermissionTable, Action.Create, _jsonWebToken.GetUsername(command.Token)
         );
 

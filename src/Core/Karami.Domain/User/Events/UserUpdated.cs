@@ -6,9 +6,8 @@ using Karami.Core.Domain.Enumerations;
 namespace Karami.Domain.User.Events;
 
 [MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_User_Exchange, Queue = Broker.User_User_Queue)]
-public class UserUpdated : UpdateDomainEvent
+public class UserUpdated : UpdateDomainEvent<string>
 {
-    public string Id                       { get; init; }
     public string Username                 { get; init; }
     public string Password                 { get; init; }
     public string FirstName                { get; init; }

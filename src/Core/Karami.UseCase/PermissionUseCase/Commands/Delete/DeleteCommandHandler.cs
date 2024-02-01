@@ -8,7 +8,6 @@ using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Core.UseCase.Attributes;
 using Karami.Domain.Permission.Contracts.Interfaces;
-using Karami.Domain.Permission.Entities;
 using Karami.Domain.PermissionUser.Contracts.Interfaces;
 
 using Action     = Karami.Core.Common.ClassConsts.Action;
@@ -20,24 +19,21 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 {
     private readonly object  _validationResult;
 
-    private readonly IDotrisDateTime                  _dotrisDateTime;
+    private readonly IDateTime                        _dateTime;
     private readonly ISerializer                      _serializer;
-    private readonly IJsonWebToken                        _jsonWebToken;
+    private readonly IJsonWebToken                    _jsonWebToken;
     private readonly IPermissionCommandRepository     _permissionCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
     private readonly IEventCommandRepository          _eventCommandRepository;
 
     public DeleteCommandHandler(IPermissionUserCommandRepository permissionUserCommandRepository,
-        IPermissionCommandRepository permissionCommandRepository, 
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime, 
-        ISerializer serializer, 
-        IJsonWebToken jsonWebToken
+        IPermissionCommandRepository permissionCommandRepository, IEventCommandRepository eventCommandRepository, 
+        IDateTime dateTime, ISerializer serializer, IJsonWebToken jsonWebToken
     )
     {
-        _dotrisDateTime                  = dotrisDateTime;
+        _dateTime                        = dateTime;
         _serializer                      = serializer;
-        _jsonWebToken                        = jsonWebToken;
+        _jsonWebToken                    = jsonWebToken;
         _permissionCommandRepository     = permissionCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
         _eventCommandRepository          = eventCommandRepository;
@@ -47,6 +43,8 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     [WithTransaction]
     public async Task<string> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
     {
+        var updateBy         = _jsonWebToken.GetIdentityUserId(command.Token);
+        var updateRole       = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         var targetPermission = _validationResult as Permission;
 
         #region HardDelete PermissionUser
@@ -60,7 +58,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         #region SoftDelete Permission
 
-        targetPermission.Delete(_dotrisDateTime);
+        targetPermission.Delete(_dateTime, updateBy, updateRole);
 
         _permissionCommandRepository.Change(targetPermission);
 
@@ -68,7 +66,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         #region OutBox
 
-        var events = targetPermission.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer,
+        var events = targetPermission.GetEvents.ToEntityOfEvent(_dateTime, _serializer,
             Service.UserService, Table.PermissionTable, Action.Delete, _jsonWebToken.GetUsername(command.Token)
         );
         

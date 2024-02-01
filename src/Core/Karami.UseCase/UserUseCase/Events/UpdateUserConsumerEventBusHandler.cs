@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using Karami.Core.Common.ClassConsts;
+using Karami.Core.Domain.Contracts.Interfaces;
 using Karami.Core.Domain.Enumerations;
 using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Attributes;
@@ -18,15 +19,17 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
     private readonly IUserQueryRepository           _userQueryRepository;
     private readonly IRoleUserQueryRepository       _roleUserQueryRepository;
     private readonly IPermissionUserQueryRepository _permissionUserQueryRepository;
+    private readonly IGlobalUniqueIdGenerator       _globalUniqueIdGenerator;
 
     public UpdateUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository, 
-        IRoleUserQueryRepository roleUserQueryRepository,
-        IPermissionUserQueryRepository permissionUserQueryRepository
+        IRoleUserQueryRepository roleUserQueryRepository, IPermissionUserQueryRepository permissionUserQueryRepository, 
+        IGlobalUniqueIdGenerator globalUniqueIdGenerator
     )
     {
         _userQueryRepository           = userQueryRepository;
         _roleUserQueryRepository       = roleUserQueryRepository;
         _permissionUserQueryRepository = permissionUserQueryRepository;
+        _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
 
     [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
@@ -42,6 +45,8 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         targetUser.PhoneNumber           = @event.PhoneNumber;
         targetUser.Email                 = @event.Email;
         targetUser.IsActive              = @event.IsActive ? IsActive.Active : IsActive.InActive;
+        targetUser.UpdatedBy             = @event.UpdatedBy;
+        targetUser.UpdatedRole           = @event.UpdatedRole;
         targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
                 
@@ -50,13 +55,20 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
                     
         _userQueryRepository.Change(targetUser);
                     
-        _roleUserBuilder(targetUser.Id, @event.Roles);
-        _permissionUserBuilder(targetUser.Id, @event.Permissions);
+        _roleUserBuilder(@event.UpdatedBy, @event.UpdatedRole, 
+            @event.UpdatedAt_EnglishDate, @event.UpdatedAt_PersianDate, targetUser.Id, @event.Roles
+        );
+        
+        _permissionUserBuilder(@event.UpdatedBy, @event.UpdatedRole, 
+            @event.UpdatedAt_EnglishDate, @event.UpdatedAt_PersianDate, targetUser.Id, @event.Permissions
+        );
     }
     
     /*---------------------------------------------------------------*/
     
-    private void _roleUserBuilder(string userId, IEnumerable<string> roleIds)
+    private void _roleUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 
+        string persianCreatedAt, string userId, IEnumerable<string> roleIds
+    )
     {
         var roleUsers =
             _roleUserQueryRepository.FindAllByUserIdAsync(userId, default).Result;
@@ -68,16 +80,22 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         foreach (var roleId in roleIds)
         {
             var newRoleUser = new RoleUserQuery {
-                Id     = Guid.NewGuid().ToString(),
-                UserId = userId,
-                RoleId = roleId
+                Id          = _globalUniqueIdGenerator.GetRandom(),
+                UserId      = userId,
+                RoleId      = roleId,
+                CreatedBy   = createdBy,
+                CreatedRole = createdRole,
+                CreatedAt_EnglishDate = englishCreatedAt,
+                CreatedAt_PersianDate = persianCreatedAt
             };
 
             _roleUserQueryRepository.Add(newRoleUser);
         }
     }
     
-    private void _permissionUserBuilder(string userId, IEnumerable<string> permissionIds)
+    private void _permissionUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 
+        string persianCreatedAt, string userId, IEnumerable<string> permissionIds
+    )
     {
         var permissionUsers =
             _roleUserQueryRepository.FindAllByUserIdAsync(userId, default).Result;
@@ -89,9 +107,13 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         foreach (var permissionId in permissionIds)
         {
             var newPermissionUser = new PermissionUserQuery {
-                Id           = Guid.NewGuid().ToString(),
+                Id           = _globalUniqueIdGenerator.GetRandom(),
                 UserId       = userId,
-                PermissionId = permissionId
+                PermissionId = permissionId,
+                CreatedBy    = createdBy,
+                CreatedRole  = createdRole,
+                CreatedAt_EnglishDate = englishCreatedAt,
+                CreatedAt_PersianDate = persianCreatedAt
             };
 
             _permissionUserQueryRepository.Add(newPermissionUser);

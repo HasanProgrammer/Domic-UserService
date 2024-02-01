@@ -33,12 +33,13 @@ public class User : Entity<string>
     //EF Core
     public User() {}
 
-    
     /// <summary>
-    /// For Seeder
+    /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
     /// <param name="id"></param>
+    /// <param name="createdBy"></param>
+    /// <param name="createdRole"></param>
     /// <param name="firstName"></param>
     /// <param name="lastName"></param>
     /// <param name="description"></param>
@@ -46,14 +47,16 @@ public class User : Entity<string>
     /// <param name="password"></param>
     /// <param name="phoneNumber"></param>
     /// <param name="email"></param>
-    public User(IDotrisDateTime dotrisDateTime, string id, string firstName, string lastName, string description, 
-        string username, string password, string phoneNumber, string email
+    public User(IDateTime dateTime, string id, string createdBy, string createdRole, string firstName, string lastName, 
+        string description, string username, string password, string phoneNumber, string email
     )
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Id          = id;
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
@@ -62,15 +65,15 @@ public class User : Entity<string>
         PhoneNumber = new PhoneNumber(phoneNumber);
         Email       = new Email(email);
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
-        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
-        IsActive    = IsActive.Active;
     }
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
     /// <param name="id"></param>
+    /// <param name="createdBy"></param>
+    /// <param name="createdRole"></param>
     /// <param name="firstName"></param>
     /// <param name="lastName"></param>
     /// <param name="description"></param>
@@ -80,15 +83,17 @@ public class User : Entity<string>
     /// <param name="email"></param>
     /// <param name="roleIds"></param>
     /// <param name="permissionIds"></param>
-    public User(IDotrisDateTime dotrisDateTime, string id, string firstName, string lastName, string description, 
-        string username, string password, string phoneNumber, string email, IEnumerable<string> roleIds, 
-        IEnumerable<string> permissionIds
+    public User(IDateTime dateTime, string id, string createdBy, string createdRole, string firstName, string lastName, 
+        string description, string username, string password, string phoneNumber, string email, 
+        IEnumerable<string> roleIds, IEnumerable<string> permissionIds
     )
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Id          = id;
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
@@ -97,11 +102,12 @@ public class User : Entity<string>
         PhoneNumber = new PhoneNumber(phoneNumber);
         Email       = new Email(email);
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
-        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new UserCreated {
                 Id                    = id                          ,
+                CreatedBy             = createdBy                   , 
+                CreatedRole           = createdRole                 , 
                 FirstName             = firstName                   ,
                 LastName              = lastName                    ,
                 Username              = username                    ,
@@ -113,9 +119,7 @@ public class User : Entity<string>
                 Permissions           = permissionIds               ,
                 IsActive              = IsActive == IsActive.Active ,
                 CreatedAt_EnglishDate = nowDateTime                 ,
-                UpdatedAt_EnglishDate = nowDateTime                 ,
-                CreatedAt_PersianDate = nowPersianDateTime          ,
-                UpdatedAt_PersianDate = nowPersianDateTime
+                CreatedAt_PersianDate = nowPersianDateTime
             }
         );
     }
@@ -127,7 +131,9 @@ public class User : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="updateBy"></param>
+    /// <param name="updateRole"></param>
     /// <param name="firstName"></param>
     /// <param name="lastName"></param>
     /// <param name="description"></param>
@@ -137,14 +143,16 @@ public class User : Entity<string>
     /// <param name="roleIds"></param>
     /// <param name="permissionIds"></param>
     /// <param name="password"></param>
-    public void Change(IDotrisDateTime dotrisDateTime, string firstName, string lastName, string description, 
-        string username, string email, string phoneNumber, IEnumerable<string> roleIds, 
+    public void Change(IDateTime dateTime, string updateBy, string updateRole, string firstName, string lastName, 
+        string description, string username, string email, string phoneNumber, IEnumerable<string> roleIds, 
         IEnumerable<string> permissionIds, string password = null
     )
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
+        UpdatedBy   = updateBy;
+        UpdatedRole = updateRole;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
@@ -160,6 +168,8 @@ public class User : Entity<string>
             new UserUpdated {
                 Id                    = Id                          ,
                 FirstName             = firstName                   ,
+                UpdatedBy             = updateBy                    , 
+                UpdatedRole           = updateRole                  , 
                 LastName              = lastName                    ,
                 Username              = username                    ,
                 Password              = password                    ,
@@ -178,19 +188,25 @@ public class User : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="updateBy"></param>
+    /// <param name="updateRole"></param>
     /// <param name="ownerUsername"></param>
-    public void Active(IDotrisDateTime dotrisDateTime, string ownerUsername)
+    public void Active(IDateTime dateTime, string updateBy, string updateRole, string ownerUsername)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        IsActive  = IsActive.Active;
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
+        UpdatedBy   = updateBy;
+        UpdatedRole = updateRole;
+        IsActive    = IsActive.Active;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new UserActived {
                 Id                    = Id            ,
+                UpdatedBy             = updateBy      , 
+                UpdatedRole           = updateRole    , 
                 OwnerUsername         = ownerUsername ,
                 UpdatedAt_EnglishDate = nowDateTime   ,
                 UpdatedAt_PersianDate = nowPersianDateTime
@@ -201,19 +217,25 @@ public class User : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="updateBy"></param>
+    /// <param name="updateRole"></param>
     /// <param name="ownerUsername"></param>
-    public void InActive(IDotrisDateTime dotrisDateTime, string ownerUsername)
+    public void InActive(IDateTime dateTime, string updateBy, string updateRole, string ownerUsername)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        IsActive  = IsActive.InActive;
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
+        UpdatedBy   = updateBy;
+        UpdatedRole = updateRole;
+        IsActive    = IsActive.InActive;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new UserInActived {
                 Id                    = Id            ,
+                UpdatedBy             = updateBy      ,
+                UpdatedRole           = updateRole    ,
                 OwnerUsername         = ownerUsername ,
                 UpdatedAt_EnglishDate = nowDateTime   ,
                 UpdatedAt_PersianDate = nowPersianDateTime

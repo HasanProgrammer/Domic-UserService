@@ -6,9 +6,8 @@ using Karami.Core.Domain.Enumerations;
 namespace Karami.Domain.User.Events;
 
 [MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_User_Exchange, Queue = Broker.User_User_Queue)]
-public class UserCreated : CreateDomainEvent
+public class UserCreated : CreateDomainEvent<string>
 {
-    public string Id                       { get; init; }
     public string FirstName                { get; init; }
     public string LastName                 { get; init; }
     public string Username                 { get; init; }
