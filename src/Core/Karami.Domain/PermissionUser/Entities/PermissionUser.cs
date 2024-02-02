@@ -42,7 +42,7 @@ public class PermissionUser : Entity<string>
         Id           = id;
         CreatedBy    = createdBy;
         CreatedRole  = createdRole;
-        UserId       = createdBy;
+        UserId       = userId;
         PermissionId = permissionId;
         CreatedAt    = new CreatedAt(nowDateTime, nowPersianDateTime);
     }

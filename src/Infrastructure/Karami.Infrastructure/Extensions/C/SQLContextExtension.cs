@@ -1,21 +1,12 @@
-﻿using Karami.Core.Common.ClassConsts;
-using Karami.Core.Domain.Entities;
-using Karami.Core.Domain.Extensions;
-using Karami.Core.Domain.Implementations;
-using Karami.Core.Infrastructure.Extensions;
+﻿using Karami.Core.Domain.Implementations;
 using Karami.Core.Infrastructure.Implementations;
-using Karami.Domain.Permission.Events;
 using Karami.Domain.PermissionUser.Entities;
 using Karami.Domain.Role.Entities;
-using Karami.Domain.Role.Events;
 using Karami.Domain.RoleUser.Entities;
 using Karami.Domain.User.Entities;
-using Karami.Domain.User.Events;
 using Karami.Persistence.Contexts.C;
 
-using Action     = Karami.Core.Common.ClassConsts.Action;
 using Permission = Karami.Domain.Permission.Entities.Permission;
-using Table      = Karami.Common.ClassConsts.Table;
 
 namespace Karami.Infrastructure.Extensions.C;
 
@@ -43,20 +34,6 @@ public static class SQLContextExtension
         _roleIds.Add(roleId);
         
         context.Roles.Add(newRole);
-
-        context.Events.Add(new Event {
-            Id      = uniqueIdGenerator.GetRandom(),
-            Type    = nameof(RoleCreated),
-            Service = Service.UserService,
-            Payload = newRole.GetEvents.First().Serialize(),
-            Table   = Table.RoleTable,
-            Action  = Action.Create,
-            User    = "Hasan_Karami_Moheb",
-            CreatedAt_EnglishDate = dateTime,
-            CreatedAt_PersianDate = persianDateTime.ToPersianShortDate(dateTime),
-            UpdatedAt_EnglishDate = dateTime,
-            UpdatedAt_PersianDate = persianDateTime.ToPersianShortDate(dateTime)
-        });
 
         #endregion
 
@@ -94,20 +71,6 @@ public static class SQLContextExtension
 
         #endregion
 
-        context.Events.Add(new Event {
-            Id      = uniqueIdGenerator.GetRandom(),
-            Type    = nameof(UserCreated),
-            Service = Service.UserService,
-            Payload = newUser.GetEvents.First().Serialize(),
-            Table   = Table.UserTable,
-            Action  = Action.Create,
-            User    = "Hasan_Karami_Moheb",
-            CreatedAt_EnglishDate = dateTime,
-            CreatedAt_PersianDate = persianDateTime.ToPersianShortDate(dateTime),
-            UpdatedAt_EnglishDate = dateTime,
-            UpdatedAt_PersianDate = persianDateTime.ToPersianShortDate(dateTime)
-        });
-
         context.SaveChanges();
     }
 
@@ -128,20 +91,6 @@ public static class SQLContextExtension
                 new Permission(new DomicDateTime(), uniqueId, createdBy, createdRole, permission, roleId);
 
             context.Permissions.Add(newPermission);
-            
-            context.Events.Add(new Event {
-                Id      = uniqueIdGenerator.GetRandom(),
-                Type    = nameof(PermissionCreated),
-                Service = Service.UserService,
-                Payload = newPermission.GetEvents.First().Serialize(),
-                Table   = Table.PermissionTable,
-                Action  = Action.Create,
-                User    = "Hasan_Karami_Moheb",
-                CreatedAt_EnglishDate = dateTime,
-                CreatedAt_PersianDate = domicDateTime.ToPersianShortDate(dateTime),
-                UpdatedAt_EnglishDate = dateTime,
-                UpdatedAt_PersianDate = domicDateTime.ToPersianShortDate(dateTime)
-            });
         }
     }
 
