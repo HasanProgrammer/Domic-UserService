@@ -18,7 +18,7 @@
 
   <!--CorePackage | Persistence-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Persistence" Version="1.6.1" />
+    <PackageReference Include="Domic.Architecture.Persistence" Version="1.8.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Migrations\C" />

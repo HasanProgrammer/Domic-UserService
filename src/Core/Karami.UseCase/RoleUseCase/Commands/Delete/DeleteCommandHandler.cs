@@ -1,19 +1,13 @@
 #pragma warning disable CS0649
 
-using Karami.Common.ClassConsts;
-using Karami.Core.Common.ClassConsts;
 using Karami.Core.Domain.Contracts.Interfaces;
 using Karami.Core.UseCase.Contracts.Interfaces;
-using Karami.Core.Domain.Entities;
-using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Attributes;
 using Karami.Domain.Permission.Contracts.Interfaces;
 using Karami.Domain.PermissionUser.Contracts.Interfaces;
 using Karami.Domain.Role.Contracts.Interfaces;
 using Karami.Domain.Role.Entities;
 using Karami.Domain.RoleUser.Contracts.Interfaces;
-
-using Action = Karami.Core.Common.ClassConsts.Action;
 
 namespace Karami.UseCase.RoleUseCase.Commands.Delete;
 
@@ -28,12 +22,10 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     private readonly IPermissionCommandRepository     _permissionCommandRepository;
     private readonly IRoleUserCommandRepository       _roleUserCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
-    private readonly IEventCommandRepository          _eventCommandRepository;
 
     public DeleteCommandHandler(IRoleCommandRepository roleCommandRepository,
         IPermissionCommandRepository permissionCommandRepository, IRoleUserCommandRepository roleUserCommandRepository,
-        IPermissionUserCommandRepository permissionUserCommandRepository, 
-        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
+        IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer, 
         IJsonWebToken jsonWebToken
     )
     {
@@ -44,7 +36,6 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
         _permissionCommandRepository     = permissionCommandRepository;
         _roleUserCommandRepository       = roleUserCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
-        _eventCommandRepository          = eventCommandRepository;
     }
 
     [WithValidation]
@@ -95,17 +86,6 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
             _permissionUserCommandRepository.RemoveRange(permissionUsers);
         }
 
-        #endregion
-
-        #region OutBox
-
-        var events = targetRole.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService, 
-            Table.RoleTable, Action.Delete, _jsonWebToken.GetUsername(command.Token)
-        );
-
-        foreach (Event @event in events)
-            await _eventCommandRepository.AddAsync(@event, cancellationToken);
-        
         #endregion
 
         return command.RoleId;

@@ -74,7 +74,7 @@ public class CreateUserCommandTests : BaseTestClass
         //Act
 
         CreateCommandHandler handler = new(userCommandRepository,
-            roleUserCommandRepository, permissionUserCommandRepository, eventCommandRepository, dotrisDateTime, 
+            roleUserCommandRepository, permissionUserCommandRepository, dotrisDateTime, 
             serializer, jsonWebToken
         );
 
@@ -108,7 +108,7 @@ public class CreateUserCommandTests : BaseTestClass
         //Act
 
         CreateCommandHandler handler = new(userCommandRepository,
-            roleUserCommandRepository, permissionUserCommandRepository, eventCommandRepository, dotrisDateTime, 
+            roleUserCommandRepository, permissionUserCommandRepository, dotrisDateTime, 
             serializer, jsonWebToken
         );
 

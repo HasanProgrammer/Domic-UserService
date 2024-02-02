@@ -1,13 +1,8 @@
-using Karami.Common.ClassConsts;
-using Karami.Core.Common.ClassConsts;
-using Karami.Core.Domain.Entities;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Core.Domain.Contracts.Interfaces;
-using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Attributes;
 using Karami.Domain.Permission.Contracts.Interfaces;
 
-using Action     = Karami.Core.Common.ClassConsts.Action;
 using Permission = Karami.Domain.Permission.Entities.Permission;
 
 namespace Karami.UseCase.PermissionUseCase.Commands.Create;
@@ -43,19 +38,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
         string permissionId = _globalUniqueIdGenerator.GetRandom();
         
         var permission = new Permission(_dateTime, permissionId, createdBy, createdRole, command.Name, command.RoleId);
-
-        #region OutBox
-
-        var events = permission.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService, 
-            Table.PermissionTable, Action.Create, _jsonWebToken.GetUsername(command.Token)
-        );
-
-        foreach (Event @event in events)
-            await _eventCommandRepository.AddAsync(@event, cancellationToken);
-        
-        permission.ClearEvents();
-
-        #endregion
 
         await _permissionCommandRepository.AddAsync(permission, cancellationToken);
 

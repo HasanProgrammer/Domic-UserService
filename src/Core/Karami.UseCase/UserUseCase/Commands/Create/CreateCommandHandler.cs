@@ -1,20 +1,14 @@
 #pragma warning disable CS4014
 
-using Karami.Common.ClassConsts;
-using Karami.Core.Common.ClassConsts;
 using Karami.Core.UseCase.Contracts.Interfaces;
 using Karami.Domain.PermissionUser.Entities;
 using Karami.Domain.RoleUser.Entities;
 using Karami.Domain.User.Entities;
-using Karami.Core.Domain.Entities;
 using Karami.Core.Domain.Contracts.Interfaces;
-using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Attributes;
 using Karami.Domain.PermissionUser.Contracts.Interfaces;
 using Karami.Domain.RoleUser.Contracts.Interfaces;
 using Karami.Domain.User.Contracts.Interfaces;
-
-using Action = Karami.Core.Common.ClassConsts.Action;
 
 namespace Karami.UseCase.UserUseCase.Commands.Create;
 
@@ -26,13 +20,11 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
     private readonly IUserCommandRepository           _userCommandRepository;
     private readonly IRoleUserCommandRepository       _roleUserCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
-    private readonly IEventCommandRepository          _eventCommandRepository;
     private readonly IGlobalUniqueIdGenerator         _globalUniqueIdGenerator;
 
     public CreateCommandHandler(IUserCommandRepository userCommandRepository,
         IRoleUserCommandRepository roleUserCommandRepository, 
-        IPermissionUserCommandRepository permissionUserCommandRepository, 
-        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
+        IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer, 
         IJsonWebToken jsonWebToken, IGlobalUniqueIdGenerator globalUniqueIdGenerator
     )
     {
@@ -42,7 +34,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
         _userCommandRepository           = userCommandRepository;
         _roleUserCommandRepository       = roleUserCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
-        _eventCommandRepository          = eventCommandRepository;
         _globalUniqueIdGenerator         = globalUniqueIdGenerator;
     }
 
@@ -74,19 +65,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
         
         await _roleUserBuilderAsync(createdBy, createdRole, userId, command.Roles, cancellationToken);
         await _permissionUserBuilderAsync(createdBy, createdRole, userId, command.Permissions, cancellationToken);
-
-        #region OutBox
-
-        var events = newUser.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService, 
-            Table.UserTable, Action.Create, _jsonWebToken.GetUsername(command.Token)
-        );
-
-        foreach (Event @event in events)
-            await _eventCommandRepository.AddAsync(@event, cancellationToken);
-        
-        newUser.ClearEvents();
-
-        #endregion
 
         return userId;
     }

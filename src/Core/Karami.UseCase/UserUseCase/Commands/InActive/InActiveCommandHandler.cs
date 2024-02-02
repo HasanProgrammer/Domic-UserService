@@ -1,16 +1,10 @@
 #pragma warning disable CS0649
 
-using Karami.Common.ClassConsts;
-using Karami.Core.Common.ClassConsts;
 using Karami.Core.UseCase.Contracts.Interfaces;
-using Karami.Core.Domain.Entities;
 using Karami.Core.Domain.Contracts.Interfaces;
-using Karami.Core.Domain.Extensions;
 using Karami.Core.UseCase.Attributes;
 using Karami.Domain.User.Contracts.Interfaces;
 using Karami.Domain.User.Entities;
-
-using Action = Karami.Core.Common.ClassConsts.Action;
 
 namespace Karami.UseCase.UserUseCase.Commands.InActive;
 
@@ -38,7 +32,7 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
 
     [WithValidation]
     [WithTransaction]
-    public async Task<string> HandleAsync(InActiveCommand command, CancellationToken cancellationToken)
+    public Task<string> HandleAsync(InActiveCommand command, CancellationToken cancellationToken)
     {
         var targetUser  = _validationResult as User;
         var updatedBy   = _jsonWebToken.GetIdentityUserId(command.Token);
@@ -48,19 +42,6 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
 
         _userCommandRepository.Change(targetUser);
 
-        #region OutBox
-
-        var events = targetUser.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.UserService,
-            Table.UserTable, Action.Update, _jsonWebToken.GetUsername(command.Token)
-        );
-
-        foreach (Event @event in events)
-            await _eventCommandRepository.AddAsync(@event, cancellationToken);
-        
-        targetUser.ClearEvents();
-
-        #endregion
-
-        return targetUser.Id;
+        return Task.FromResult(targetUser.Id);
     }
 }

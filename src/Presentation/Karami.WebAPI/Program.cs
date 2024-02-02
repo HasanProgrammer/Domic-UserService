@@ -22,13 +22,14 @@ builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonF
 #region Service Container
 
 builder.RegisterHelpers();
-builder.RegisterCommandSqlServer<C_SQLContext>();
-builder.RegisterQuerySqlServer<Q_SQLContext>();
+builder.RegisterELK();
+builder.RegisterEntityFrameworkCoreCommand<C_SQLContext, string>();
+builder.RegisterEntityFrameworkCoreQuery<Q_SQLContext>();
 builder.RegisterCommandRepositories();
 builder.RegisterQueryRepositories();
 builder.RegisterCommandQueryUseCases();
 builder.RegisterMessageBroker();
-builder.RegisterCaching();
+builder.RegisterRedisCaching();
 builder.RegisterGrpcServer();
 builder.RegisterEventsPublisher();
 builder.RegisterEventsSubscriber();
