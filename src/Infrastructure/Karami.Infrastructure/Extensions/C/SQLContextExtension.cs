@@ -24,11 +24,11 @@ public static class SQLContextExtension
         var dateTime          = new DateTime();
         var persianDateTime   = new DomicDateTime();
         var uniqueIdGenerator = new GlobalUniqueIdGenerator();
-        var userId            = uniqueIdGenerator.GetRandom();
-        
+        var userId            = uniqueIdGenerator.GetRandom(6);
+
         #region Role Seeder
 
-        var roleId  = uniqueIdGenerator.GetRandom();
+        var roleId  = uniqueIdGenerator.GetRandom(6);
         var newRole = new Role(persianDateTime, roleId, userId, "SuperAdmin", "SuperAdmin");
 
         _roleIds.Add(roleId);
@@ -59,7 +59,7 @@ public static class SQLContextExtension
         #region RoleUser Seeder
 
         var newRoleUser =
-            new RoleUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(), userId, "SuperAdmin", userId, roleId);
+            new RoleUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(6), userId, "SuperAdmin", userId, roleId);
 
         context.RoleUsers.Add(newRoleUser);
 
@@ -83,7 +83,7 @@ public static class SQLContextExtension
 
         foreach (var permission in permissions)
         {
-            var uniqueId = uniqueIdGenerator.GetRandom();
+            var uniqueId = uniqueIdGenerator.GetRandom(6);
             
             _permissionIds.Add(uniqueId);
             
@@ -101,7 +101,7 @@ public static class SQLContextExtension
         foreach (var permissionId in _permissionIds)
         {
             var newPermissionUser =
-                new PermissionUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(), createdBy, createdRole, userId, 
+                new PermissionUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(6), createdBy, createdRole, userId, 
                     permissionId
                 );
 

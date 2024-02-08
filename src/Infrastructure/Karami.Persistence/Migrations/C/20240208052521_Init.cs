@@ -22,7 +22,7 @@ namespace Karami.Persistence.Migrations.C
                     User = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     UpdatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive = table.Column<int>(type: "int", nullable: false),
                     IsDeleted = table.Column<int>(type: "int", nullable: false)

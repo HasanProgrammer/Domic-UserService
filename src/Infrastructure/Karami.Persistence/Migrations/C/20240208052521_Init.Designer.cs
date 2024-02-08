@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Karami.Persistence.Migrations.C
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20240202124820_Init")]
+    [Migration("20240208052521_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,7 +57,7 @@ namespace Karami.Persistence.Migrations.C
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                    b.Property<DateTime?>("UpdatedAt_EnglishDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedAt_PersianDate")

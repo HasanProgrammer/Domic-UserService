@@ -116,7 +116,7 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
             roleIds.Add(guidRoleId);
             
             _testBase.CommandSqlContext.Roles.Add(
-                new Role(_testBase.DomicDateTime, guidRoleId, role)
+                new Role(_testBase.DomicDateTime, "", "", guidRoleId, role)
             );
 
             foreach (var permission in permissions)
@@ -126,7 +126,7 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
                 permissionIds.Add(guidPermissionId);
                 
                 _testBase.CommandSqlContext.Permissions.Add(
-                    new Permission(_testBase.DomicDateTime, guidPermissionId, permission, guidRoleId)
+                    new Permission(_testBase.DomicDateTime, guidPermissionId, "", "", permission, guidRoleId)
                 );
             }
         }

@@ -55,7 +55,7 @@ namespace Karami.Persistence.Migrations.C
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                    b.Property<DateTime?>("UpdatedAt_EnglishDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedAt_PersianDate")

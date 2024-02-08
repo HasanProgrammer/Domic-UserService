@@ -17,7 +17,7 @@ namespace Presentation;
 public class IntegrationTestBase : IDisposable
 {
     public readonly GrpcChannel       Channel;
-    public readonly IDotrisDateTime   DomicDateTime;
+    public readonly IDateTime         DomicDateTime;
     public readonly CommandSqlContext CommandSqlContext;
     public readonly QuerySqlContext   QuerySqlContext;
 
@@ -31,7 +31,7 @@ public class IntegrationTestBase : IDisposable
             HttpHandler = _applicationFactory.Server.CreateHandler()
         });
 
-        DomicDateTime     = _applicationFactory.Services.GetRequiredService<IDotrisDateTime>();
+        DomicDateTime     = _applicationFactory.Services.GetRequiredService<IDateTime>();
         CommandSqlContext = _applicationFactory.Services.GetRequiredService<CommandSqlContext>();
         QuerySqlContext   = _applicationFactory.Services.GetRequiredService<QuerySqlContext>();
     }

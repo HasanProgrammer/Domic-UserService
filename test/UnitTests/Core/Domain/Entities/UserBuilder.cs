@@ -5,7 +5,7 @@ namespace Core.Domain.Entities;
 
 public class UserBuilder
 {
-    private readonly IDotrisDateTime _dotrisDateTime;
+    private readonly IDateTime _dateTime;
     
     private string _Id          = Guid.NewGuid().ToString();
     private string _FirstName   = "Hasan";
@@ -16,7 +16,7 @@ public class UserBuilder
     private string _PhoneNumber = "09026676147";
     private string _Email       = "hasankarami2020313@gmail.com";
 
-    public UserBuilder(IDotrisDateTime dotrisDateTime) => _dotrisDateTime = dotrisDateTime;
+    public UserBuilder(IDateTime dateTime) => _dateTime = dateTime;
 
     public UserBuilder WithId(string id)
     {
@@ -69,7 +69,7 @@ public class UserBuilder
     public User Build()
     {
         return new User(
-            _dotrisDateTime ,
+            _dateTime ,
             Guid.NewGuid().ToString() ,
             _FirstName   ,
             _LastName    ,

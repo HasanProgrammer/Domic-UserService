@@ -61,9 +61,10 @@ public class CreateUserCommandTests : BaseTestClass
         var permissionUserCommandRepository = Substitute.For<IPermissionUserCommandRepository>();
         var eventCommandRepository          = Substitute.For<IEventCommandRepository>();
 
-        var dotrisDateTime = Substitute.For<IDotrisDateTime>();
+        var dotrisDateTime = Substitute.For<IDateTime>();
         var serializer     = Substitute.For<ISerializer>();
         var jsonWebToken   = Substitute.For<IJsonWebToken>();
+        var globalUniqueIdGenerator = Substitute.For<IGlobalUniqueIdGenerator>();
 
         dotrisDateTime.ToPersianShortDate(default).ReturnsForAnyArgs(DateTime.Now.ToShortDateString());
 
@@ -75,7 +76,7 @@ public class CreateUserCommandTests : BaseTestClass
 
         CreateCommandHandler handler = new(userCommandRepository,
             roleUserCommandRepository, permissionUserCommandRepository, dotrisDateTime, 
-            serializer, jsonWebToken
+            serializer, jsonWebToken, globalUniqueIdGenerator
         );
 
         //Assert
@@ -95,9 +96,10 @@ public class CreateUserCommandTests : BaseTestClass
         var permissionUserCommandRepository = Substitute.For<IPermissionUserCommandRepository>();
         var eventCommandRepository          = Substitute.For<IEventCommandRepository>();
 
-        var dotrisDateTime = Substitute.For<IDotrisDateTime>();
+        var dotrisDateTime = Substitute.For<IDateTime>();
         var serializer     = Substitute.For<ISerializer>();
         var jsonWebToken   = Substitute.For<IJsonWebToken>();
+        var globalUniqueIdGenerator = Substitute.For<IGlobalUniqueIdGenerator>();
 
         dotrisDateTime.ToPersianShortDate(default).ReturnsForAnyArgs(DateTime.Now.ToShortDateString());
 
@@ -109,7 +111,7 @@ public class CreateUserCommandTests : BaseTestClass
 
         CreateCommandHandler handler = new(userCommandRepository,
             roleUserCommandRepository, permissionUserCommandRepository, dotrisDateTime, 
-            serializer, jsonWebToken
+            serializer, jsonWebToken, globalUniqueIdGenerator
         );
 
         //Assert
