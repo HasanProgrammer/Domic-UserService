@@ -23,9 +23,13 @@ public class CreatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
         if (targetPermission is null) //Replication management
         {
             var newPermission = new PermissionQuery {
-                Id     = @event.Id     ,
-                RoleId = @event.RoleId ,
-                Name   = @event.Name
+                Id          = @event.Id          ,
+                RoleId      = @event.RoleId      ,
+                Name        = @event.Name        ,
+                CreatedBy   = @event.CreatedBy   ,
+                CreatedRole = @event.CreatedRole ,
+                CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate,
+                CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
             _permissionQueryRepository.Add(newPermission);

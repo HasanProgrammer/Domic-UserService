@@ -38,7 +38,7 @@ public static class SQLContextExtension
 
         #region Permission Seeder
 
-        _permissionsBuilder(context, roleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "Hasan_Karami_Moheb");
+        _permissionsBuilder(context, roleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "SuperAdmin");
 
         #endregion
 
