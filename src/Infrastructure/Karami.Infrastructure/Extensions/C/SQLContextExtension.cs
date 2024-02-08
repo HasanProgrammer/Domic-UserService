@@ -1,5 +1,4 @@
-﻿using Karami.Core.Domain.Implementations;
-using Karami.Core.Infrastructure.Implementations;
+﻿using Karami.Core.Infrastructure.Implementations;
 using Karami.Domain.PermissionUser.Entities;
 using Karami.Domain.Role.Entities;
 using Karami.Domain.RoleUser.Entities;
