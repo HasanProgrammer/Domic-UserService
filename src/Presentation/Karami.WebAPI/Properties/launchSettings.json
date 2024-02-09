@@ -16,9 +16,9 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:2001;http://localhost:2000",
       "environmentVariables": {
-        "ElasticUri": "http://localhost:9200",
-        "ElasticUsername": "",
-        "ElasticPassword": "",
+        "Elastic-Host": "http://localhost:9200",
+        "Elastic-Username": "",
+        "Elastic-Password": "",
         "E-RabbitMQ-Host": "localhost",
         "E-RabbitMQ-Port": "5672",
         "E-RabbitMQ-Username": "guest",
