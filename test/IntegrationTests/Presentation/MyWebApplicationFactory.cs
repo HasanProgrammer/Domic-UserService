@@ -1,14 +1,14 @@
 ﻿using System.Data;
-using Karami.Core.Common.ClassConsts;
-using Karami.Domain.Commons.Contracts.Interfaces;
-using Karami.Infrastructure.Implementations.Domain.Repositories.C;
-using Karami.Infrastructure.Implementations.Domain.Repositories.Q;
+using Domic.Core.Common.ClassConsts;
+using Domic.Domain.Commons.Contracts.Interfaces;
+using Domic.Infrastructure.Implementations.Domain.Repositories.C;
+using Domic.Infrastructure.Implementations.Domain.Repositories.Q;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
 
-using CommandSqlContext = Karami.Persistence.Contexts.C.SQLContext;
-using QuerySqlContext   = Karami.Persistence.Contexts.Q.SQLContext;
+using CommandSqlContext = Domic.Persistence.Contexts.C.SQLContext;
+using QuerySqlContext   = Domic.Persistence.Contexts.Q.SQLContext;
 
 namespace Presentation;
 

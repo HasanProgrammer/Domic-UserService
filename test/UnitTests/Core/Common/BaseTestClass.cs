@@ -1,4 +1,4 @@
-﻿using Karami.Core.Domain.Contracts.Interfaces;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
 using NSubstitute;
 
 namespace Core.Common;

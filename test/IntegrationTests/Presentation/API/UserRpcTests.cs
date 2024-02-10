@@ -4,16 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using Grpc.Core;
-using Karami.Core.Common.ClassConsts;
-using Karami.Core.Grpc.User;
-using Karami.Core.Infrastructure.Extensions;
-using Karami.Domain.Role.Entities;
+using Domic.Core.Common.ClassConsts;
+using Domic.Core.User.Grpc;
+using Domic.Core.Infrastructure.Extensions;
+using Domic.Domain.Role.Entities;
 using Microsoft.EntityFrameworkCore;
 using Shouldly;
 using Xunit;
 
-using String     = Karami.Core.Grpc.User.String;
-using Permission = Karami.Domain.Permission.Entities.Permission;
+using String     = Domic.Core.User.Grpc.String;
+using Permission = Domic.Domain.Permission.Entities.Permission;
 
 namespace Presentation.API;
 
@@ -27,9 +27,9 @@ public class UserRpcTests : IClassFixture<IntegrationTestBase>
     }
 
     [Theory]
-    [InlineData("Hasan", "Karami",
+    [InlineData("Hasan", "Domic",
         "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r",
-        "HasanProgrammer", "Hasan@123@313@@", "09026676147", "hasankarami2020313@gmail.com", 
+        "HasanProgrammer", "Hasan@123@313@@", "09026676147", "hasanDomic2020313@gmail.com", 
         new [] { "SuperAdmin"  },
         new [] { "User.Create" }
     )]

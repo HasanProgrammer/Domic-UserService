@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Presentation\Karami.WebAPI\Karami.WebAPI.csproj" />
+    <ProjectReference Include="..\..\..\src\Presentation\Domic.WebAPI\Domic.WebAPI.csproj" />
   </ItemGroup>
 
 </Project>

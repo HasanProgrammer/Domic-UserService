@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Infrastructure\Karami.Infrastructure\Karami.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\src\Infrastructure\Domic.Infrastructure\Domic.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Domic.UseCase\Domic.UseCase.csproj" />
+    <ProjectReference Include="..\Domic.Persistence\Domic.Persistence.csproj" />
+  </ItemGroup>
+
+  <!--CorePackage | Infrastructure-->
+  <ItemGroup>
+    <PackageReference Include="Domic.Architecture.Infrastructure" Version="5.0.0" />
+  </ItemGroup>
+  <!--CorePackage | Infrastructure-->
+
+  <!--CorePackage | RPC-->
+  <ItemGroup>
+    <PackageReference Include="Domic.Grpc.User" Version="1.1.0" />
+    <PackageReference Include="Domic.Grpc.Role" Version="1.1.0" />
+    <PackageReference Include="Domic.Grpc.Permission" Version="1.1.0" />
+  </ItemGroup>
+  <!--CorePackage | RPC-->
+
+</Project>

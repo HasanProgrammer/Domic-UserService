@@ -1,19 +1,19 @@
 using System.Reflection;
 using Core.Common;
 using Core.Domain.Entities;
-using Karami.Core.Domain.Contracts.Interfaces;
-using Karami.Core.UseCase.Attributes;
-using Karami.Core.UseCase.Contracts.Interfaces;
-using Karami.Domain.Commons.Contracts.Interfaces;
-using Karami.Domain.Permission.Contracts.Interfaces;
-using Karami.Domain.Permission.Entities;
-using Karami.Domain.PermissionUser.Contracts.Interfaces;
-using Karami.Domain.Role.Contracts.Interfaces;
-using Karami.Domain.Role.Entities;
-using Karami.Domain.RoleUser.Contracts.Interfaces;
-using Karami.Domain.User.Contracts.Interfaces;
-using Karami.Domain.User.Entities;
-using Karami.UseCase.UserUseCase.Commands.Create;
+using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.UseCase.Attributes;
+using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Domain.Commons.Contracts.Interfaces;
+using Domic.Domain.Permission.Contracts.Interfaces;
+using Domic.Domain.Permission.Entities;
+using Domic.Domain.PermissionUser.Contracts.Interfaces;
+using Domic.Domain.Role.Contracts.Interfaces;
+using Domic.Domain.Role.Entities;
+using Domic.Domain.RoleUser.Contracts.Interfaces;
+using Domic.Domain.User.Contracts.Interfaces;
+using Domic.Domain.User.Entities;
+using Domic.UseCase.UserUseCase.Commands.Create;
 using NSubstitute;
 using NSubstitute.ReturnsExtensions;
 using Xunit;
@@ -30,11 +30,11 @@ public class CreateUserCommandTests : BaseTestClass
         _userCommand = new() {
             Token       = "", 
             FirstName   = "Hasan"                        ,
-            LastName    = "Karami"                       ,
+            LastName    = "Domic"                       ,
             Username    = "HasanProgrammer"              ,
             Password    = "Hasan@123@313@@"              ,
             PhoneNumber = "09026676147"                  ,
-            EMail       = "hasankarami2020313@gmail.com" ,
+            EMail       = "hasanDomic2020313@gmail.com" ,
             Description = "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r",
             Permissions = new List<string>(),
             Roles       = new List<string>()  
@@ -42,11 +42,11 @@ public class CreateUserCommandTests : BaseTestClass
         
         _user = new UserBuilder(_dotrisDateTime).WithId(Guid.NewGuid().ToString())
                                                 .WithFirstName("Hasan")
-                                                .WithLastName("Karami")
+                                                .WithLastName("Domic")
                                                 .WithUsername("HasanTesti")
                                                 .WithPassword("Hasan@123@313@@")
                                                 .WithPhoneNumber("09106676147")
-                                                .WithEmail("hasankaramimoheb2020313@gmail.com")
+                                                .WithEmail("hasanDomicmoheb2020313@gmail.com")
                                                 .WithDescription("4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r")
                                                 .Build();
     }
@@ -142,8 +142,8 @@ public class CreateUserCommandTests : BaseTestClass
         
         userCommandRepository.FindByEmailAsync(_userCommand.EMail, default).ReturnsNull();
 
-        var role       = new Role(_dotrisDateTime, roleId, "R-1");
-        var permission = new Permission(_dotrisDateTime, permissionId, "P-1", roleId);
+        var role       = new Role(_dotrisDateTime, roleId, "", "", "R-1");
+        var permission = new Permission(_dotrisDateTime, permissionId, "", "", "P-1", roleId);
         
         roleCommandRepository.FindByIdAsync(roleId, default)
                              .Returns(role);

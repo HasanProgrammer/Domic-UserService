@@ -1,5 +1,5 @@
 
-using Karami.Domain.User.Entities;
+using Domic.Domain.User.Entities;
 using Shouldly;
 using Xunit;
 
@@ -13,12 +13,12 @@ public class UserTests
         //Arrange
         
         const string FirstName   = "Hasan";
-        const string LastName    = "Karami";
+        const string LastName    = "Domic";
         const string Description = "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r";
         const string Username    = "HasanProgrammer";
         const string Password    = "Hasan@123@313@@";
         const string PhoneNumber = "09026676147";
-        const string Email       = "hasankarami2020313@gmail.com";
+        const string Email       = "hasanDomic2020313@gmail.com";
 
         //Act
 

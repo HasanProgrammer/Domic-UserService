@@ -1,9 +1,9 @@
 using System;
-using Karami.Domain.User.Entities;
-using Karami.Infrastructure.Implementations.Domain.Repositories;
-using Karami.Infrastructure.Implementations.Domain.Repositories.C;
-using Karami.Persistence.Contexts;
-using Karami.Persistence.Contexts.C;
+using Domic.Domain.User.Entities;
+using Domic.Infrastructure.Implementations.Domain.Repositories;
+using Domic.Infrastructure.Implementations.Domain.Repositories.C;
+using Domic.Persistence.Contexts;
+using Domic.Persistence.Contexts.C;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
 using Xunit;

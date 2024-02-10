@@ -1,6 +1,6 @@
 using System;
-using Karami.Core.Domain.Exceptions;
-using Karami.Domain.User.ValueObjects;
+using Domic.Core.Domain.Exceptions;
+using Domic.Domain.User.ValueObjects;
 using Xunit;
 
 namespace Core.Domain.ValueObjects;

@@ -1,5 +1,5 @@
-using Karami.Core.Domain.Contracts.Interfaces;
-using Karami.Domain.User.Entities;
+using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Domain.User.Entities;
 
 namespace Core.Domain.Entities;
 
@@ -9,12 +9,12 @@ public class UserBuilder
     
     private string _Id          = Guid.NewGuid().ToString();
     private string _FirstName   = "Hasan";
-    private string _LastName    = "Karami";
+    private string _LastName    = "Domic";
     private string _Description = "4gXDlJRPguRND4qZ0dhk0LvZ1TqgYCY0fqvVtZJiCwjLCW3fOEm1HfSYZjzdkaRDhklxbRCz3uwuLKlJmGG89oDl61f0DBhEMsi3r";
     private string _Username    = "HasanProgrammer";
     private string _Password    = "Hasan@123@313@@";
     private string _PhoneNumber = "09026676147";
-    private string _Email       = "hasankarami2020313@gmail.com";
+    private string _Email       = "hasanDomic2020313@gmail.com";
 
     public UserBuilder(IDateTime dateTime) => _dateTime = dateTime;
 

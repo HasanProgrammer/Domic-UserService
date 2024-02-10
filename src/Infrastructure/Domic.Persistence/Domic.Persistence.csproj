@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Domic.UseCase\Domic.UseCase.csproj" />
+  </ItemGroup>
+
+  <!--CorePackage | Persistence-->
+  <ItemGroup>
+    <PackageReference Include="Domic.Architecture.Persistence" Version="4.0.0" />
+  </ItemGroup>
+  <!--CorePackage | Persistence-->
+
+</Project>

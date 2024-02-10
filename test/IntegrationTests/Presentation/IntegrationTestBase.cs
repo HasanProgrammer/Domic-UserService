@@ -4,13 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Security.Claims;
 using Grpc.Net.Client;
-using Karami.Core.Domain.Contracts.Interfaces;
-using Karami.Core.UseCase.Contracts.Interfaces;
-using Karami.Core.UseCase.DTOs;
+using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Core.UseCase.DTOs;
 using Microsoft.Extensions.DependencyInjection;
 
-using CommandSqlContext = Karami.Persistence.Contexts.C.SQLContext;
-using QuerySqlContext   = Karami.Persistence.Contexts.Q.SQLContext;
+using CommandSqlContext = Domic.Persistence.Contexts.C.SQLContext;
+using QuerySqlContext   = Domic.Persistence.Contexts.Q.SQLContext;
 
 namespace Presentation;
 

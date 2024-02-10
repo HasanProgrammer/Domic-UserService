@@ -1,8 +1,8 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Karami.Infrastructure.Implementations.Domain.Repositories.C;
-using Karami.Persistence.Contexts.C;
+using Domic.Infrastructure.Implementations.Domain.Repositories.C;
+using Domic.Persistence.Contexts.C;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

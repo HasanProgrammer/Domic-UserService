@@ -1,9 +1,9 @@
 #pragma warning disable CS4014
 
-using Karami.Core.Grpc.User;
-using Karami.Core.UseCase.Contracts.Interfaces;
-using Karami.UseCase.UserUseCase.Commands.Create;
-using Karami.WebAPI.EntryPoints.GRPCs;
+using Domic.Core.User.Grpc;
+using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.UserUseCase.Commands.Create;
+using Domic.WebAPI.EntryPoints.GRPCs;
 using Microsoft.Extensions.Configuration;
 using NSubstitute;
 using Xunit;
