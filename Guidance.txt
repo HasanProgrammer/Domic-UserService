@@ -6,7 +6,7 @@ Deploy ( With docker | Windows OS by Linux container )
 
 2 . Open powershell ( Administrator ) & run below commands
 
-dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\Karami.WebAPI.pfx -p [ CrypticPassword ]
+dotnet dev-certs https -ep $env:USERPROFILE\.aspnet\https\Domic.WebAPI.pfx -p [ CrypticPassword ]
 dotnet dev-certs https --trust
 
 3 . Next, see the docker-compose.yml in this directory
@@ -29,8 +29,8 @@ Docker usefule commands
 
 Start project
 
-1 . Go to the [ TriggerService -> Karami.Init.Docker -> Core.Rabbit ] path & open up cmd & run [ docker compose up ]
-    Go to the [ TriggerService -> Karami.Init.MessageBroker ] path & run project
+1 . Go to the [ TriggerService -> Domic.Init.Docker -> Core.Rabbit ] path & open up cmd & run [ docker compose up ]
+    Go to the [ TriggerService -> Domic.Init.MessageBroker ] path & run project
 
 2 . Using the [ docker compose up --build ] command
 
