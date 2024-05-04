@@ -34,7 +34,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this UsersViewModel model, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this UsersDto model, IConfiguration configuration)
     {
         object Response = null;
 
@@ -57,7 +57,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this PaginatedCollection<UsersViewModel> models, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this PaginatedCollection<UsersDto> models, IConfiguration configuration)
     {
         object Response = null;
 

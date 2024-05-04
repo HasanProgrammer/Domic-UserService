@@ -12,7 +12,7 @@ public static class UserExtension
     /// </summary>
     /// <param name="model"></param>
     /// <returns></returns>
-    public static UsersViewModel ToViewModel(this User model)
+    public static UsersDto ToViewModel(this User model)
         => new() {
             Id          = model.Id                ,  
             FirstName   = model.FirstName.Value   ,

@@ -6,21 +6,21 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 
 namespace Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<UsersViewModel>>
+public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<UsersDto>>
 {
     private readonly ICacheService _cacheService;
 
     public ReadAllPaginatedQueryHandler(ICacheService cacheService) => _cacheService = cacheService;
 
     [WithValidation]
-    public async Task<PaginatedCollection<UsersViewModel>> HandleAsync(ReadAllPaginatedQuery query, 
+    public async Task<PaginatedCollection<UsersDto>> HandleAsync(ReadAllPaginatedQuery query, 
         CancellationToken cancellationToken
     )
     {
         int pageNumber   = Convert.ToInt32(query.PageNumber);
         int countPerPage = Convert.ToInt32(query.CountPerPage);
 
-        var result = await _cacheService.GetAsync<List<UsersViewModel>>(cancellationToken);
+        var result = await _cacheService.GetAsync<List<UsersDto>>(cancellationToken);
 
         return result.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
     }

@@ -5,6 +5,6 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 
 namespace Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<PaginatedCollection<UsersViewModel>>
+public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<PaginatedCollection<UsersDto>>
 {
 }

@@ -7,7 +7,7 @@ using Domic.UseCase.UserUseCase.DTOs.ViewModels;
 
 namespace Domic.UseCase.UserUseCase.Caches;
 
-public class UsersEagerLoadingMemoryCache : IMemoryCacheSetter<List<UsersViewModel>>
+public class UsersEagerLoadingMemoryCache : IMemoryCacheSetter<List<UsersDto>>
 {
     private readonly IUserQueryRepository _userQueryRepository;
 
@@ -15,12 +15,12 @@ public class UsersEagerLoadingMemoryCache : IMemoryCacheSetter<List<UsersViewMod
         => _userQueryRepository = userQueryRepository;
 
     [Config(Key = Cache.Users, Ttl = 60)]
-    public async Task<List<UsersViewModel>> SetAsync(CancellationToken cancellationToken)
+    public async Task<List<UsersDto>> SetAsync(CancellationToken cancellationToken)
     {
         var result =
             await _userQueryRepository.FindAllWithOrderingAsync(Order.Id, false, cancellationToken);
 
-        return result.Select(user => new UsersViewModel {
+        return result.Select(user => new UsersDto {
             Id          = user.Id          ,
             Username    = user.Username    ,
             FirstName   = user.FirstName   ,

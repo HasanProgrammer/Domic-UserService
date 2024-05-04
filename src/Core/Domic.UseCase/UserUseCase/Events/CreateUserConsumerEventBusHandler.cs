@@ -32,46 +32,38 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
     
+    [WithCleanCache(Keies = Cache.Users)]
     [TransactionConfig(Type = TransactionType.Query)]
-    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)]
     public void Handle(UserCreated @event)
     {
-        var targetUser = _userQueryRepository.FindByIdAsync(@event.Id, default).Result;
+        var newUser = new UserQuery {
+            Id                    = @event.Id                                             ,
+            CreatedBy             = @event.CreatedBy                                      , 
+            CreatedRole           = @event.CreatedRole                                    , 
+            FirstName             = @event.FirstName                                      ,
+            LastName              = @event.LastName                                       ,
+            Username              = @event.Username                                       ,
+            Description           = @event.Description                                    ,
+            PhoneNumber           = @event.PhoneNumber                                    ,
+            Email                 = @event.Email                                          ,
+            Password              = @event.Password.HashAsync(default).Result             ,
+            IsActive              = @event.IsActive ? IsActive.Active : IsActive.InActive ,
+            CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate                          ,
+            CreatedAt_PersianDate = @event.CreatedAt_PersianDate
+        };
 
-        if (targetUser is null) //Replication management
-        {
-            var newUser = new UserQuery {
-                Id                    = @event.Id                                             ,
-                CreatedBy             = @event.CreatedBy                                      , 
-                CreatedRole           = @event.CreatedRole                                    , 
-                FirstName             = @event.FirstName                                      ,
-                LastName              = @event.LastName                                       ,
-                Username              = @event.Username                                       ,
-                Description           = @event.Description                                    ,
-                PhoneNumber           = @event.PhoneNumber                                    ,
-                Email                 = @event.Email                                          ,
-                Password              = @event.Password.HashAsync(default).Result             ,
-                IsActive              = @event.IsActive ? IsActive.Active : IsActive.InActive ,
-                CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate                          ,
-                CreatedAt_PersianDate = @event.CreatedAt_PersianDate
-            };
-
-            _userQueryRepository.Add(newUser);
+        _userQueryRepository.Add(newUser);
         
-            _roleUserBuilder(@event.CreatedBy, @event.CreatedRole, 
-                @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Roles
-            );
+        _roleUserBuilder(@event.CreatedBy, @event.CreatedRole, 
+            @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Roles
+        );
             
-            _permissionUserBuilder(@event.CreatedBy, @event.CreatedRole, 
-                @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Permissions
-            );
-        }
+        _permissionUserBuilder(@event.CreatedBy, @event.CreatedRole, 
+            @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Permissions
+        );
     }
 
-    public void AfterMaxRetryHandle(UserCreated @event)
-    {
-        throw new NotImplementedException();
-    }
+    public void AfterMaxRetryHandle(UserCreated @event){}
 
     /*---------------------------------------------------------------*/
     
@@ -79,12 +71,6 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         string persianCreatedAt, string userId, IEnumerable<string> roleIds
     )
     {
-        var roleUsers = _roleUserQueryRepository.FindAllByUserIdAsync(userId, default).GetAwaiter().GetResult();
-        
-        //1 . Remove already user roles
-        _roleUserQueryRepository.RemoveRange(roleUsers);
-        
-        //2 . Assign new roles for user
         foreach (var roleId in roleIds)
         {
             var newRoleUser = new RoleUserQuery {
@@ -105,13 +91,6 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         string persianCreatedAt, string userId, IEnumerable<string> permissionIds
     )
     {
-        var permissionUsers =
-            _permissionUserQueryRepository.FindAllByUserIdAsync(userId, default).GetAwaiter().GetResult();
-        
-        //1 . Remove already user permissions
-        _permissionUserQueryRepository.RemoveRange(permissionUsers);
-        
-        //2 . Assign new permissions for user
         foreach (var permissionId in permissionIds)
         {
             var newPermissionUser = new PermissionUserQuery {

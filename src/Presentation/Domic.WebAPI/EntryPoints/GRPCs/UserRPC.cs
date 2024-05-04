@@ -56,7 +56,7 @@ public class UserRPC : UserService.UserServiceBase
     {
         var query = request.ToQuery<ReadOneQuery>();
 
-        var result = await _mediator.DispatchAsync<UsersViewModel>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<UsersDto>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
@@ -73,7 +73,7 @@ public class UserRPC : UserService.UserServiceBase
     {
         var query = request.ToQuery<ReadAllPaginatedQuery>();
 
-        var result = await _mediator.DispatchAsync<PaginatedCollection<UsersViewModel>>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<PaginatedCollection<UsersDto>>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadAllPaginatedResponse>(_configuration);
     }

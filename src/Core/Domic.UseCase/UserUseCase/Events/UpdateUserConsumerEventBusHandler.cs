@@ -31,8 +31,8 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
 
-    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.Users)]
+    [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(UserUpdated @event)
     {
         var targetUser = _userQueryRepository.FindByIdAsync(@event.Id, default).Result;
