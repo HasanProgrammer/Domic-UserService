@@ -33,7 +33,6 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
     }
     
     [TransactionConfig(Type = TransactionType.Query)]
-    [WithCleanCache(Keies = Cache.Users)]
     [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)]
     public void Handle(UserCreated @event)
     {
