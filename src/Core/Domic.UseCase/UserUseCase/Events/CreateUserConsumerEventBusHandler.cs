@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Domic.Core.Common.ClassConsts;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.Domain.Extensions;
@@ -33,8 +32,9 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
     
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.Users)]
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)]
     public void Handle(UserCreated @event)
     {
         var targetUser = _userQueryRepository.FindByIdAsync(@event.Id, default).Result;
@@ -67,6 +67,11 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
                 @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Permissions
             );
         }
+    }
+
+    public void AfterMaxRetryHandle(UserCreated @event)
+    {
+        throw new NotImplementedException();
     }
 
     /*---------------------------------------------------------------*/

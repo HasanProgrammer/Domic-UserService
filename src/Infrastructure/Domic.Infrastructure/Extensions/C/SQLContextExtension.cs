@@ -1,4 +1,4 @@
-﻿using Domic.Core.Infrastructure.Implementations;
+﻿using Domic.Core.Infrastructure.Concretes;
 using Domic.Domain.PermissionUser.Entities;
 using Domic.Domain.Role.Entities;
 using Domic.Domain.RoleUser.Entities;

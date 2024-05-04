@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -14,7 +14,7 @@ public class ActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<UserAc
     public ActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
 
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(UserActived @event)
     {
         var targetUser = _userQueryRepository.FindById(@event.Id);

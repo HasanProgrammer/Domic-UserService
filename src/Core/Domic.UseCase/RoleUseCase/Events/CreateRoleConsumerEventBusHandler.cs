@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.Role.Contracts.Interfaces;
@@ -14,7 +14,7 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
     public CreateRoleConsumerEventBusHandler(IRoleQueryRepository roleQueryRepository) 
         => _roleQueryRepository = roleQueryRepository;
 
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(RoleCreated @event)
     {
         var targetRole = _roleQueryRepository.FindByIdAsync(@event.Id, default).Result;

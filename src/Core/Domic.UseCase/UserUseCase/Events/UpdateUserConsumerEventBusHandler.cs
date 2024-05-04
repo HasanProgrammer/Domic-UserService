@@ -1,5 +1,4 @@
-﻿using System.Data;
-using Domic.Core.Common.ClassConsts;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.Domain.Extensions;
@@ -32,7 +31,7 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
 
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     [WithCleanCache(Keies = Cache.Users)]
     public void Handle(UserUpdated @event)
     {

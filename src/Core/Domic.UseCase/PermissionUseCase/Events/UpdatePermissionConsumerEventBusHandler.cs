@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.Permission.Contracts.Interfaces;
@@ -13,7 +13,7 @@ public class UpdatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
     public UpdatePermissionConsumerEventBusHandler(IPermissionQueryRepository permissionQueryRepository) 
         =>  _permissionQueryRepository = permissionQueryRepository;
 
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(PermissionUpdated @event)
     {
         var targetPermission = _permissionQueryRepository.FindByIdAsync(@event.Id, default).Result;

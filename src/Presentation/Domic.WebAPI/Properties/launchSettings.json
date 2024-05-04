@@ -17,8 +17,9 @@
       "applicationUrl": "https://localhost:2001;http://localhost:2000",
       "environmentVariables": {
         "Elastic-Host": "http://localhost:9200",
-        "Elastic-Username": "",
-        "Elastic-Password": "",
+        "Elastic-Index": "user",
+        "Elastic-Username": "domic",
+        "Elastic-Password": "Domic123!@#",
         "E-RabbitMQ-Host": "localhost",
         "E-RabbitMQ-Port": "5672",
         "E-RabbitMQ-Username": "domic",

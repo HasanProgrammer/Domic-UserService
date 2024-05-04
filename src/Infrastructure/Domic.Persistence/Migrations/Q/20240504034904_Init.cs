@@ -10,6 +10,20 @@ namespace Domic.Persistence.Migrations.Q
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "ConsumerEvents",
+                columns: table => new
+                {
+                    Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConsumerEvents", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Roles",
                 columns: table => new
                 {
@@ -211,6 +225,9 @@ namespace Domic.Persistence.Migrations.Q
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "ConsumerEvents");
+
             migrationBuilder.DropTable(
                 name: "PermissionUsers");
 

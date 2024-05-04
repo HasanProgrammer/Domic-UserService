@@ -1,4 +1,4 @@
-﻿using System.Data;
+﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Enumerations;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -21,7 +21,7 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
-    [WithTransaction(IsolationLevel = IsolationLevel.ReadUncommitted)]
+    [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(PermissionDeleted @event)
     {
         var targetPermission = _permissionQueryRepository.FindByIdAsync(@event.Id, default).Result;
