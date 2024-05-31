@@ -7,7 +7,7 @@ using Domic.UseCase.UserUseCase.DTOs.ViewModels;
 
 namespace Domic.UseCase.UserUseCase.Caches;
 
-public class UsersEagerLoadingMemoryCache : IMemoryCacheSetter<List<UsersDto>>
+public class UsersEagerLoadingMemoryCache : IInternalDistributedCacheHandler<List<UsersDto>>
 {
     private readonly IUserQueryRepository _userQueryRepository;
 

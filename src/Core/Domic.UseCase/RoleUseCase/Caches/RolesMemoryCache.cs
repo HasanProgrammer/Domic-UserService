@@ -7,7 +7,7 @@ using Domic.Domain.Role.Contracts.Interfaces;
 
 namespace Domic.UseCase.RoleUseCase.Caches;
 
-public class RolesMemoryCache : IMemoryCacheSetter<List<RolesViewModel>>
+public class RolesMemoryCache : IInternalDistributedCacheHandler<List<RolesViewModel>>
 {
     private readonly IRoleQueryRepository _roleQueryRepository;
 

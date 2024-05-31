@@ -8,10 +8,10 @@ namespace Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 
 public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<RolesViewModel>>
 {
-    private readonly ICacheService _cacheService;
+    private readonly IInternalDistributedCacheMediator _cacheMediator;
 
-    public ReadAllPaginatedQueryHandler(ICacheService cacheService) 
-        => _cacheService = cacheService;
+    public ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator cacheMediator) 
+        => _cacheMediator = cacheMediator;
 
     [WithValidation]
     public async Task<PaginatedCollection<RolesViewModel>> HandleAsync(ReadAllPaginatedQuery query, 
@@ -21,7 +21,7 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
         var pageNumber   = Convert.ToInt32(query.PageNumber);
         var countPerPage = Convert.ToInt32(query.CountPerPage);
         
-        var result = await _cacheService.GetAsync<List<RolesViewModel>>(cancellationToken);
+        var result = await _cacheMediator.GetAsync<List<RolesViewModel>>(cancellationToken);
 
         return result.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
     }

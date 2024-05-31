@@ -6,7 +6,7 @@ using Domic.UseCase.PermissionUseCase.DTOs.ViewModels;
 
 namespace Domic.UseCase.PermissionUseCase.Caches;
 
-public class PermissionsMemoryCache : IMemoryCacheSetter<List<PermissionsViewModel>>
+public class PermissionsMemoryCache : IInternalDistributedCacheHandler<List<PermissionsViewModel>>
 {
     private readonly IPermissionQueryRepository _permissionQueryRepository;
 

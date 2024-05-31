@@ -8,9 +8,10 @@ namespace Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 
 public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery, PaginatedCollection<UsersDto>>
 {
-    private readonly ICacheService _cacheService;
+    private readonly IInternalDistributedCacheMediator _cacheMediator;
 
-    public ReadAllPaginatedQueryHandler(ICacheService cacheService) => _cacheService = cacheService;
+    public ReadAllPaginatedQueryHandler(IInternalDistributedCacheMediator cacheMediator) 
+        => _cacheMediator = cacheMediator;
 
     [WithValidation]
     public async Task<PaginatedCollection<UsersDto>> HandleAsync(ReadAllPaginatedQuery query, 
@@ -20,7 +21,7 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
         int pageNumber   = Convert.ToInt32(query.PageNumber);
         int countPerPage = Convert.ToInt32(query.CountPerPage);
 
-        var result = await _cacheService.GetAsync<List<UsersDto>>(cancellationToken);
+        var result = await _cacheMediator.GetAsync<List<UsersDto>>(cancellationToken);
 
         return result.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
     }
