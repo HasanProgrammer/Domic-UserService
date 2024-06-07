@@ -15,6 +15,7 @@ namespace Domic.Persistence.Migrations.Q
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CountOfRetry = table.Column<int>(type: "int", nullable: false),
                     CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },

@@ -19,7 +19,7 @@ builder.WebHost.ConfigureAppConfiguration((context, builder) => builder.AddJsonF
 
 /*-------------------------------------------------------------------*/
 
-#region Service Container
+#region ServiceContainer
 
 builder.RegisterHelpers();
 builder.RegisterELK();
@@ -28,7 +28,7 @@ builder.RegisterEntityFrameworkCoreQuery<Q_SQLContext>();
 builder.RegisterCommandRepositories();
 builder.RegisterQueryRepositories();
 builder.RegisterCommandQueryUseCases();
-builder.RegisterRedisCaching();
+builder.RegisterDistributedCaching();
 builder.RegisterGrpcServer();
 builder.RegisterMessageBroker();
 builder.RegisterEventsPublisher();
