@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
 using Domic.Core.Common.ClassConsts;
 using Domic.Domain.Commons.Contracts.Interfaces;
 using Domic.Infrastructure.Implementations.Domain.Repositories.C;
@@ -56,6 +58,27 @@ public class MyWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram>
         public void Rollback() {}
 
         public void Dispose(){}
+
+        public Task TransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
+            CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task CommitAsync(CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task RollbackAsync(CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ValueTask DisposeAsync()
+        {
+            throw new System.NotImplementedException();
+        }
     }
     
     public class IntegrationTestQueryUnitOfWork : IQueryUnitOfWork
@@ -74,5 +97,26 @@ public class MyWebApplicationFactory<TProgram> : WebApplicationFactory<TProgram>
         public void Rollback() {}
 
         public void Dispose(){}
+
+        public Task TransactionAsync(IsolationLevel isolationLevel = IsolationLevel.ReadCommitted,
+            CancellationToken cancellationToken = new CancellationToken())
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task CommitAsync(CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public Task RollbackAsync(CancellationToken cancellationToken)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public ValueTask DisposeAsync()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
