@@ -34,7 +34,8 @@ services:
       - I-RabbitMQ-Port=5672
       - I-RabbitMQ-Username=guest
       - I-RabbitMQ-Password=guest
-      - RedisConnectionString=domic.user.redis:6379
+      - E-RedisConnectionString=domic.user.redis:6379
+      - I-RedisConnectionString=domic.user.redis:6379
       - MongoConnectionString=
       - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Hasan313@@313!!;Persist Security Info=True;MultipleActiveResultSets=True;
       - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Hasan313@@313!!;Persist Security Info=True;MultipleActiveResultSets=True;
