@@ -1,4 +1,32 @@
 {
   "IsExternalBrokerConsumingAsync": false,
-  "IsInternalBrokerConsumingAsync": false
+  "IsInternalBrokerConsumingAsync": false,
+  "ExternalQueueConfig": {
+    "Throttle": [
+      {
+        "Active": false,
+        "Queue": "User_User_Queue",
+        "Size": 0,
+        "Limitation": 1000,
+        "IsGlobally": false
+      },
+      {
+        "Active": false,
+        "Queue": "User_Role_Queue",
+        "Size": 0,
+        "Limitation": 1000,
+        "IsGlobally": false
+      },
+      {
+        "Active": false,
+        "Queue": "User_Permission_Queue",
+        "Size": 0,
+        "Limitation": 1000,
+        "IsGlobally": false
+      }
+    ]
+  },
+  "InternalQueueConfig": {
+    "Throttle": []
+  }
 }
