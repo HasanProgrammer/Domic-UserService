@@ -14,8 +14,6 @@ using Domic.Domain.RoleUser.Contracts.Interfaces;
 using Domic.Domain.User.Contracts.Interfaces;
 using Domic.Domain.User.Entities;
 using Domic.UseCase.UserUseCase.Commands.Create;
-using NSubstitute;
-using NSubstitute.ReturnsExtensions;
 using Xunit;
 
 namespace Core.UseCase;

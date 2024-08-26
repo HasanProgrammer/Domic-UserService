@@ -22,7 +22,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\CoreService\Commons\Domic.Core.Package\Domic.Core.Package.csproj" />
     <ProjectReference Include="..\..\..\src\Core\Domic.Common\Domic.Common.csproj" />
     <ProjectReference Include="..\..\..\src\Core\Domic.Domain\Domic.Domain.csproj" />
     <ProjectReference Include="..\..\..\src\Core\Domic.UseCase\Domic.UseCase.csproj" />
