@@ -31,6 +31,7 @@ builder.RegisterCommandQueryUseCases();
 builder.RegisterDistributedCaching();
 builder.RegisterGrpcServer();
 builder.RegisterMessageBroker();
+builder.RegisterEventStreamBroker();
 builder.RegisterEventsPublisher();
 builder.RegisterEventsSubscriber();
 builder.RegisterAsyncCommandsSubscriber();
@@ -46,7 +47,7 @@ WebApplication application = builder.Build();
 
 /*-------------------------------------------------------------------*/
 
-//Primary processing
+//primary processing
 
 application.Services.AutoMigration<C_SQLContext>(context => context.Seed());
 application.Services.AutoMigration<Q_SQLContext>();

@@ -1,6 +1,41 @@
 {
+  "LoggerType": {
+    "Messaging": true,
+    "Streaming": false
+  },
   "IsExternalBrokerConsumingAsync": false,
   "IsInternalBrokerConsumingAsync": false,
+  "ExternalTopicConfig": {
+    "Throttle": [
+      {
+        "Active": false,
+        "Topic": "User",
+        "Limitation": 1000
+      },
+      {
+        "Topic": "UserService-Retry-User",
+        "Limitation": 1000
+      },
+      {
+        "Active": false,
+        "Topic": "Role",
+        "Limitation": 1000
+      },
+      {
+        "Topic": "UserService-Retry-Role",
+        "Limitation": 1000
+      },
+      {
+        "Active": false,
+        "Topic": "Permission",
+        "Limitation": 1000
+      },
+      {
+        "Topic": "UserService-Retry-Permission",
+        "Limitation": 1000
+      }
+    ]
+  },
   "ExternalQueueConfig": {
     "Throttle": [
       {

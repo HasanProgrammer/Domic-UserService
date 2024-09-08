@@ -2,6 +2,7 @@ using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.Domain.Entities;
 using Domic.Core.Domain.Enumerations;
 using Domic.Persistence.Contexts.C;
+using Microsoft.EntityFrameworkCore;
 
 namespace Domic.Infrastructure.Implementations.Domain.Repositories.C;
 
@@ -36,6 +37,22 @@ public partial class EventCommandRepository
         return order switch {
             Order.Date => entity.OrderBy(@event => @event.CreatedAt_EnglishDate).ToList(),
             Order.Id   => entity.OrderBy(@event => @event.Id).ToList(),
+            _ => null
+        };
+    }
+
+    public async Task<IEnumerable<Event>> FindAllAsync(CancellationToken cancellationToken) 
+        => await _Context.Events.ToListAsync(cancellationToken);
+
+    public async Task<IEnumerable<Event>> FindAllWithOrderingAsync(Order order, bool accending = true,
+        CancellationToken cancellationToken = new CancellationToken()
+    )
+    {
+        var entity = _Context.Events;
+
+        return order switch {
+            Order.Date => await entity.OrderBy(@event => @event.CreatedAt_EnglishDate).ToListAsync(cancellationToken),
+            Order.Id   => await entity.OrderBy(@event => @event.Id).ToListAsync(cancellationToken),
             _ => null
         };
     }

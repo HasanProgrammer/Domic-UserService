@@ -1,8 +1,6 @@
 using System;
 using Domic.Domain.User.Entities;
-using Domic.Infrastructure.Implementations.Domain.Repositories;
 using Domic.Infrastructure.Implementations.Domain.Repositories.C;
-using Domic.Persistence.Contexts;
 using Domic.Persistence.Contexts.C;
 using Microsoft.EntityFrameworkCore;
 using NSubstitute;
