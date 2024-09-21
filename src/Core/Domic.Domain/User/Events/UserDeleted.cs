@@ -5,7 +5,7 @@ using Domic.Core.Domain.Enumerations;
 
 namespace Domic.Domain.User.Events;
 
-[MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_User_Exchange, Queue = Broker.User_User_Queue)]
+[EventConfig(ExchangeType = Exchange.FanOut, Exchange = Broker.User_User_Exchange, Queue = Broker.User_User_Queue)]
 public class UserDeleted : UpdateDomainEvent<string>
 {
     

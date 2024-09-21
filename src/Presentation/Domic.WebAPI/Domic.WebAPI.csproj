@@ -24,7 +24,7 @@
 
   <!--CorePackage | Presentation-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Presentation" Version="9.4.2" />
+    <PackageReference Include="Domic.Architecture.Presentation" Version="9.4.6" />
   </ItemGroup>
   <!--CorePackage | Presentation-->
   

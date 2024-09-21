@@ -5,7 +5,7 @@ using Domic.Core.Domain.Enumerations;
 
 namespace Domic.Domain.Permission.Events;
 
-[MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Permission_Exchange, Queue = Broker.User_Permission_Queue)]
+[EventConfig(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Permission_Exchange, Queue = Broker.User_Permission_Queue)]
 public class PermissionCreated : CreateDomainEvent<string>
 {
     public string RoleId { get; init; }

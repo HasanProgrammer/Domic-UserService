@@ -5,7 +5,7 @@ using Domic.Core.Domain.Enumerations;
 
 namespace Domic.Domain.Role.Events;
 
-[MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Role_Exchange, Queue = Broker.User_Role_Queue)]
+[EventConfig(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Role_Exchange, Queue = Broker.User_Role_Queue)]
 public class RoleCreated : CreateDomainEvent<string>
 {
     public string Name { get; init; }

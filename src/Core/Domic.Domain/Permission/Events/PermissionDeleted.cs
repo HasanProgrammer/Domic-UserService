@@ -5,7 +5,7 @@ using Domic.Core.Domain.Enumerations;
 
 namespace Domic.Domain.Permission.Events;
 
-[MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Permission_Exchange)]
+[EventConfig(ExchangeType = Exchange.FanOut, Exchange = Broker.User_Permission_Exchange)]
 public class PermissionDeleted : UpdateDomainEvent<string>
 {
     

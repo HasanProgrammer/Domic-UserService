@@ -8,7 +8,7 @@
 
   <!--CorePackage | Domain-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Domain" Version="4.1.0" />
+    <PackageReference Include="Domic.Architecture.Domain" Version="4.2.0" />
   </ItemGroup>
   <!--CorePackage | Domain-->
   
