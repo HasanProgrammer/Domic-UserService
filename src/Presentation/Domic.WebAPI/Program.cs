@@ -34,7 +34,6 @@ builder.RegisterMessageBroker();
 builder.RegisterEventStreamBroker();
 builder.RegisterEventsPublisher();
 builder.RegisterEventsSubscriber();
-builder.RegisterAsyncCommandsSubscriber();
 builder.RegisterServices();
 
 builder.Services.AddMvc();
