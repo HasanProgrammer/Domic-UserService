@@ -5,7 +5,8 @@ services:
   domic.user.api:
     networks:
       - domic
-    image: user_api:1.0.0
+    image: user_service_api_image:1.0.0
+    container_name: "user_service_api"
 #    deploy:
 #      replicas: 3
 #      resources:
