@@ -23,9 +23,9 @@ services:
       - log:/app/CoreLogs
       - ~\.aspnet\https\:/https/
     environment:
-      - Elastic-Host=http://localhost:9200
-      - Elastic-Username=
-      - Elastic-Password=
+      - Elastic-Host=http://domic.elastic.search:9200
+      - Elastic-Username=domic
+      - Elastic-Password=Domic123!@#
       - E-RabbitMQ-Host=domic.rabbit.mq
       - E-RabbitMQ-Port=5672
       - E-RabbitMQ-Username=domic
