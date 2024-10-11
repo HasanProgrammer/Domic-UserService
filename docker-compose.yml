@@ -24,6 +24,7 @@ services:
       - ~\.aspnet\https\:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
+      - Elastic-Index=user
       - Elastic-Username=domic
       - Elastic-Password=Domic123!@#
       - E-RabbitMQ-Host=domic.rabbit.mq
