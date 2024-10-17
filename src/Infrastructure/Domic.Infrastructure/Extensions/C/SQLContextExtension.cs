@@ -91,6 +91,23 @@ public static class SQLContextExtension
 
             context.Permissions.Add(newPermission);
         }
+
+        List<string> newPermissions = new() {
+            "AggregateTicket.ReadOne",
+            "AggregateTicket.ReadAllPaginated"
+        };
+        
+        foreach (var permission in newPermissions)
+        {
+            var uniqueId = uniqueIdGenerator.GetRandom(6);
+            
+            _permissionIds.Add(uniqueId);
+            
+            var newPermission =
+                new Permission(new DomicDateTime(), uniqueId, createdBy, createdRole, permission, roleId);
+
+            context.Permissions.Add(newPermission);
+        }
     }
 
     private static void _permissionsUsersBuilder(SQLContext context, string userId, 
