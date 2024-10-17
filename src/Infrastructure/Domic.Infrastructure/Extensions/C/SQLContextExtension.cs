@@ -27,18 +27,24 @@ public static class SQLContextExtension
 
         #region Role Seeder
 
-        var roleId  = uniqueIdGenerator.GetRandom(6);
-        var newRole = new Role(persianDateTime, roleId, userId, "SuperAdmin", "SuperAdmin");
+        var adminRoleId = uniqueIdGenerator.GetRandom(6);
+        var newSuperAdminRole = new Role(persianDateTime, adminRoleId, userId, "SuperAdmin", "SuperAdmin");
 
-        _roleIds.Add(roleId);
+        var clientRoleId = uniqueIdGenerator.GetRandom(6);
+        var newClientRole = new Role(persianDateTime, clientRoleId, userId, "Client", "Client");
         
-        context.Roles.Add(newRole);
+        _roleIds.Add(adminRoleId);
+        _roleIds.Add(clientRoleId);
+        
+        context.Roles.Add(newSuperAdminRole);
+        context.Roles.Add(newClientRole);
 
         #endregion
 
         #region Permission Seeder
 
-        _permissionsBuilder(context, roleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "SuperAdmin");
+        _permissionsBuilder(context, adminRoleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "SuperAdmin");
+        _permissionsClientBuilder(context, clientRoleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "SuperAdmin");
 
         #endregion
 
@@ -58,7 +64,7 @@ public static class SQLContextExtension
         #region RoleUser Seeder
 
         var newRoleUser =
-            new RoleUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(6), userId, "SuperAdmin", userId, roleId);
+            new RoleUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(6), userId, "SuperAdmin", userId, adminRoleId);
 
         context.RoleUsers.Add(newRoleUser);
 
@@ -92,6 +98,29 @@ public static class SQLContextExtension
             context.Permissions.Add(newPermission);
         }
 
+        List<string> newPermissions = new() {
+            "AggregateTicket.ReadOne",
+            "AggregateTicket.ReadAllPaginated"
+        };
+        
+        foreach (var permission in newPermissions)
+        {
+            var uniqueId = uniqueIdGenerator.GetRandom(6);
+            
+            _permissionIds.Add(uniqueId);
+            
+            var newPermission =
+                new Permission(new DomicDateTime(), uniqueId, createdBy, createdRole, permission, roleId);
+
+            context.Permissions.Add(newPermission);
+        }
+    }
+    
+    private static void _permissionsClientBuilder(SQLContext context, string roleId, 
+        GlobalUniqueIdGenerator uniqueIdGenerator, DateTime dateTime, DomicDateTime domicDateTime, string createdBy, 
+        string createdRole
+    )
+    {
         List<string> newPermissions = new() {
             "AggregateTicket.ReadOne",
             "AggregateTicket.ReadAllPaginated"
