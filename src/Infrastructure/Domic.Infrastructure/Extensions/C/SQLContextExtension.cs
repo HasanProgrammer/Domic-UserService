@@ -34,7 +34,6 @@ public static class SQLContextExtension
         var newClientRole = new Role(persianDateTime, clientRoleId, userId, "Client", "Client");
         
         _roleIds.Add(adminRoleId);
-        _roleIds.Add(clientRoleId);
         
         context.Roles.Add(newSuperAdminRole);
         context.Roles.Add(newClientRole);
