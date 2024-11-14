@@ -22,4 +22,6 @@ public class UpdateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleUp
 
         _roleQueryRepository.Change(targetRole);
     }
+
+    public void AfterTransactionHandle(RoleUpdated @event){}
 }

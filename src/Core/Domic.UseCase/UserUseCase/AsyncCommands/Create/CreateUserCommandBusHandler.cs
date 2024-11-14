@@ -11,4 +11,6 @@ public class CreateUserCommandBusHandler : IConsumerCommandBusHandler<CreateUser
     {
         return "";
     }
+
+    public void AfterTransactionHandle(CreateUserCommandBus message){}
 }

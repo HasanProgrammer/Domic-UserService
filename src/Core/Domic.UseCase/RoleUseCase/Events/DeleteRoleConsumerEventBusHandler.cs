@@ -75,4 +75,6 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
             #endregion
         }
     }
+
+    public void AfterTransactionHandle(RoleDeleted @event){}
 }

@@ -70,6 +70,9 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         return targetUser.Id;
     }
 
+    public Task AfterTransactionHandleAsync(UpdateCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
+
     /*---------------------------------------------------------------*/
 
     private async Task _roleUserBuilderAsync(string createdBy, string createdRole, string userId, 

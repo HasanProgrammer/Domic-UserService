@@ -33,4 +33,6 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
             _roleQueryRepository.Add(newRole);
         }
     }
+
+    public void AfterTransactionHandle(RoleCreated @event){}
 }

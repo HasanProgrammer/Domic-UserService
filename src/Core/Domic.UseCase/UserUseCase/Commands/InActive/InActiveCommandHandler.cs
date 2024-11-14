@@ -44,4 +44,7 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
 
         return Task.FromResult(targetUser.Id);
     }
+
+    public Task AfterTransactionHandleAsync(InActiveCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

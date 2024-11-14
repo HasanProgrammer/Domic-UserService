@@ -69,6 +69,9 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
         return userId;
     }
 
+    public Task AfterTransactionHandleAsync(CreateCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
+
     /*---------------------------------------------------------------*/
 
     private async Task _roleUserBuilderAsync(string createdBy, string createdRole, 

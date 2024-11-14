@@ -23,4 +23,6 @@ public class UpdatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
 
         _permissionQueryRepository.Change(targetPermission);
     }
+
+    public void AfterTransactionHandle(PermissionUpdated @event){}
 }

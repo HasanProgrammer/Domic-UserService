@@ -27,4 +27,6 @@ public class ActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<UserAc
 
         _userQueryRepository.Change(targetUser);
     }
+
+    public void AfterTransactionHandle(UserActived @event){}
 }

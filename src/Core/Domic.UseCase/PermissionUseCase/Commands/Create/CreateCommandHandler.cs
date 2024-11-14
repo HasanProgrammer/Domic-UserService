@@ -43,4 +43,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
         return permission.Id;
     }
+
+    public Task AfterTransactionHandleAsync(CreateCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

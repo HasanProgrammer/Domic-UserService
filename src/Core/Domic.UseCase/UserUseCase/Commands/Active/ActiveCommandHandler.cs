@@ -41,4 +41,7 @@ public class ActiveCommandHandler : ICommandHandler<ActiveCommand, string>
 
         return Task.FromResult(targetUser.Id);
     }
+
+    public Task AfterTransactionHandleAsync(ActiveCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

@@ -90,4 +90,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         return command.RoleId;
     }
+
+    public Task AfterTransactionHandleAsync(DeleteCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

@@ -62,7 +62,9 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
             @event.UpdatedAt_EnglishDate, @event.UpdatedAt_PersianDate, targetUser.Id, @event.Permissions
         );
     }
-    
+
+    public void AfterTransactionHandle(UserUpdated @event){}
+
     /*---------------------------------------------------------------*/
     
     private void _roleUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 

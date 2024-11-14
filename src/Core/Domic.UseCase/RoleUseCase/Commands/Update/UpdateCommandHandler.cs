@@ -41,4 +41,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
         return Task.FromResult(targetRole.Id);
     }
+
+    public Task AfterTransactionHandleAsync(UpdateCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

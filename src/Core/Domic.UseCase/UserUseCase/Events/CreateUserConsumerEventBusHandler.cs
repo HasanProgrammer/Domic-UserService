@@ -63,7 +63,7 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         );
     }
 
-    public void AfterMaxRetryHandle(UserCreated @event){}
+    public void AfterTransactionHandle(UserCreated @event){}
 
     /*---------------------------------------------------------------*/
     

@@ -45,4 +45,6 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
             #endregion
         }
     }
+
+    public void AfterTransactionHandle(PermissionDeleted @event){}
 }

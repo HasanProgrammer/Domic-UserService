@@ -35,4 +35,6 @@ public class CreatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
             _permissionQueryRepository.Add(newPermission);
         }
     }
+
+    public void AfterTransactionHandle(PermissionCreated @event){}
 }

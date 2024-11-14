@@ -45,4 +45,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
         return Task.FromResult(targetPermission.Id);
     }
+
+    public Task AfterTransactionHandleAsync(UpdateCommand message, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }
