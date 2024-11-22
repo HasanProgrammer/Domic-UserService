@@ -18,7 +18,7 @@
 
   <!--CorePackage | Persistence-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.Persistence" Version="7.2.6" />
+    <PackageReference Include="Domic.Architecture.Persistence" Version="7.2.9" />
   </ItemGroup>
   <!--CorePackage | Persistence-->
 

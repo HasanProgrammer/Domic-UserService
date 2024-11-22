@@ -31,6 +31,8 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
 
+    public void BeforeHandle(UserUpdated @event){}
+
     [WithCleanCache(Keies = Cache.Users)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(UserUpdated @event)
@@ -63,7 +65,7 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         );
     }
 
-    public void AfterTransactionHandle(UserUpdated @event){}
+    public void AfterHandle(UserUpdated @event){}
 
     /*---------------------------------------------------------------*/
     

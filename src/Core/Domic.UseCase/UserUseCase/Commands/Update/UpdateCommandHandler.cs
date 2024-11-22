@@ -39,6 +39,8 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         _globalUniqueIdGenerator         = globalUniqueIdGenerator;
     }
 
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     [WithTransaction]
     public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
@@ -70,7 +72,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         return targetUser.Id;
     }
 
-    public Task AfterTransactionHandleAsync(UpdateCommand message, CancellationToken cancellationToken)
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;
 
     /*---------------------------------------------------------------*/

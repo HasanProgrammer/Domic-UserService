@@ -16,20 +16,19 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     private readonly IDateTime                    _dateTime;
     private readonly ISerializer                  _serializer;
     private readonly IJsonWebToken                _jsonWebToken;
-    private readonly IEventCommandRepository      _eventCommandRepository;
     private readonly IPermissionCommandRepository _permissionCommandRepository;
 
-    public UpdateCommandHandler(IPermissionCommandRepository permissionCommandRepository,
-        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
-        IJsonWebToken jsonWebToken
+    public UpdateCommandHandler(IPermissionCommandRepository permissionCommandRepository, IDateTime dateTime, 
+        ISerializer serializer, IJsonWebToken jsonWebToken
     )
     {
         _dateTime                    = dateTime;
         _serializer                  = serializer;
         _jsonWebToken                = jsonWebToken;
-        _eventCommandRepository      = eventCommandRepository;
         _permissionCommandRepository = permissionCommandRepository;
     }
+
+    public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 
     [WithValidation]
     [WithTransaction]
@@ -46,6 +45,6 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         return Task.FromResult(targetPermission.Id);
     }
 
-    public Task AfterTransactionHandleAsync(UpdateCommand message, CancellationToken cancellationToken)
+    public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;
 }

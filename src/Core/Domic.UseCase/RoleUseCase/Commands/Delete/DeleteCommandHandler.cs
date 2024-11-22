@@ -38,6 +38,8 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
         _permissionUserCommandRepository = permissionUserCommandRepository;
     }
 
+    public Task BeforeHandleAsync(DeleteCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+
     [WithValidation]
     [WithTransaction]
     public async Task<string> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
@@ -91,6 +93,6 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
         return command.RoleId;
     }
 
-    public Task AfterTransactionHandleAsync(DeleteCommand message, CancellationToken cancellationToken)
+    public Task AfterHandleAsync(DeleteCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;
 }

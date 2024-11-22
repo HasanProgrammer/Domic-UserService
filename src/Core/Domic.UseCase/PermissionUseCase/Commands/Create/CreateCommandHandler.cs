@@ -12,22 +12,21 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
     private readonly IDateTime                    _dateTime;
     private readonly ISerializer                  _serializer;
     private readonly IJsonWebToken                _jsonWebToken;
-    private readonly IEventCommandRepository      _eventCommandRepository;
     private readonly IPermissionCommandRepository _permissionCommandRepository;
     private readonly IGlobalUniqueIdGenerator     _globalUniqueIdGenerator;
 
-    public CreateCommandHandler(IPermissionCommandRepository permissionCommandRepository,
-        IEventCommandRepository eventCommandRepository, IDateTime dateTime, IJsonWebToken jsonWebToken,
-        ISerializer serializer, IGlobalUniqueIdGenerator globalUniqueIdGenerator
+    public CreateCommandHandler(IPermissionCommandRepository permissionCommandRepository, IDateTime dateTime,
+        IJsonWebToken jsonWebToken, ISerializer serializer, IGlobalUniqueIdGenerator globalUniqueIdGenerator
     )
     {
         _dateTime                    = dateTime;
         _serializer                  = serializer;
         _jsonWebToken                = jsonWebToken;
-        _eventCommandRepository      = eventCommandRepository;
         _permissionCommandRepository = permissionCommandRepository;
         _globalUniqueIdGenerator     = globalUniqueIdGenerator;
     }
+
+    public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 
     [WithValidation]
     [WithTransaction]
@@ -44,6 +43,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
         return permission.Id;
     }
 
-    public Task AfterTransactionHandleAsync(CreateCommand message, CancellationToken cancellationToken)
+    public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;
 }

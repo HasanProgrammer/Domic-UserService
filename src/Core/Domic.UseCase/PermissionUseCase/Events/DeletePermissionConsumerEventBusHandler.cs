@@ -21,6 +21,8 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
+    public void BeforeHandle(PermissionDeleted @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(PermissionDeleted @event)
     {
@@ -46,5 +48,5 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
         }
     }
 
-    public void AfterTransactionHandle(PermissionDeleted @event){}
+    public void AfterHandle(PermissionDeleted @event){}
 }

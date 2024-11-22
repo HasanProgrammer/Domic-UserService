@@ -19,11 +19,10 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     private readonly IJsonWebToken                    _jsonWebToken;
     private readonly IPermissionCommandRepository     _permissionCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
-    private readonly IEventCommandRepository          _eventCommandRepository;
 
     public DeleteCommandHandler(IPermissionUserCommandRepository permissionUserCommandRepository,
-        IPermissionCommandRepository permissionCommandRepository, IEventCommandRepository eventCommandRepository, 
-        IDateTime dateTime, ISerializer serializer, IJsonWebToken jsonWebToken
+        IPermissionCommandRepository permissionCommandRepository, IDateTime dateTime,
+        ISerializer serializer, IJsonWebToken jsonWebToken
     )
     {
         _dateTime                        = dateTime;
@@ -31,8 +30,9 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
         _jsonWebToken                    = jsonWebToken;
         _permissionCommandRepository     = permissionCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
-        _eventCommandRepository          = eventCommandRepository;
     }
+
+    public Task BeforeHandleAsync(DeleteCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
 
     [WithValidation]
     [WithTransaction]
@@ -62,6 +62,6 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
         return targetPermission.Id;
     }
 
-    public Task AfterTransactionHandleAsync(DeleteCommand message, CancellationToken cancellationToken)
+    public Task AfterHandleAsync(DeleteCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;
 }

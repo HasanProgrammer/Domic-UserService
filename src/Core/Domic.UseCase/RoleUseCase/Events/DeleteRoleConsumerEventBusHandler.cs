@@ -28,6 +28,8 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
+    public void BeforeHandle(RoleDeleted @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(RoleDeleted @event)
     {
@@ -76,5 +78,5 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
         }
     }
 
-    public void AfterTransactionHandle(RoleDeleted @event){}
+    public void AfterHandle(RoleDeleted @event){}
 }

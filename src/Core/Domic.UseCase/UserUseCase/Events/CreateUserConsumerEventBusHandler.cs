@@ -31,7 +31,9 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         _permissionUserQueryRepository = permissionUserQueryRepository;
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
-    
+
+    public void BeforeHandle(UserCreated @event){}
+
     [WithCleanCache(Keies = Cache.Users)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(UserCreated @event)
@@ -63,7 +65,7 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         );
     }
 
-    public void AfterTransactionHandle(UserCreated @event){}
+    public void AfterHandle(UserCreated @event){}
 
     /*---------------------------------------------------------------*/
     

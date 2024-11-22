@@ -14,6 +14,8 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
     public CreateRoleConsumerEventBusHandler(IRoleQueryRepository roleQueryRepository) 
         => _roleQueryRepository = roleQueryRepository;
 
+    public void BeforeHandle(RoleCreated @event){}
+
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(RoleCreated @event)
     {
@@ -34,5 +36,5 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
         }
     }
 
-    public void AfterTransactionHandle(RoleCreated @event){}
+    public void AfterHandle(RoleCreated @event){}
 }
