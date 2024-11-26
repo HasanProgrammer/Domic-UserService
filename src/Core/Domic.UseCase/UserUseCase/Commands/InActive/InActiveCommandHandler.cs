@@ -5,6 +5,7 @@ using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.User.Contracts.Interfaces;
 using Domic.Domain.User.Entities;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Domic.UseCase.UserUseCase.Commands.InActive;
 
@@ -12,22 +13,19 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
 {
     private readonly object _validationResult;
 
-    private readonly IDateTime               _dateTime;
-    private readonly ISerializer             _serializer;
-    private readonly IJsonWebToken           _jsonWebToken;
-    private readonly IUserCommandRepository  _userCommandRepository;
-    private readonly IEventCommandRepository _eventCommandRepository;
+    private readonly IDateTime              _dateTime;
+    private readonly ISerializer            _serializer;
+    private readonly IIdentityUser          _identityUser;
+    private readonly IUserCommandRepository _userCommandRepository;
 
     public InActiveCommandHandler(IUserCommandRepository userCommandRepository, 
-        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer, 
-        IJsonWebToken jsonWebToken
+        IDateTime dateTime, ISerializer serializer, [FromKeyedServices("http1")] IIdentityUser identityUser
     )
     {
-        _dateTime               = dateTime;
-        _serializer             = serializer;
-        _jsonWebToken           = jsonWebToken;
-        _userCommandRepository  = userCommandRepository;
-        _eventCommandRepository = eventCommandRepository;
+        _dateTime              = dateTime;
+        _serializer            = serializer;
+        _identityUser          = identityUser;
+        _userCommandRepository = userCommandRepository;
     }
 
     public Task BeforeHandleAsync(InActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
@@ -37,10 +35,8 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
     public Task<string> HandleAsync(InActiveCommand command, CancellationToken cancellationToken)
     {
         var targetUser  = _validationResult as User;
-        var updatedBy   = _jsonWebToken.GetIdentityUserId(command.Token);
-        var updatedRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         
-        targetUser.InActive(_dateTime, updatedBy, updatedRole, _jsonWebToken.GetUsername(command.Token));
+        targetUser.InActive(_dateTime, _identityUser, _serializer);
 
         _userCommandRepository.Change(targetUser);
 

@@ -4,7 +4,7 @@ using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Attributes;
 using Domic.Domain.Permission.Contracts.Interfaces;
-
+using Microsoft.Extensions.DependencyInjection;
 using Permission = Domic.Domain.Permission.Entities.Permission;
 
 namespace Domic.UseCase.PermissionUseCase.Commands.Update;
@@ -15,16 +15,16 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     private readonly IDateTime                    _dateTime;
     private readonly ISerializer                  _serializer;
-    private readonly IJsonWebToken                _jsonWebToken;
+    private readonly IIdentityUser                _identityUser;
     private readonly IPermissionCommandRepository _permissionCommandRepository;
 
     public UpdateCommandHandler(IPermissionCommandRepository permissionCommandRepository, IDateTime dateTime, 
-        ISerializer serializer, IJsonWebToken jsonWebToken
+        ISerializer serializer, [FromKeyedServices("http1")] IIdentityUser identityUser
     )
     {
         _dateTime                    = dateTime;
         _serializer                  = serializer;
-        _jsonWebToken                = jsonWebToken;
+        _identityUser                = identityUser;
         _permissionCommandRepository = permissionCommandRepository;
     }
 
@@ -34,11 +34,9 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     [WithTransaction]
     public Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
-        var updatedBy        = _jsonWebToken.GetIdentityUserId(command.Token);
-        var updatedRole      = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         var targetPermission = _validationResult as Permission;
 
-        targetPermission.Change(_dateTime, updatedBy, updatedRole, command.Name, command.RoleId);
+        targetPermission.Change(_dateTime, _identityUser, _serializer, command.Name, command.RoleId);
 
         _permissionCommandRepository.Change(targetPermission);
 

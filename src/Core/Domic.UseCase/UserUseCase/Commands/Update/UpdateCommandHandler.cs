@@ -9,6 +9,7 @@ using Domic.Domain.RoleUser.Contracts.Interfaces;
 using Domic.Domain.RoleUser.Entities;
 using Domic.Domain.User.Contracts.Interfaces;
 using Domic.Domain.User.Entities;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Domic.UseCase.UserUseCase.Commands.Update;
 
@@ -18,25 +19,25 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     private readonly IDateTime                        _dateTime;
     private readonly ISerializer                      _serializer;
-    private readonly IJsonWebToken                    _jsonWebToken;
     private readonly IUserCommandRepository           _userCommandRepository;
     private readonly IRoleUserCommandRepository       _roleUserCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
     private readonly IGlobalUniqueIdGenerator         _globalUniqueIdGenerator;
+    private readonly IIdentityUser                    _identityUser;
 
     public UpdateCommandHandler(IUserCommandRepository userCommandRepository, 
         IRoleUserCommandRepository roleUserCommandRepository, 
-        IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer, 
-        IJsonWebToken jsonWebToken, IGlobalUniqueIdGenerator globalUniqueIdGenerator
+        IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer,
+        IGlobalUniqueIdGenerator globalUniqueIdGenerator, [FromKeyedServices("http1")] IIdentityUser identityUser
     )
     {
         _dateTime                        = dateTime;
         _serializer                      = serializer;
-        _jsonWebToken                    = jsonWebToken;
         _userCommandRepository           = userCommandRepository;
         _roleUserCommandRepository       = roleUserCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
         _globalUniqueIdGenerator         = globalUniqueIdGenerator;
+        _identityUser                    = identityUser;
     }
 
     public Task BeforeHandleAsync(UpdateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
@@ -45,14 +46,12 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     [WithTransaction]
     public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
-        var targetUser  = _validationResult as User;
-        var updatedBy   = _jsonWebToken.GetIdentityUserId(command.Token);
-        var updatedRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
+        var targetUser = _validationResult as User;
         
         targetUser.Change(
             _dateTime           ,
-            updatedBy           ,
-            updatedRole         ,
+            _identityUser       ,
+            _serializer         ,
             command.FirstName   ,
             command.LastName    ,
             command.Description ,
@@ -66,8 +65,8 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
         _userCommandRepository.Change(targetUser);
         
-        await _roleUserBuilderAsync(updatedBy, updatedRole, targetUser.Id, command.Roles, cancellationToken);
-        await _permissionUserBuilderAsync(updatedBy, updatedRole, targetUser.Id, command.Permissions, cancellationToken);
+        await _roleUserBuilderAsync(targetUser.Id, command.Roles, cancellationToken);
+        await _permissionUserBuilderAsync(targetUser.Id, command.Permissions, cancellationToken);
 
         return targetUser.Id;
     }
@@ -77,8 +76,8 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     /*---------------------------------------------------------------*/
 
-    private async Task _roleUserBuilderAsync(string createdBy, string createdRole, string userId, 
-        IEnumerable<string> roleIds, CancellationToken cancellationToken
+    private async Task _roleUserBuilderAsync(string userId, IEnumerable<string> roleIds,
+        CancellationToken cancellationToken
     )
     {
         //1 . Remove already user roles
@@ -90,15 +89,15 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         foreach (var roleId in roleIds)
         {
             var newRoleUser = new RoleUser(
-                _dateTime, _globalUniqueIdGenerator.GetRandom(), createdBy, createdRole, userId, roleId
+                _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, userId, roleId
             );
 
             await _roleUserCommandRepository.AddAsync(newRoleUser, cancellationToken);
         }
     }
     
-    private async Task _permissionUserBuilderAsync(string createdBy, string createdRole, string userId , 
-        IEnumerable<string> permissionIds, CancellationToken cancellationToken
+    private async Task _permissionUserBuilderAsync(string userId, IEnumerable<string> permissionIds,
+        CancellationToken cancellationToken
     )
     {
         //1 . Remove already user permissions
@@ -110,7 +109,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         foreach (var permissionId in permissionIds)
         {
             var newPermissionUser = new PermissionUser(
-                _dateTime,_globalUniqueIdGenerator.GetRandom(), createdBy, createdRole, userId, permissionId
+                _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, userId, permissionId
             );
 
             await _permissionUserCommandRepository.AddAsync(newPermissionUser, cancellationToken);

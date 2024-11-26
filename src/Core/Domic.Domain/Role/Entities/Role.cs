@@ -58,6 +58,39 @@ public class Role : Entity<string>
         );
     }
     
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="globalUniqueIdGenerator"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    /// <param name="name"></param>
+    public Role(IGlobalUniqueIdGenerator globalUniqueIdGenerator, IDateTime dateTime, IIdentityUser identityUser, 
+        ISerializer serializer, string name
+    )
+    {
+        var nowDateTime        = DateTime.Now;
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
+        
+        Id          = globalUniqueIdGenerator.GetRandom(6);
+        Name        = new Name(name);
+        CreatedBy   = identityUser.GetIdentity();
+        CreatedRole = serializer.Serialize(identityUser.GetRoles());
+        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
+        
+        AddEvent(
+            new RoleCreated {
+                Id                    = Id                 ,
+                CreatedBy             = CreatedBy          , 
+                CreatedRole           = CreatedRole        , 
+                Name                  = name               ,
+                CreatedAt_EnglishDate = nowDateTime        ,
+                CreatedAt_PersianDate = nowPersianDateTime
+            }
+        );
+    }
+    
     /*---------------------------------------------------------------*/
         
     //Behaviors
@@ -66,24 +99,24 @@ public class Role : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
     /// <param name="name"></param>
-    /// <param name="updatedBy"></param>
-    /// <param name="updatedRole"></param>
-    public void Change(IDateTime dateTime, string name, string updatedBy, string updatedRole)
+    public void Change(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer, string name)
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Name        = new Name(name);
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new RoleUpdated {
                 Id                    = Id          ,
-                UpdatedBy             = updatedBy   ,
-                UpdatedRole           = updatedRole , 
+                UpdatedBy             = UpdatedBy   ,
+                UpdatedRole           = UpdatedRole ,
                 Name                  = name        ,
                 UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
@@ -95,23 +128,23 @@ public class Role : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
-    /// <param name="updatedBy"></param>
-    /// <param name="updatedRole"></param>
-    public void Delete(IDateTime dateTime, string updatedBy, string updatedRole)
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    public void Delete(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer)
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
         IsDeleted   = IsDeleted.Delete;
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new RoleDeleted {
                 Id                    = Id          ,
-                UpdatedBy             = updatedBy   ,
-                UpdatedRole           = updatedRole ,
+                UpdatedBy             = UpdatedBy   ,
+                UpdatedRole           = UpdatedRole ,
                 UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }

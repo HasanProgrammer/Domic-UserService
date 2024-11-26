@@ -22,26 +22,52 @@ public class RoleUser : Entity<string>
 
     //EF Core
     private RoleUser() {}
-
+    
     /// <summary>
     /// 
     /// </summary>
+    /// <param name="globalUniqueIdGenerator"></param>
     /// <param name="dateTime"></param>
-    /// <param name="id"></param>
-    /// <param name="createdBy"></param>
-    /// <param name="createdRole"></param>
     /// <param name="userId"></param>
     /// <param name="roleId"></param>
-    public RoleUser(IDateTime dateTime, string id, string createdBy, string createdRole, string userId , string roleId)
+    /// <param name="createdBy"></param>
+    /// <param name="createdRole"></param>
+    public RoleUser(IGlobalUniqueIdGenerator globalUniqueIdGenerator, IDateTime dateTime, string userId, string roleId,
+        string createdBy, string createdRole
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        Id          = id;
-        CreatedBy   = createdBy;
-        CreatedRole = createdRole;
+        Id          = globalUniqueIdGenerator.GetRandom(6);
         UserId      = userId;
         RoleId      = roleId;
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
+        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="globalUniqueIdGenerator"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    /// <param name="userId"></param>
+    /// <param name="roleId"></param>
+    public RoleUser(IGlobalUniqueIdGenerator globalUniqueIdGenerator, IDateTime dateTime, IIdentityUser identityUser, 
+        ISerializer serializer, string userId , string roleId
+    )
+    {
+        var nowDateTime        = DateTime.Now;
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
+
+        Id          = globalUniqueIdGenerator.GetRandom(6);
+        UserId      = userId;
+        RoleId      = roleId;
+        CreatedBy   = identityUser.GetIdentity();
+        CreatedRole = serializer.Serialize(identityUser.GetRoles());
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
     }
 }

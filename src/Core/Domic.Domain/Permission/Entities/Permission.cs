@@ -31,17 +31,19 @@ public class Permission : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
-    /// <param name="id"></param>
+    /// <param name="uniqueId"></param>
     /// <param name="createdBy"></param>
     /// <param name="createdRole"></param>
     /// <param name="name"></param>
     /// <param name="roleId"></param>
-    public Permission(IDateTime dateTime, string id, string createdBy, string createdRole, string name, string roleId)
+    public Permission(IDateTime dateTime, string uniqueId, string createdBy, string createdRole, string name,
+        string roleId
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        Id          = id;
+        Id          = uniqueId;
         CreatedBy   = createdBy;
         CreatedRole = createdRole;
         RoleId      = roleId;
@@ -51,9 +53,46 @@ public class Permission : Entity<string>
 
         AddEvent(
             new PermissionCreated {
-                Id          = id          ,
+                Id          = uniqueId    ,
                 CreatedBy   = createdBy   ,
                 CreatedRole = createdRole ,
+                RoleId      = roleId      ,
+                Name        = name        ,
+                CreatedAt_EnglishDate = nowDateTime ,
+                CreatedAt_PersianDate = nowPersianDateTime 
+            }
+        );
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="globalUniqueIdGenerator"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    /// <param name="name"></param>
+    /// <param name="roleId"></param>
+    public Permission(IGlobalUniqueIdGenerator globalUniqueIdGenerator, IDateTime dateTime, IIdentityUser identityUser, 
+        ISerializer serializer, string name, string roleId
+    )
+    {
+        var nowDateTime        = DateTime.Now;
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
+
+        Id          = globalUniqueIdGenerator.GetRandom(6);
+        CreatedBy   = identityUser.GetIdentity();
+        CreatedRole = serializer.Serialize(identityUser.GetRoles());
+        RoleId      = roleId;
+        Name        = new Name(name);
+        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
+        IsActive    = IsActive.Active;
+
+        AddEvent(
+            new PermissionCreated {
+                Id          = Id          ,
+                CreatedBy   = CreatedBy   ,
+                CreatedRole = CreatedRole ,
                 RoleId      = roleId      ,
                 Name        = name        ,
                 CreatedAt_EnglishDate = nowDateTime ,
@@ -70,17 +109,19 @@ public class Permission : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
-    /// <param name="updatedBy"></param>
-    /// <param name="updatedRole"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
     /// <param name="name"></param>
     /// <param name="roleId"></param>
-    public void Change(IDateTime dateTime, string updatedBy, string updatedRole, string name, string roleId)
+    public void Change(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer, 
+        string name, string roleId
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         RoleId      = roleId;
         Name        = new Name(name);
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
@@ -88,8 +129,8 @@ public class Permission : Entity<string>
         AddEvent(
             new PermissionUpdated {
                 Id                    = Id          ,
-                UpdatedBy             = updatedBy   ,
-                UpdatedRole           = updatedRole , 
+                UpdatedBy             = UpdatedBy   ,
+                UpdatedRole           = UpdatedRole , 
                 RoleId                = roleId      ,
                 Name                  = name        ,
                 UpdatedAt_EnglishDate = nowDateTime ,
@@ -102,16 +143,16 @@ public class Permission : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
-    /// <param name="updatedBy"></param>
-    /// <param name="updatedRole"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
     /// <param name="raiseEvent"></param>
-    public void Delete(IDateTime dateTime, string updatedBy, string updatedRole, bool raiseEvent = true)
+    public void Delete(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer, bool raiseEvent = true)
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         IsDeleted   = IsDeleted.Delete;
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
@@ -119,8 +160,8 @@ public class Permission : Entity<string>
             AddEvent(
                 new PermissionDeleted {
                     Id                    = Id          ,
-                    UpdatedBy             = updatedBy   ,
-                    UpdatedRole           = updatedRole , 
+                    UpdatedBy             = UpdatedBy   ,
+                    UpdatedRole           = UpdatedRole , 
                     UpdatedAt_EnglishDate = nowDateTime ,
                     UpdatedAt_PersianDate = nowPersianDateTime
                 }

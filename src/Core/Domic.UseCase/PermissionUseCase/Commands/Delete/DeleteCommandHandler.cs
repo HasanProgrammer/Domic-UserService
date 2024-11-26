@@ -5,7 +5,7 @@ using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.Permission.Contracts.Interfaces;
 using Domic.Domain.PermissionUser.Contracts.Interfaces;
-
+using Microsoft.Extensions.DependencyInjection;
 using Permission = Domic.Domain.Permission.Entities.Permission;
 
 namespace Domic.UseCase.PermissionUseCase.Commands.Delete;
@@ -16,18 +16,18 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
     private readonly IDateTime                        _dateTime;
     private readonly ISerializer                      _serializer;
-    private readonly IJsonWebToken                    _jsonWebToken;
+    private readonly IIdentityUser                    _identityUser;
     private readonly IPermissionCommandRepository     _permissionCommandRepository;
     private readonly IPermissionUserCommandRepository _permissionUserCommandRepository;
 
     public DeleteCommandHandler(IPermissionUserCommandRepository permissionUserCommandRepository,
         IPermissionCommandRepository permissionCommandRepository, IDateTime dateTime,
-        ISerializer serializer, IJsonWebToken jsonWebToken
+        ISerializer serializer, [FromKeyedServices("http1")] IIdentityUser identityUser
     )
     {
         _dateTime                        = dateTime;
         _serializer                      = serializer;
-        _jsonWebToken                    = jsonWebToken;
+        _identityUser                    = identityUser;
         _permissionCommandRepository     = permissionCommandRepository;
         _permissionUserCommandRepository = permissionUserCommandRepository;
     }
@@ -38,22 +38,20 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     [WithTransaction]
     public async Task<string> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
     {
-        var updateBy         = _jsonWebToken.GetIdentityUserId(command.Token);
-        var updateRole       = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         var targetPermission = _validationResult as Permission;
 
-        #region HardDelete PermissionUser
+        #region HardDeletePermissionUser
 
-        var permissionUsers = 
+        var permissionUsers =
             await _permissionUserCommandRepository.FindAllByPermissionIdAsync(targetPermission.Id, cancellationToken);
         
         _permissionUserCommandRepository.RemoveRange(permissionUsers);
 
         #endregion
 
-        #region SoftDelete Permission
+        #region SoftDeletePermission
 
-        targetPermission.Delete(_dateTime, updateBy, updateRole);
+        targetPermission.Delete(_dateTime, _identityUser, _serializer);
 
         _permissionCommandRepository.Change(targetPermission);
 

@@ -8,6 +8,7 @@ using Domic.Domain.PermissionUser.Contracts.Interfaces;
 using Domic.Domain.Role.Contracts.Interfaces;
 using Domic.Domain.Role.Entities;
 using Domic.Domain.RoleUser.Contracts.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Domic.UseCase.RoleUseCase.Commands.Delete;
 
@@ -15,9 +16,9 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 {
     private readonly object _validationResult;
 
-    private readonly IDateTime                       _dateTime;
-    private readonly ISerializer                     _serializer;
-    private readonly IJsonWebToken                   _jsonWebToken;
+    private readonly IDateTime                        _dateTime;
+    private readonly ISerializer                      _serializer;
+    private readonly IIdentityUser                    _identityUser;
     private readonly IRoleCommandRepository           _roleCommandRepository;
     private readonly IPermissionCommandRepository     _permissionCommandRepository;
     private readonly IRoleUserCommandRepository       _roleUserCommandRepository;
@@ -25,13 +26,13 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
     public DeleteCommandHandler(IRoleCommandRepository roleCommandRepository,
         IPermissionCommandRepository permissionCommandRepository, IRoleUserCommandRepository roleUserCommandRepository,
-        IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer, 
-        IJsonWebToken jsonWebToken
+        IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer,
+        [FromKeyedServices("http1")] IIdentityUser identityUser
     )
     {
         _dateTime                        = dateTime;
         _serializer                      = serializer;
-        _jsonWebToken                    = jsonWebToken;
+        _identityUser                    = identityUser;
         _roleCommandRepository           = roleCommandRepository;
         _permissionCommandRepository     = permissionCommandRepository;
         _roleUserCommandRepository       = roleUserCommandRepository;
@@ -45,32 +46,30 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     public async Task<string> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
     {
         var targetRole  = _validationResult as Role;
-        var updatedBy   = _jsonWebToken.GetIdentityUserId(command.Token);
-        var updatedRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
 
-        #region SoftDelete Role
+        #region SoftDeleteRole
 
-        targetRole.Delete(_dateTime, updatedBy, updatedRole);
+        targetRole.Delete(_dateTime, _identityUser, _serializer);
         
         _roleCommandRepository.Change(targetRole);
 
         #endregion
 
-        #region SoftDelete Permission
+        #region SoftDeletePermission
 
         var permissions =
             await _permissionCommandRepository.FindByRoleIdAsync(command.RoleId, cancellationToken);
 
         foreach (var permission in permissions)
         {
-            permission.Delete(_dateTime, updatedBy, updatedRole, false);
+            permission.Delete(_dateTime, _identityUser, _serializer, false);
             
             _permissionCommandRepository.Change(permission);
         }
 
         #endregion
 
-        #region HardDelete RoleUser
+        #region HardDeleteRoleUser
 
         var roleUsers = await _roleUserCommandRepository.FindAllByRoleIdAsync(command.RoleId, cancellationToken);
         
@@ -78,7 +77,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         #endregion
 
-        #region HardDelete PermissionUser
+        #region HardDeletePermissionUser
 
         foreach (var permission in permissions)
         {

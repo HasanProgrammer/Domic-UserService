@@ -1,4 +1,6 @@
-﻿using Domic.Core.Infrastructure.Concretes;
+﻿using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.Infrastructure.Concretes;
+using Domic.Core.Infrastructure.Extensions;
 using Domic.Domain.PermissionUser.Entities;
 using Domic.Domain.Role.Entities;
 using Domic.Domain.RoleUser.Entities;
@@ -20,7 +22,6 @@ public static class SQLContextExtension
     /// <param name="context"></param>
     public static void Seed(this SQLContext context)
     {
-        var dateTime          = new DateTime();
         var persianDateTime   = new DomicDateTime();
         var uniqueIdGenerator = new GlobalUniqueIdGenerator();
         var userId            = uniqueIdGenerator.GetRandom(6);
@@ -28,10 +29,10 @@ public static class SQLContextExtension
         #region Role Seeder
 
         var adminRoleId = uniqueIdGenerator.GetRandom(6);
-        var newSuperAdminRole = new Role(persianDateTime, adminRoleId, userId, "SuperAdmin", "SuperAdmin");
+        var newSuperAdminRole = new Role(persianDateTime, adminRoleId, userId, new List<string>{ "SuperAdmin" }.Serialize(), "SuperAdmin");
 
         var clientRoleId = uniqueIdGenerator.GetRandom(6);
-        var newClientRole = new Role(persianDateTime, clientRoleId, userId, "Client", "Client");
+        var newClientRole = new Role(persianDateTime, clientRoleId, userId, new List<string>{ "Client" }.Serialize(), "Client");
         
         _roleIds.Add(adminRoleId);
         
@@ -42,8 +43,8 @@ public static class SQLContextExtension
 
         #region Permission Seeder
 
-        _permissionsBuilder(context, adminRoleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "SuperAdmin");
-        _permissionsClientBuilder(context, clientRoleId, uniqueIdGenerator, dateTime, persianDateTime, userId, "SuperAdmin");
+        _permissionsBuilder(context, adminRoleId, uniqueIdGenerator, persianDateTime, userId, new List<string>{ "SuperAdmin" }.Serialize());
+        _permissionsClientBuilder(context, clientRoleId, uniqueIdGenerator, persianDateTime, userId, new List<string>{ "SuperAdmin" }.Serialize());
 
         #endregion
 
@@ -51,7 +52,7 @@ public static class SQLContextExtension
         
         const string description = "من حسن کرمی محب ؛ برنامه نویس و عاشق معماری های برنامه نویسی ، 26 ساله ، کشور ایران و اهل شهرستان شهریار هستم";
         
-        var newUser = new User(new DomicDateTime(), userId, userId, "SuperAdmin", "Hasan", "Domic Moheb", description, 
+        var newUser = new User(persianDateTime, userId, userId, new List<string> { "SuperAdmin" }.Serialize(), "Hasan", "Domic Moheb", description, 
             "Hasan_Domic_Moheb", "Hasan313@@313!!", "09026676147", "hasanDomic2020313@gmail.com", _roleIds, 
             _permissionIds
         );
@@ -63,7 +64,9 @@ public static class SQLContextExtension
         #region RoleUser Seeder
 
         var newRoleUser =
-            new RoleUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(6), userId, "SuperAdmin", userId, adminRoleId);
+            new RoleUser(uniqueIdGenerator, persianDateTime, userId, adminRoleId, userId, 
+                new List<string> { "SuperAdmin" }.Serialize()
+            );
 
         context.RoleUsers.Add(newRoleUser);
 
@@ -71,7 +74,9 @@ public static class SQLContextExtension
         
         #region PermissionUser Seeder
 
-        _permissionsUsersBuilder(context, userId, uniqueIdGenerator, userId, "SuperAdmin");
+        _permissionsUsersBuilder(context, userId, uniqueIdGenerator, persianDateTime, userId,
+            new List<string> { "SuperAdmin" }.Serialize()
+        );
 
         #endregion
 
@@ -79,7 +84,7 @@ public static class SQLContextExtension
     }
 
     private static void _permissionsBuilder(SQLContext context, string roleId, 
-        GlobalUniqueIdGenerator uniqueIdGenerator, DateTime dateTime, DomicDateTime domicDateTime, string createdBy, 
+        IGlobalUniqueIdGenerator uniqueIdGenerator, IDateTime dateTime, string createdBy, 
         string createdRole
     )
     {
@@ -92,7 +97,7 @@ public static class SQLContextExtension
             _permissionIds.Add(uniqueId);
             
             var newPermission =
-                new Permission(new DomicDateTime(), uniqueId, createdBy, createdRole, permission, roleId);
+                new Permission(dateTime, uniqueId, createdBy, createdRole, permission, roleId);
 
             context.Permissions.Add(newPermission);
         }
@@ -109,14 +114,14 @@ public static class SQLContextExtension
             _permissionIds.Add(uniqueId);
             
             var newPermission =
-                new Permission(new DomicDateTime(), uniqueId, createdBy, createdRole, permission, roleId);
+                new Permission(dateTime, uniqueId, createdBy, createdRole, permission, roleId);
 
             context.Permissions.Add(newPermission);
         }
     }
     
     private static void _permissionsClientBuilder(SQLContext context, string roleId, 
-        GlobalUniqueIdGenerator uniqueIdGenerator, DateTime dateTime, DomicDateTime domicDateTime, string createdBy, 
+        IGlobalUniqueIdGenerator uniqueIdGenerator, IDateTime dateTime, string createdBy, 
         string createdRole
     )
     {
@@ -133,22 +138,20 @@ public static class SQLContextExtension
             _permissionIds.Add(uniqueId);
             
             var newPermission =
-                new Permission(new DomicDateTime(), uniqueId, createdBy, createdRole, permission, roleId);
+                new Permission(dateTime, uniqueId, createdBy, createdRole, permission, roleId);
 
             context.Permissions.Add(newPermission);
         }
     }
 
     private static void _permissionsUsersBuilder(SQLContext context, string userId, 
-        GlobalUniqueIdGenerator uniqueIdGenerator, string createdBy, string createdRole
+        IGlobalUniqueIdGenerator uniqueIdGenerator, IDateTime dateTime, string createdBy, string createdRole
     )
     {
         foreach (var permissionId in _permissionIds)
         {
             var newPermissionUser =
-                new PermissionUser(new DomicDateTime(), uniqueIdGenerator.GetRandom(6), createdBy, createdRole, userId, 
-                    permissionId
-                );
+                new PermissionUser(uniqueIdGenerator, dateTime, userId, permissionId, createdBy, createdRole);
 
             context.PermissionUsers.Add(newPermissionUser);
         }

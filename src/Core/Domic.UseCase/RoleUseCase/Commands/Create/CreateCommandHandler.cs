@@ -3,6 +3,7 @@ using Domic.Domain.Role.Entities;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Attributes;
 using Domic.Domain.Role.Contracts.Interfaces;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Domic.UseCase.RoleUseCase.Commands.Create;
 
@@ -10,19 +11,20 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 {
     private readonly IDateTime                _dateTime;
     private readonly ISerializer              _serializer;
-    private readonly IJsonWebToken            _jsonWebToken;
     private readonly IRoleCommandRepository   _roleCommandRepository;
     private readonly IGlobalUniqueIdGenerator _globalUniqueIdGenerator;
+    private readonly IIdentityUser            _identityUser;
 
     public CreateCommandHandler(IRoleCommandRepository roleCommandRepository, IDateTime dateTime, 
-        ISerializer serializer, IJsonWebToken jsonWebToken, IGlobalUniqueIdGenerator globalUniqueIdGenerator
+        ISerializer serializer, IGlobalUniqueIdGenerator globalUniqueIdGenerator, 
+        [FromKeyedServices("http1")] IIdentityUser identityUser
     )
     {
         _dateTime                = dateTime;
         _serializer              = serializer;
-        _jsonWebToken            = jsonWebToken;
         _roleCommandRepository   = roleCommandRepository;
         _globalUniqueIdGenerator = globalUniqueIdGenerator;
+        _identityUser            = identityUser;
     }
 
     public Task BeforeHandleAsync(CreateCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
@@ -31,11 +33,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
     [WithTransaction]
     public async Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
-        string roleId   = _globalUniqueIdGenerator.GetRandom();
-        var createdBy   = _jsonWebToken.GetIdentityUserId(command.Token);
-        var createdRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
-        
-        var role = new Role(_dateTime, roleId, createdBy, createdRole, command.Name);
+        var role = new Role(_globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, command.Name);
 
         await _roleCommandRepository.AddAsync(role, cancellationToken);
 
