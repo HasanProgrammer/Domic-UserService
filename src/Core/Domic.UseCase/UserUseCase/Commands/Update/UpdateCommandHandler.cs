@@ -28,7 +28,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     public UpdateCommandHandler(IUserCommandRepository userCommandRepository, 
         IRoleUserCommandRepository roleUserCommandRepository, 
         IPermissionUserCommandRepository permissionUserCommandRepository, IDateTime dateTime, ISerializer serializer,
-        IGlobalUniqueIdGenerator globalUniqueIdGenerator, [FromKeyedServices("Http1")] IIdentityUser identityUser
+        IGlobalUniqueIdGenerator globalUniqueIdGenerator, [FromKeyedServices("Http2")] IIdentityUser identityUser
     )
     {
         _dateTime                        = dateTime;

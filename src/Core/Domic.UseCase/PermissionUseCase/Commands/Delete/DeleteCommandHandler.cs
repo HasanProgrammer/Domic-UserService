@@ -22,7 +22,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
     public DeleteCommandHandler(IPermissionUserCommandRepository permissionUserCommandRepository,
         IPermissionCommandRepository permissionCommandRepository, IDateTime dateTime,
-        ISerializer serializer, [FromKeyedServices("Http1")] IIdentityUser identityUser
+        ISerializer serializer, [FromKeyedServices("Http2")] IIdentityUser identityUser
     )
     {
         _dateTime                        = dateTime;

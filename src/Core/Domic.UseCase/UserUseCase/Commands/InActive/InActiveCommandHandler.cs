@@ -19,7 +19,7 @@ public class InActiveCommandHandler : ICommandHandler<InActiveCommand, string>
     private readonly IUserCommandRepository _userCommandRepository;
 
     public InActiveCommandHandler(IUserCommandRepository userCommandRepository, 
-        IDateTime dateTime, ISerializer serializer, [FromKeyedServices("Http1")] IIdentityUser identityUser
+        IDateTime dateTime, ISerializer serializer, [FromKeyedServices("Http2")] IIdentityUser identityUser
     )
     {
         _dateTime              = dateTime;
