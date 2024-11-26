@@ -50,10 +50,10 @@ public static class SQLContextExtension
 
         #region User Seeder
         
-        const string description = "من حسن کرمی محب ؛ برنامه نویس و عاشق معماری های برنامه نویسی ، 26 ساله ، کشور ایران و اهل شهرستان شهریار هستم";
+        const string description = "من حسن کرمی محب ؛ برنامه نویس و عاشق معماری های برنامه نویسی ، 27 ساله ، کشور ایران و اهل شهرستان شهریار هستم";
         
-        var newUser = new User(persianDateTime, userId, userId, new List<string> { "SuperAdmin" }.Serialize(), "Hasan", "Domic Moheb", description, 
-            "Hasan_Domic_Moheb", "Hasan313@@313!!", "09026676147", "hasanDomic2020313@gmail.com", _roleIds, 
+        var newUser = new User(persianDateTime, userId, userId, new List<string> { "SuperAdmin" }.Serialize(), "Hasan", "Karami Moheb", description, 
+            "Hasan_Karami_Moheb", "Domic123!@#", "09026676147", "hasankarami2020313@gmail.com", _roleIds, 
             _permissionIds
         );
 
