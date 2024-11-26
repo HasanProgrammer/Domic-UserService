@@ -19,7 +19,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     private readonly IRoleCommandRepository _roleCommandRepository;
 
     public UpdateCommandHandler(IRoleCommandRepository roleCommandRepository, IDateTime dateTime, 
-        ISerializer serializer, [FromKeyedServices("http1")] IIdentityUser identityUser
+        ISerializer serializer, [FromKeyedServices("Http1")] IIdentityUser identityUser
     )
     {
         _dateTime              = dateTime;
