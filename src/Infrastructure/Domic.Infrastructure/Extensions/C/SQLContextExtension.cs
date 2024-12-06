@@ -128,7 +128,9 @@ public static class SQLContextExtension
         List<string> newPermissions = new() {
             "Ticket.Create",
             "AggregateTicket.ReadOne",
-            "AggregateTicket.ReadAllPaginated"
+            "AggregateTicket.ReadAllPaginated",
+            "Financial.Create",
+            "Financial.PaymentVerification"
         };
         
         foreach (var permission in newPermissions)
