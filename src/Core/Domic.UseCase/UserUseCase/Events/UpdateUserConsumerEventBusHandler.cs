@@ -31,13 +31,13 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
 
-    public void BeforeHandle(UserUpdated @event){}
+    public Task BeforeHandleAsync(UserUpdated @event, CancellationToken cancellationToken) => Task.CompletedTask;
 
     [WithCleanCache(Keies = Cache.Users)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(UserUpdated @event)
+    public async Task HandleAsync(UserUpdated @event, CancellationToken cancellationToken)
     {
-        var targetUser = _userQueryRepository.FindByIdAsync(@event.Id, default).Result;
+        var targetUser = await _userQueryRepository.FindByIdEagerLoadingAsync(@event.Id, cancellationToken);
 
         targetUser.FirstName             = @event.FirstName;
         targetUser.LastName              = @event.LastName;
@@ -54,72 +54,34 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         if(targetUser.Password is not null)
             targetUser.Password = @event.Password.HashAsync(default).Result;
                     
-        _userQueryRepository.Change(targetUser);
-                    
-        _roleUserBuilder(@event.UpdatedBy, @event.UpdatedRole, 
-            @event.UpdatedAt_EnglishDate, @event.UpdatedAt_PersianDate, targetUser.Id, @event.Roles
-        );
+        await _userQueryRepository.ChangeAsync(targetUser, cancellationToken);
+
+        await _roleUserQueryRepository.RemoveRangeAsync(targetUser.RoleUsers, cancellationToken);
+        await _permissionUserQueryRepository.RemoveRangeAsync(targetUser.PermissionUsers, cancellationToken);
         
-        _permissionUserBuilder(@event.UpdatedBy, @event.UpdatedRole, 
-            @event.UpdatedAt_EnglishDate, @event.UpdatedAt_PersianDate, targetUser.Id, @event.Permissions
-        );
+        var roleUsers = @event.Roles.Select(role => new RoleUserQuery {
+            Id          = _globalUniqueIdGenerator.GetRandom(),
+            UserId      = @event.Id,
+            RoleId      = role,
+            CreatedBy   = @event.UpdatedBy,
+            CreatedRole = @event.UpdatedRole,
+            CreatedAt_EnglishDate = @event.UpdatedAt_EnglishDate,
+            CreatedAt_PersianDate = @event.UpdatedAt_PersianDate
+        });
+        
+        var permissionUsers = @event.Permissions.Select(permission => new PermissionUserQuery {
+            Id           = _globalUniqueIdGenerator.GetRandom(),
+            UserId       = @event.Id,
+            PermissionId = permission,
+            CreatedBy   = @event.UpdatedBy,
+            CreatedRole = @event.UpdatedRole,
+            CreatedAt_EnglishDate = @event.UpdatedAt_EnglishDate,
+            CreatedAt_PersianDate = @event.UpdatedAt_PersianDate
+        });
+        
+        await _roleUserQueryRepository.AddRangeAsync(roleUsers, cancellationToken);
+        await _permissionUserQueryRepository.AddRangeAsync(permissionUsers, cancellationToken);
     }
 
-    public void AfterHandle(UserUpdated @event){}
-
-    /*---------------------------------------------------------------*/
-    
-    private void _roleUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 
-        string persianCreatedAt, string userId, IEnumerable<string> roleIds
-    )
-    {
-        var roleUsers =
-            _roleUserQueryRepository.FindAllByUserIdAsync(userId, default).Result;
-        
-        //1 . Remove already user roles
-        _roleUserQueryRepository.RemoveRange(roleUsers);
-        
-        //2 . Assign new roles for user
-        foreach (var roleId in roleIds)
-        {
-            var newRoleUser = new RoleUserQuery {
-                Id          = _globalUniqueIdGenerator.GetRandom(),
-                UserId      = userId,
-                RoleId      = roleId,
-                CreatedBy   = createdBy,
-                CreatedRole = createdRole,
-                CreatedAt_EnglishDate = englishCreatedAt,
-                CreatedAt_PersianDate = persianCreatedAt
-            };
-
-            _roleUserQueryRepository.Add(newRoleUser);
-        }
-    }
-    
-    private void _permissionUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 
-        string persianCreatedAt, string userId, IEnumerable<string> permissionIds
-    )
-    {
-        var permissionUsers =
-            _roleUserQueryRepository.FindAllByUserIdAsync(userId, default).Result;
-        
-        //1 . Remove already user permissions
-        _permissionUserQueryRepository.RemoveRange(permissionUsers);
-        
-        //2 . Assign new permissions for user
-        foreach (var permissionId in permissionIds)
-        {
-            var newPermissionUser = new PermissionUserQuery {
-                Id           = _globalUniqueIdGenerator.GetRandom(),
-                UserId       = userId,
-                PermissionId = permissionId,
-                CreatedBy    = createdBy,
-                CreatedRole  = createdRole,
-                CreatedAt_EnglishDate = englishCreatedAt,
-                CreatedAt_PersianDate = persianCreatedAt
-            };
-
-            _permissionUserQueryRepository.Add(newPermissionUser);
-        }
-    }
+    public Task AfterHandleAsync(UserUpdated @event, CancellationToken cancellationToken) => Task.CompletedTask;
 }

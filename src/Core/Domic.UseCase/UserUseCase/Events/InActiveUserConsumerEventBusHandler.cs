@@ -14,12 +14,13 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
     public InActiveUserConsumerEventBusHandler(IUserQueryRepository userQueryRepository) 
         => _userQueryRepository = userQueryRepository;
 
-    public void BeforeHandle(UserInActived @event){}
+    public Task BeforeHandleAsync(UserInActived @event, CancellationToken cancellationToken) => Task.CompletedTask;
 
+    [WithCleanCache(Keies = Cache.Users)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(UserInActived @event)
+    public async Task HandleAsync(UserInActived @event, CancellationToken cancellationToken)
     {
-        var targetUser = _userQueryRepository.FindById(@event.Id);
+        var targetUser = await _userQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         targetUser.IsActive              = IsActive.InActive;
         targetUser.UpdatedBy             = @event.UpdatedBy;
@@ -27,8 +28,9 @@ public class InActiveUserConsumerEventBusHandler : IConsumerEventBusHandler<User
         targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
         targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
-        _userQueryRepository.Change(targetUser);
+        await _userQueryRepository.ChangeAsync(targetUser, cancellationToken);
     }
 
-    public void AfterHandle(UserInActived @event){}
+    public Task AfterHandleAsync(UserInActived @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

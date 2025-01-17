@@ -19,7 +19,21 @@ public partial class UserQueryRepository
 {
     public void Add(UserQuery entity) => _sqlContext.Users.Add(entity);
 
+    public Task AddAsync(UserQuery entity, CancellationToken cancellationToken)
+    {
+        _sqlContext.Users.Add(entity);
+
+        return Task.CompletedTask;
+    }
+
     public void Change(UserQuery entity) => _sqlContext.Users.Update(entity);
+
+    public Task ChangeAsync(UserQuery entity, CancellationToken cancellationToken)
+    {
+        _sqlContext.Users.Update(entity);
+        
+        return Task.CompletedTask;
+    }
 }
 
 //Query

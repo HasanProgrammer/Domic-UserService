@@ -21,6 +21,13 @@ public partial class RoleUserQueryRepository
     public void Remove(RoleUserQuery entity) => _sqlContext.RoleUsers.Remove(entity);
 
     public void RemoveRange(IEnumerable<RoleUserQuery> entities) => _sqlContext.RoleUsers.RemoveRange(entities);
+
+    public Task AddRangeAsync(IEnumerable<RoleUserQuery> entities, CancellationToken cancellationToken)
+    {
+        _sqlContext.RoleUsers.AddRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query

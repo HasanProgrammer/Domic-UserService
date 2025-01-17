@@ -15,6 +15,7 @@ public class UpdatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
 
     public void BeforeHandle(PermissionUpdated @event){}
 
+    [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(PermissionUpdated @event)
     {

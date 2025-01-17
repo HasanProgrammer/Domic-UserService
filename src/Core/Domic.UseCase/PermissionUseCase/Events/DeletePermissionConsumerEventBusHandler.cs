@@ -23,6 +23,7 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
 
     public void BeforeHandle(PermissionDeleted @event){}
 
+    [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(PermissionDeleted @event)
     {

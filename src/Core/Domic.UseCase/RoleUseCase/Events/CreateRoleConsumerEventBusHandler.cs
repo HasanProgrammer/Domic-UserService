@@ -16,6 +16,7 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
 
     public void BeforeHandle(RoleCreated @event){}
 
+    [WithCleanCache(Keies = Cache.Roles)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(RoleCreated @event)
     {

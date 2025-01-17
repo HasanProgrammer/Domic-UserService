@@ -1,6 +1,5 @@
 #pragma warning disable CS0649
 
-using Domic.Common.ClassConsts;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -45,10 +44,17 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     [WithValidation]
     [WithTransaction]
-    [WithCleanCache(Keies = RedisCache.AllUsers)]
     public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
         var targetUser = _validationResult as User;
+        
+        var roleUsers = command.Roles.Select(role => new RoleUser(
+            _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, command.Id, role
+        ));
+        
+        var permissionUsers = command.Permissions.Select(permission => new PermissionUser(
+            _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, command.Id, permission
+        ));
         
         targetUser.Change(
             _dateTime           ,
@@ -66,18 +72,8 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         );
 
         await _userCommandRepository.ChangeAsync(targetUser, cancellationToken);
-
         await _roleUserCommandRepository.RemoveRangeAsync(targetUser.RoleUsers, cancellationToken);
         await _permissionUserCommandRepository.RemoveRangeAsync(targetUser.PermissionUsers, cancellationToken);
-        
-        var roleUsers = command.Roles.Select(role => new RoleUser(
-            _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, command.Id, role
-        ));
-        
-        var permissionUsers = command.Permissions.Select(permission => new PermissionUser(
-            _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, command.Id, permission
-        ));
-        
         await _roleUserCommandRepository.AddRangeAsync(roleUsers, cancellationToken);
         await _permissionUserCommandRepository.AddRangeAsync(permissionUsers, cancellationToken);
 

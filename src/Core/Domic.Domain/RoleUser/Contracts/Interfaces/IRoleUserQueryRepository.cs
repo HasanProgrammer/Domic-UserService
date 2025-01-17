@@ -24,4 +24,12 @@ public interface IRoleUserQueryRepository : IQueryRepository<RoleUserQuery, stri
     /// <exception cref="NotImplementedException"></exception>
     public Task<IEnumerable<RoleUserQuery>> FindAllByRoleIdAsync(string roleId, CancellationToken cancellationToken)
         => throw new NotImplementedException();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task AddRangeAsync(IEnumerable<RoleUserQuery> entities, CancellationToken cancellationToken);
 }

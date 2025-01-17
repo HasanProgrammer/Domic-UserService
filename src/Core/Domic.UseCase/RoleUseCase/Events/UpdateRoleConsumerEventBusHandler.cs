@@ -15,6 +15,7 @@ public class UpdateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleUp
 
     public void BeforeHandle(RoleUpdated @event){}
 
+    [WithCleanCache(Keies = Cache.Roles)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(RoleUpdated @event)
     {

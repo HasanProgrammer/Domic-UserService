@@ -1,6 +1,5 @@
 #pragma warning disable CS4014
 
-using Domic.Common.ClassConsts;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -43,7 +42,6 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
     [WithValidation]
     [WithTransaction]
-    [WithCleanCache(Keies = RedisCache.AllUsers)]
     public async Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
         var newUser = new User(

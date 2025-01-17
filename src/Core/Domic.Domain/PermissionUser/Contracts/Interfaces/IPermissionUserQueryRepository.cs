@@ -25,4 +25,12 @@ public interface IPermissionUserQueryRepository : IQueryRepository<PermissionUse
     public Task<IEnumerable<PermissionUserQuery>> FindAllByPermissionIdAsync(string permissionId, 
         CancellationToken cancellationToken
     ) => throw new NotImplementedException();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task AddRangeAsync(IEnumerable<PermissionUserQuery> entities, CancellationToken cancellationToken);
 }

@@ -14,8 +14,10 @@ public class CreatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
     public CreatePermissionConsumerEventBusHandler(IPermissionQueryRepository permissionQueryRepository) 
         => _permissionQueryRepository = permissionQueryRepository;
 
-    public void BeforeHandle(PermissionCreated @event){}
+    public Task BeforeHandleAsync(PermissionCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
+    [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(PermissionCreated @event)
     {

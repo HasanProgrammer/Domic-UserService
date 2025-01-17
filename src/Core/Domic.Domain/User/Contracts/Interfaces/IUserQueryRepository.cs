@@ -3,7 +3,4 @@ using Domic.Domain.User.Entities;
 
 namespace Domic.Domain.User.Contracts.Interfaces;
 
-public interface IUserQueryRepository : IQueryRepository<UserQuery, string>
-{
-    
-}
+public interface IUserQueryRepository : IQueryRepository<UserQuery, string>;

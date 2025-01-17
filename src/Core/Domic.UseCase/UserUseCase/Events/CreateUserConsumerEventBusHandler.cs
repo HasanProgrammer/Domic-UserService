@@ -32,11 +32,12 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
         _globalUniqueIdGenerator       = globalUniqueIdGenerator;
     }
 
-    public void BeforeHandle(UserCreated @event){}
+    public Task BeforeHandleAsync(UserCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [WithCleanCache(Keies = Cache.Users)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(UserCreated @event)
+    public async Task HandleAsync(UserCreated @event, CancellationToken cancellationToken)
     {
         var newUser = new UserQuery {
             Id                    = @event.Id                                             ,
@@ -54,58 +55,31 @@ public class CreateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserCr
             CreatedAt_PersianDate = @event.CreatedAt_PersianDate
         };
 
-        _userQueryRepository.Add(newUser);
+        await _userQueryRepository.AddAsync(newUser, cancellationToken);
         
-        _roleUserBuilder(@event.CreatedBy, @event.CreatedRole, 
-            @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Roles
-        );
-            
-        _permissionUserBuilder(@event.CreatedBy, @event.CreatedRole, 
-            @event.CreatedAt_EnglishDate, @event.CreatedAt_PersianDate, @event.Id, @event.Permissions
-        );
+        var roleUsers = @event.Roles.Select(role => new RoleUserQuery {
+            Id          = _globalUniqueIdGenerator.GetRandom(),
+            UserId      = @event.Id,
+            RoleId      = role,
+            CreatedBy   = @event.CreatedBy,
+            CreatedRole = @event.CreatedRole,
+            CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate,
+            CreatedAt_PersianDate = @event.CreatedAt_PersianDate
+        });
+        
+        var permissionUsers = @event.Permissions.Select(permission => new PermissionUserQuery {
+            Id           = _globalUniqueIdGenerator.GetRandom(),
+            UserId       = @event.Id,
+            PermissionId = permission,
+            CreatedBy    = @event.CreatedBy,
+            CreatedRole  = @event.CreatedRole,
+            CreatedAt_EnglishDate = @event.CreatedAt_EnglishDate,
+            CreatedAt_PersianDate = @event.CreatedAt_PersianDate
+        });
+        
+        await _roleUserQueryRepository.AddRangeAsync(roleUsers, cancellationToken);
+        await _permissionUserQueryRepository.AddRangeAsync(permissionUsers, cancellationToken);
     }
 
-    public void AfterHandle(UserCreated @event){}
-
-    /*---------------------------------------------------------------*/
-    
-    private void _roleUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 
-        string persianCreatedAt, string userId, IEnumerable<string> roleIds
-    )
-    {
-        foreach (var roleId in roleIds)
-        {
-            var newRoleUser = new RoleUserQuery {
-                Id          = _globalUniqueIdGenerator.GetRandom(),
-                CreatedBy   = createdBy,
-                CreatedRole = createdRole,
-                UserId      = userId,
-                RoleId      = roleId,
-                CreatedAt_EnglishDate = englishCreatedAt,
-                CreatedAt_PersianDate = persianCreatedAt
-            };
-
-            _roleUserQueryRepository.Add(newRoleUser);
-        }
-    }
-    
-    private void _permissionUserBuilder(string createdBy, string createdRole, DateTime englishCreatedAt, 
-        string persianCreatedAt, string userId, IEnumerable<string> permissionIds
-    )
-    {
-        foreach (var permissionId in permissionIds)
-        {
-            var newPermissionUser = new PermissionUserQuery {
-                Id           = _globalUniqueIdGenerator.GetRandom(),
-                CreatedBy    = createdBy,
-                CreatedRole  = createdRole,
-                UserId       = userId,
-                PermissionId = permissionId,
-                CreatedAt_EnglishDate = englishCreatedAt,
-                CreatedAt_PersianDate = persianCreatedAt
-            };
-
-            _permissionUserQueryRepository.Add(newPermissionUser);
-        }
-    }
+    public Task AfterHandleAsync(UserCreated @event, CancellationToken cancellationToken) => Task.CompletedTask;
 }

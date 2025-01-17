@@ -3,7 +3,7 @@
     "Messaging": true,
     "Streaming": false
   },
-  "IsExternalBrokerConsumingAsync": false,
+  "IsExternalBrokerConsumingAsync": true,
   "IsInternalBrokerConsumingAsync": false,
   "ExternalTopicConfig": {
     "Throttle": [

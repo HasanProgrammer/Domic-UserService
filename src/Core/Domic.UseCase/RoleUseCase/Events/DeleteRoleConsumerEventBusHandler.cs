@@ -30,6 +30,7 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
 
     public void BeforeHandle(RoleDeleted @event){}
 
+    [WithCleanCache(Keies = Cache.Roles)]
     [TransactionConfig(Type = TransactionType.Query)]
     public void Handle(RoleDeleted @event)
     {

@@ -23,8 +23,6 @@ public partial class PermissionQueryRepository
     public void Remove(PermissionQuery entity) => _context.Permissions.Remove(entity);
 
     public void RemoveRange(IEnumerable<PermissionQuery> entities) => _context.Permissions.RemoveRange(entities);
-
-    public void SoftDelete(PermissionQuery entity) => _context.Permissions.Update(entity);
 }
 
 //Query
