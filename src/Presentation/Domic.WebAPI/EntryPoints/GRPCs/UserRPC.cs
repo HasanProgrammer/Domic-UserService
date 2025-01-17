@@ -43,7 +43,7 @@ public class UserRPC : UserService.UserServiceBase
 
         var result = await _mediator.DispatchAsync<bool>(query, context.CancellationToken);
 
-        return result.ToRpcResponse<CheckExistResponse>(_configuration);
+        return result.ToRpcResponse<CheckExistResponse>();
     }
 
     /// <summary>
@@ -61,6 +61,7 @@ public class UserRPC : UserService.UserServiceBase
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
 
+    //todo: shoud be used [ReadAllPaginated] insted [ReadAllPaginate] in gRPC
     /// <summary>
     /// 
     /// </summary>
@@ -101,7 +102,7 @@ public class UserRPC : UserService.UserServiceBase
     /// <returns></returns>
     public override async Task<UpdateResponse> Update(UpdateRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<UpdateCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<UpdateCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         

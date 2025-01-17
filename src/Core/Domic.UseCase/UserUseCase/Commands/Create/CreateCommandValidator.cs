@@ -25,6 +25,15 @@ public class CreateCommandValidator : IValidator<CreateCommand>
     {
         List<string> errors = new();
         
+        if(await _userCommandRepository.IsExistByUsernameAsync(input.Username, cancellationToken))
+            errors.Add("فیلد نام کاربری مورد نظر قبلا انتخاب شده است !");
+            
+        if(await _userCommandRepository.IsExistByPhoneNumberAsync(input.PhoneNumber, cancellationToken))
+            errors.Add("فیلد شماره تماس مورد نظر قبلا انتخاب شده است !");
+        
+        if(await _userCommandRepository.IsExistByEmailAsync(input.EMail, cancellationToken))
+            errors.Add("فیلد پست الکترونیکی مورد نظر قبلا انتخاب شده است !");
+        
         if (!input.Roles.Any())
             errors.Add("فیلد نقوش الزامی می باشد !");
         
@@ -45,15 +54,6 @@ public class CreateCommandValidator : IValidator<CreateCommand>
             if (input.Roles.All(role => role != targetPermission?.RoleId)) 
                 errors.Add(string.Format("سطح دسترسی با شناسه {0} متعلق به نقوش انتخاب شده نمی باشد !", permissionId));
         }
-        
-        if(await _userCommandRepository.IsExistByUsernameAsync(input.Username, cancellationToken))
-            errors.Add("فیلد نام کاربری مورد نظر قبلا انتخاب شده است !");
-            
-        if(await _userCommandRepository.IsExistByPhoneNumberAsync(input.PhoneNumber, cancellationToken))
-            errors.Add("فیلد شماره تماس مورد نظر قبلا انتخاب شده است !");
-        
-        if(await _userCommandRepository.IsExistByEmailAsync(input.EMail, cancellationToken))
-            errors.Add("فیلد پست الکترونیکی مورد نظر قبلا انتخاب شده است !");
 
         if (errors.Any())
             throw new UseCaseException(string.Join("|", errors));

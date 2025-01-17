@@ -33,6 +33,13 @@ public partial class PermissionUserCommandRepository
     public void Remove(PermissionUser entity) => _context.PermissionUsers.Remove(entity);
 
     public void RemoveRange(IEnumerable<PermissionUser> entities) => _context.PermissionUsers.RemoveRange(entities);
+
+    public Task RemoveRangeAsync(IEnumerable<PermissionUser> entities, CancellationToken cancellationToken)
+    {
+        _context.PermissionUsers.RemoveRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query

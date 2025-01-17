@@ -140,14 +140,13 @@ public partial class RpcRequestExtension
     /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this UpdateRequest request, string token)
+    public static T ToCommand<T>(this UpdateRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(UpdateCommand))
         {
             Request = new UpdateCommand {
-                Token       = token                      ,
                 Id          = request.TargetId?.Value    ,
                 FirstName   = request.FirstName?.Value   ,
                 LastName    = request.LastName?.Value    ,

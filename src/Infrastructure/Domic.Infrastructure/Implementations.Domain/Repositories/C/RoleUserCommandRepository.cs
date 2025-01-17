@@ -33,6 +33,13 @@ public partial class RoleUserCommandRepository
     public void Remove(RoleUser entity) => _context.RoleUsers.Remove(entity);
 
     public void RemoveRange(IEnumerable<RoleUser> entities) => _context.RoleUsers.RemoveRange(entities);
+
+    public Task RemoveRangeAsync(IEnumerable<RoleUser> entities, CancellationToken cancellationToken)
+    {
+        _context.RoleUsers.RemoveRange(entities);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
