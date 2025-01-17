@@ -39,26 +39,6 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
     {
         var targetUser = await _userQueryRepository.FindByIdEagerLoadingAsync(@event.Id, cancellationToken);
 
-        targetUser.FirstName             = @event.FirstName;
-        targetUser.LastName              = @event.LastName;
-        targetUser.Username              = @event.Username;
-        targetUser.Description           = @event.Description;
-        targetUser.PhoneNumber           = @event.PhoneNumber;
-        targetUser.Email                 = @event.Email;
-        targetUser.IsActive              = @event.IsActive ? IsActive.Active : IsActive.InActive;
-        targetUser.UpdatedBy             = @event.UpdatedBy;
-        targetUser.UpdatedRole           = @event.UpdatedRole;
-        targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
-        targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
-                
-        if(targetUser.Password is not null)
-            targetUser.Password = @event.Password.HashAsync(default).Result;
-                    
-        await _userQueryRepository.ChangeAsync(targetUser, cancellationToken);
-
-        await _roleUserQueryRepository.RemoveRangeAsync(targetUser.RoleUsers, cancellationToken);
-        await _permissionUserQueryRepository.RemoveRangeAsync(targetUser.PermissionUsers, cancellationToken);
-        
         var roleUsers = @event.Roles.Select(role => new RoleUserQuery {
             Id          = _globalUniqueIdGenerator.GetRandom(),
             UserId      = @event.Id,
@@ -79,6 +59,22 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
             CreatedAt_PersianDate = @event.UpdatedAt_PersianDate
         });
         
+        targetUser.FirstName             = @event.FirstName;
+        targetUser.LastName              = @event.LastName;
+        targetUser.Username              = @event.Username;
+        targetUser.Password              = @event.Password;
+        targetUser.Description           = @event.Description;
+        targetUser.PhoneNumber           = @event.PhoneNumber;
+        targetUser.Email                 = @event.Email;
+        targetUser.IsActive              = @event.IsActive ? IsActive.Active : IsActive.InActive;
+        targetUser.UpdatedBy             = @event.UpdatedBy;
+        targetUser.UpdatedRole           = @event.UpdatedRole;
+        targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
+        targetUser.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
+                    
+        await _userQueryRepository.ChangeAsync(targetUser, cancellationToken);
+        await _roleUserQueryRepository.RemoveRangeAsync(targetUser.RoleUsers, cancellationToken);
+        await _permissionUserQueryRepository.RemoveRangeAsync(targetUser.PermissionUsers, cancellationToken);
         await _roleUserQueryRepository.AddRangeAsync(roleUsers, cancellationToken);
         await _permissionUserQueryRepository.AddRangeAsync(permissionUsers, cancellationToken);
     }
