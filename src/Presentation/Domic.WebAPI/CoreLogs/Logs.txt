@@ -105,3 +105,1937 @@ Error Number:547,State:0,Class:16
    at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
    at Domic.Core.WebAPI.Middlewares.FullExceptionHandlerInterceptor.UnaryServerHandler[TRequest,TResponse](TRequest request, ServerCallContext context, UnaryServerMethod`2 continuation) 
 
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeDirectByRefWithFewArgs(Object obj, Span`1 copyOfArgs, BindingFlags invokeAttr)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+
+
+ Date: 1403/10/28 | Message: Exception has been thrown by the target of an invocation. | Source: System.Reflection.TargetInvocationException: Exception has been thrown by the target of an invocation.
+ ---> System.AggregateException: One or more errors occurred. (Value cannot be null. (Parameter 'source'))
+ ---> System.ArgumentNullException: Value cannot be null. (Parameter 'source')
+   at System.Linq.ThrowHelper.ThrowArgumentNullException(ExceptionArgument argument)
+   at System.Linq.Enumerable.Where[TSource](IEnumerable`1 source, Func`2 predicate)
+   at Domic.Core.Domain.Extensions.StringExtension.HashAsync(String Input, CancellationToken cancellationToken)
+   --- End of inner exception stack trace ---
+   at System.Threading.Tasks.Task.ThrowIfExceptional(Boolean includeTaskCanceledExceptions)
+   at System.Threading.Tasks.Task`1.GetResultCore(Boolean waitCompletionNotification)
+   at Domic.UseCase.UserUseCase.Events.UpdateUserConsumerEventBusHandler.Handle(UserUpdated event) in D:\Programming\Domic\Domic-UserService\src\Core\Domic.UseCase\UserUseCase\Events\UpdateUserConsumerEventBusHandler.cs:line 55
+   at InvokeStub_UpdateUserConsumerEventBusHandler.Handle(Object, Span`1)
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   --- End of inner exception stack trace ---
+   at System.Reflection.MethodBaseInvoker.InvokeWithOneArg(Object obj, BindingFlags invokeAttr, Binder binder, Object[] parameters, CultureInfo culture)
+   at System.Reflection.MethodBase.Invoke(Object obj, Object[] parameters)
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandle(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider) 
+

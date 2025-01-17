@@ -24,6 +24,13 @@ public partial class UserCommandRepository
     }
 
     public void Change(User entity) => _context.Users.Update(entity);
+
+    public Task ChangeAsync(User entity, CancellationToken cancellationToken)
+    {
+        _context.Users.Update(entity);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query

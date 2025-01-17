@@ -65,7 +65,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
             command.Password
         );
 
-        _userCommandRepository.Change(targetUser);
+        await _userCommandRepository.ChangeAsync(targetUser, cancellationToken);
 
         await _roleUserCommandRepository.RemoveRangeAsync(targetUser.RoleUsers, cancellationToken);
         await _permissionUserCommandRepository.RemoveRangeAsync(targetUser.PermissionUsers, cancellationToken);
