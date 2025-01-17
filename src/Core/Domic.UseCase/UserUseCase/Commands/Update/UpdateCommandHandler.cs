@@ -77,7 +77,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
         await _roleUserCommandRepository.AddRangeAsync(roleUsers, cancellationToken);
         await _permissionUserCommandRepository.AddRangeAsync(permissionUsers, cancellationToken);
 
-        return targetUser.Id;
+        return _serializer.Serialize(targetUser.PermissionUsers.Select(pu => pu.Permission.Name.Value));
     }
 
     public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken)
