@@ -1,6 +1,5 @@
 using Domic.Domain.RoleUser.Contracts.Interfaces;
 using Domic.Domain.RoleUser.Entities;
-using Domic.Persistence.Contexts;
 using Domic.Persistence.Contexts.C;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,8 +16,19 @@ public partial class RoleUserCommandRepository : IRoleUserCommandRepository
 //Command
 public partial class RoleUserCommandRepository
 {
-    public async Task AddAsync(RoleUser entity, CancellationToken cancellationToken) 
-        => await _context.RoleUsers.AddAsync(entity, cancellationToken);
+    public Task AddAsync(RoleUser entity, CancellationToken cancellationToken)
+    {
+        _context.RoleUsers.Add(entity);
+
+        return Task.CompletedTask;
+    }
+
+    public Task AddRangeAsync(IEnumerable<RoleUser> entities, CancellationToken cancellationToken)
+    {
+        _context.RoleUsers.AddRange(entities);
+
+        return Task.CompletedTask;
+    }
 
     public void Remove(RoleUser entity) => _context.RoleUsers.Remove(entity);
 

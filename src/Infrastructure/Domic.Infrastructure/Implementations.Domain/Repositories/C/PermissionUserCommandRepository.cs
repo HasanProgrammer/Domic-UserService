@@ -16,8 +16,19 @@ public partial class PermissionUserCommandRepository : IPermissionUserCommandRep
 //Transaction
 public partial class PermissionUserCommandRepository
 {
-    public async Task AddAsync(PermissionUser entity, CancellationToken cancellationToken) 
-        => await _context.PermissionUsers.AddAsync(entity, cancellationToken);
+    public Task AddAsync(PermissionUser entity, CancellationToken cancellationToken)
+    {
+        _context.PermissionUsers.Add(entity);
+
+        return Task.CompletedTask;
+    }
+
+    public Task AddRangeAsync(IEnumerable<PermissionUser> entities, CancellationToken cancellationToken)
+    {
+        _context.PermissionUsers.AddRange(entities);
+
+        return Task.CompletedTask;
+    }
 
     public void Remove(PermissionUser entity) => _context.PermissionUsers.Remove(entity);
 

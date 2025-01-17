@@ -16,8 +16,12 @@ public partial class UserCommandRepository : IUserCommandRepository
 //Transaction
 public partial class UserCommandRepository
 {
-    public async Task AddAsync(User entity, CancellationToken cancellationToken) 
-        => await _context.Users.AddAsync(entity, cancellationToken);
+    public Task AddAsync(User entity, CancellationToken cancellationToken)
+    {
+        _context.Users.Add(entity);
+
+        return Task.CompletedTask;
+    }
 
     public void Change(User entity) => _context.Users.Update(entity);
 }
@@ -80,4 +84,13 @@ public partial class UserCommandRepository
             
         }, cancellationToken);
     }
+
+    public Task<bool> IsExistByUsernameAsync(string username, CancellationToken cancellationToken)
+        => _context.Users.AnyAsync(u => u.Username.Value == username, cancellationToken);
+
+    public Task<bool> IsExistByPhoneNumberAsync(string phoneNumber, CancellationToken cancellationToken)
+        => _context.Users.AnyAsync(u => u.PhoneNumber.Value == phoneNumber, cancellationToken);
+
+    public Task<bool> IsExistByEmailAsync(string email, CancellationToken cancellationToken)
+        => _context.Users.AnyAsync(u => u.Email.Value == email, cancellationToken);
 }

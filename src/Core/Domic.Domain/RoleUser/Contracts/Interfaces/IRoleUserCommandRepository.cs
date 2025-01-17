@@ -23,4 +23,12 @@ public interface IRoleUserCommandRepository : ICommandRepository<Entities.RoleUs
     /// <exception cref="NotImplementedException"></exception>
     public Task<IEnumerable<Entities.RoleUser>> FindAllByRoleIdAsync(string roleId, CancellationToken cancellationToken)
         => throw new NotImplementedException();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="entities"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task AddRangeAsync(IEnumerable<Entities.RoleUser> entities, CancellationToken cancellationToken);
 }

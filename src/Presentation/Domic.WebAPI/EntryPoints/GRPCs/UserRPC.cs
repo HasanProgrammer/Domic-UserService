@@ -86,17 +86,7 @@ public class UserRPC : UserService.UserServiceBase
     /// <returns></returns>
     public override async Task<CreateResponse> Create(CreateRequest request, ServerCallContext context)
     {
-        /*var command = request.ToAsyncCommand<CreateUserCommandBus>(context.GetHttpContext().GetTokenOfGrpcHeader());
-
-        await _mediator.DispatchAsFireAndForgetAsync(command, context.CancellationToken);
-        
-        return new CreateResponse {
-            Code    = _configuration.GetValue<int>("StatusCode:SuccessCreate")    ,
-            Message = _configuration.GetValue<string>("Message:FA:SuccessCreate") ,
-            Body    = new CreateResponseBody { UserId = "" }
-        };*/
-        
-        var command = request.ToCommand<CreateCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<CreateCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         

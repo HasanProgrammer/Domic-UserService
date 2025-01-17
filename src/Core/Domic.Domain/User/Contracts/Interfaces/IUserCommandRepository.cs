@@ -33,4 +33,8 @@ public interface IUserCommandRepository : ICommandRepository<Entities.User, stri
     /// <exception cref="NotImplementedException"></exception>
     public Task<Entities.User> FindByEmailAsync(string email, CancellationToken cancellationToken) 
         => throw new NotImplementedException();
+
+    public Task<bool> IsExistByUsernameAsync(string username, CancellationToken cancellationToken);
+    public Task<bool> IsExistByPhoneNumberAsync(string phoneNumber, CancellationToken cancellationToken);
+    public Task<bool> IsExistByEmailAsync(string email, CancellationToken cancellationToken);
 }

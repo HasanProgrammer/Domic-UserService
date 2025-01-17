@@ -31,7 +31,10 @@ public partial class RoleCommandRepository
 {
     public async ValueTask<long> CountRowsAsync(CancellationToken cancellationToken) 
         => await _context.Roles.CountAsync(cancellationToken);
-    
+
+    public Task<bool> IsExistByIdAsync(string id, CancellationToken cancellationToken) 
+        => _context.Roles.AnyAsync(r => r.Id == id, cancellationToken);
+
     public async Task<Role> FindByIdAsync(object id, CancellationToken cancellationToken)
         => await _context.Roles.FirstOrDefaultAsync(Role => Role.Id.Equals(id), cancellationToken);
 

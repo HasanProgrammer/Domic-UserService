@@ -23,43 +23,41 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 
     public async Task<object> ValidateAsync(CreateCommand input, CancellationToken cancellationToken)
     {
-        if (!input.Roles.Any())
-            throw new UseCaseException("فیلد نقوش الزامی می باشد !");
+        List<string> errors = new();
         
-        foreach (string roleId in input.Roles.Distinct())
-            if(await _roleCommandRepository.FindByIdAsync(roleId, cancellationToken) == null)
-                throw new UseCaseException(
-                    string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", roleId ?? "_خالی_")
-                );
+        if (!input.Roles.Any())
+            errors.Add("فیلد نقوش الزامی می باشد !");
         
         if(!input.Permissions.Any())
-            throw new UseCaseException("فیلد سطوح دسترسی الزامی می باشد !");
+            errors.Add("فیلد سطوح دسترسی الزامی می باشد !");
+        
+        foreach (string roleId in input.Roles?.Distinct())
+            if(!await _roleCommandRepository.IsExistByIdAsync(roleId, cancellationToken))
+                errors.Add(string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", roleId ?? "_خالی_"));
 
-        foreach (string permissionId in input.Permissions.Distinct())
+        foreach (string permissionId in input.Permissions?.Distinct())
         {
-            var targetPermission = await _permissionCommandRepository.FindByIdAsync(permissionId, cancellationToken) 
-                                   ??
-                                   throw new UseCaseException(
-                                       string.Format(
-                                           "سطح دسترسی با شناسه {0} وجود خارجی ندارد !", permissionId ?? "_خالی_"
-                                       ) 
-                                   );
+            var targetPermission = await _permissionCommandRepository.FindByIdAsync(permissionId, cancellationToken);
+            
+            if(targetPermission is null)
+                errors.Add(string.Format("سطح دسترسی با شناسه {0} وجود خارجی ندارد !", permissionId ?? "_خالی_"));
 
-            if (input.Roles.All(role => role != targetPermission.RoleId))
-                throw new UseCaseException(
-                    string.Format("سطح دسترسی با شناسه {0} متعلق به نقوش انتخاب شده نمی باشد !", permissionId)  
-                );
+            if (input.Roles.All(role => role != targetPermission?.RoleId)) 
+                errors.Add(string.Format("سطح دسترسی با شناسه {0} متعلق به نقوش انتخاب شده نمی باشد !", permissionId));
         }
         
-        if(await _userCommandRepository.FindByUsernameAsync(input.Username, cancellationToken) is not null)
-            throw new UseCaseException("فیلد نام کاربری مورد نظر قبلا انتخاب شده است !");
+        if(await _userCommandRepository.IsExistByUsernameAsync(input.Username, cancellationToken))
+            errors.Add("فیلد نام کاربری مورد نظر قبلا انتخاب شده است !");
+            
+        if(await _userCommandRepository.IsExistByPhoneNumberAsync(input.PhoneNumber, cancellationToken))
+            errors.Add("فیلد شماره تماس مورد نظر قبلا انتخاب شده است !");
         
-        if(await _userCommandRepository.FindByPhoneNumberAsync(input.PhoneNumber, cancellationToken) is not null)
-            throw new UseCaseException("فیلد شماره تماس مورد نظر قبلا انتخاب شده است !");
-        
-        if(await _userCommandRepository.FindByEmailAsync(input.EMail, cancellationToken) is not null)
-            throw new UseCaseException("فیلد پست الکترونیکی مورد نظر قبلا انتخاب شده است !");
+        if(await _userCommandRepository.IsExistByEmailAsync(input.EMail, cancellationToken))
+            errors.Add("فیلد پست الکترونیکی مورد نظر قبلا انتخاب شده است !");
 
+        if (errors.Any())
+            throw new UseCaseException(string.Join("|", errors));
+        
         return default;
     }
 }

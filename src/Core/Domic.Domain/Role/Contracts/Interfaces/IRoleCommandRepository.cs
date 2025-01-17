@@ -13,4 +13,12 @@ public interface IRoleCommandRepository : ICommandRepository<Entities.Role, stri
     /// <exception cref="NotImplementedException"></exception>
     public Task<Entities.Role> FindByNameAsync(string name, CancellationToken cancellationToken) 
         => throw new NotImplementedException();
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task<bool> IsExistByIdAsync(string id, CancellationToken cancellationToken);
 }

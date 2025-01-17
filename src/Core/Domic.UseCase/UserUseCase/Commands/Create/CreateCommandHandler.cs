@@ -1,5 +1,6 @@
 #pragma warning disable CS4014
 
+using Domic.Common.ClassConsts;
 using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -42,10 +43,9 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
     [WithValidation]
     [WithTransaction]
+    [WithCleanCache(Keies = RedisCache.AllUsers)]
     public async Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
     {
-        string userId = _globalUniqueIdGenerator.GetRandom();
-        
         var newUser = new User(
             _dateTime                ,
             _identityUser            ,
@@ -62,44 +62,21 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
             command.Permissions
         );
         
-        await _userCommandRepository.AddAsync(newUser, cancellationToken);
+        var roleUsers = command.Roles.Select(role => new RoleUser(
+            _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, newUser.Id, role
+        ));
         
-        await _roleUserBuilderAsync(userId, command.Roles, cancellationToken);
-        await _permissionUserBuilderAsync(userId, command.Permissions, cancellationToken);
-
-        return userId;
+        var permissionUsers = command.Permissions.Select(permission => new PermissionUser(
+            _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, newUser.Id, permission
+        ));
+        
+        await _userCommandRepository.AddAsync(newUser, cancellationToken);
+        await _roleUserCommandRepository.AddRangeAsync(roleUsers, cancellationToken);
+        await _permissionUserCommandRepository.AddRangeAsync(permissionUsers, cancellationToken);
+        
+        return newUser.Id;
     }
 
     public Task AfterHandleAsync(CreateCommand command, CancellationToken cancellationToken)
         => Task.CompletedTask;
-
-    /*---------------------------------------------------------------*/
-
-    private async Task _roleUserBuilderAsync(string userId, IEnumerable<string> roleIds, 
-        CancellationToken cancellationToken
-    )
-    {
-        foreach (var roleId in roleIds)
-        {
-            var newRoleUser = new RoleUser(
-                _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, userId, roleId
-            );
-
-            await _roleUserCommandRepository.AddAsync(newRoleUser, cancellationToken);
-        }
-    }
-    
-    private async Task _permissionUserBuilderAsync(string userId, IEnumerable<string> permissionIds, 
-        CancellationToken cancellationToken
-    )
-    {
-        foreach (var permissionId in permissionIds)
-        {
-            var newPermissionUser = new PermissionUser(
-                _globalUniqueIdGenerator, _dateTime, _identityUser, _serializer, userId, permissionId
-            );
-
-            await _permissionUserCommandRepository.AddAsync(newPermissionUser, cancellationToken);
-        }
-    }
 }

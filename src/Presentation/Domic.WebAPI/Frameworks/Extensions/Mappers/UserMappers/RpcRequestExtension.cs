@@ -81,14 +81,13 @@ public partial class RpcRequestExtension
     /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this CreateRequest request, string token)
+    public static T ToCommand<T>(this CreateRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(CreateCommand))
         {
             Request = new CreateCommand {
-                Token       = token                      , 
                 Username    = request.Username?.Value    ,
                 Password    = request.Password?.Value    ,
                 FirstName   = request.FirstName?.Value   ,

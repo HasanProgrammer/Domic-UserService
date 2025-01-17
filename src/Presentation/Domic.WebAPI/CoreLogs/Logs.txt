@@ -1,0 +1,107 @@
+
+ Date: 1403/10/28 | Message: An error occurred while saving the entity changes. See the inner exception for details. | Source: Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_PermissionUsers_Users_UserId". The conflict occurred in database "C-UserService", table "dbo.Users", column 'Id'.
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleUsers_Users_UserId". The conflict occurred in database "C-UserService", table "dbo.Users", column 'Id'.
+The statement has been terminated.
+The statement has been terminated.
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:adc9154f-1c31-4f9a-9e7f-8b5d4bb85975
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Domic.Infrastructure.Implementations.Domain.Repositories.C.CommandUnitOfWork.CommitAsync(CancellationToken cancellationToken) in D:\Programming\Domic\Domic-UserService\src\Infrastructure\Domic.Infrastructure\Implementations.Domain\Repositories\C\CommandUnitOfWork.cs:line 33
+   at Domic.Core.Infrastructure.Concretes.Mediator._InvokeHandleMethodAsync[TResult](Object commandHandler, MethodInfo commandHandlerMethod, MethodInfo commandAfterHandlerMethod, ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.Mediator.DispatchAsync[TResult](ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.WebAPI.EntryPoints.GRPCs.UserRPC.Create(CreateRequest request, ServerCallContext context) in D:\Programming\Domic\Domic-UserService\src\Presentation\Domic.WebAPI\EntryPoints\GRPCs\UserRPC.cs:line 91
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Domic.Core.WebAPI.Middlewares.FullExceptionHandlerInterceptor.UnaryServerHandler[TRequest,TResponse](TRequest request, ServerCallContext context, UnaryServerMethod`2 continuation) 
+
+
+ Date: 1403/10/28 | Message: An error occurred while saving the entity changes. See the inner exception for details. | Source: Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_PermissionUsers_Users_UserId". The conflict occurred in database "C-UserService", table "dbo.Users", column 'Id'.
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleUsers_Users_UserId". The conflict occurred in database "C-UserService", table "dbo.Users", column 'Id'.
+The statement has been terminated.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__188_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:f7569106-8ea5-4019-a608-ff882a11dd9e
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Domic.Infrastructure.Implementations.Domain.Repositories.C.CommandUnitOfWork.CommitAsync(CancellationToken cancellationToken) in D:\Programming\Domic\Domic-UserService\src\Infrastructure\Domic.Infrastructure\Implementations.Domain\Repositories\C\CommandUnitOfWork.cs:line 33
+   at Domic.Core.Infrastructure.Concretes.Mediator._InvokeHandleMethodAsync[TResult](Object commandHandler, MethodInfo commandHandlerMethod, MethodInfo commandAfterHandlerMethod, ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.Mediator.DispatchAsync[TResult](ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.WebAPI.EntryPoints.GRPCs.UserRPC.Create(CreateRequest request, ServerCallContext context) in D:\Programming\Domic\Domic-UserService\src\Presentation\Domic.WebAPI\EntryPoints\GRPCs\UserRPC.cs:line 91
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Domic.Core.WebAPI.Middlewares.FullExceptionHandlerInterceptor.UnaryServerHandler[TRequest,TResponse](TRequest request, ServerCallContext context, UnaryServerMethod`2 continuation) 
+
+
+ Date: 1403/10/28 | Message: An error occurred while saving the entity changes. See the inner exception for details. | Source: Microsoft.EntityFrameworkCore.DbUpdateException: An error occurred while saving the entity changes. See the inner exception for details.
+ ---> Microsoft.Data.SqlClient.SqlException (0x80131904): The INSERT statement conflicted with the FOREIGN KEY constraint "FK_PermissionUsers_Users_UserId". The conflict occurred in database "C-UserService", table "dbo.Users", column 'Id'.
+The INSERT statement conflicted with the FOREIGN KEY constraint "FK_RoleUsers_Users_UserId". The conflict occurred in database "C-UserService", table "dbo.Users", column 'Id'.
+The statement has been terminated.
+The statement has been terminated.
+   at Microsoft.Data.SqlClient.SqlCommand.<>c.<ExecuteDbDataReaderAsync>b__188_0(Task`1 result)
+   at System.Threading.Tasks.ContinuationResultTaskFromResultTask`2.InnerInvoke()
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunInternal(ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+ClientConnectionId:cbccc631-f448-4d0c-927b-af2e6a28be9d
+Error Number:547,State:0,Class:16
+   --- End of inner exception stack trace ---
+   at Microsoft.EntityFrameworkCore.Update.ReaderModificationCommandBatch.ExecuteAsync(IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Update.Internal.BatchExecutor.ExecuteAsync(IEnumerable`1 commandBatches, IRelationalConnection connection, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(IList`1 entriesToSave, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.ChangeTracking.Internal.StateManager.SaveChangesAsync(StateManager stateManager, Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync(Boolean acceptAllChangesOnSuccess, CancellationToken cancellationToken)
+   at Domic.Infrastructure.Implementations.Domain.Repositories.C.CommandUnitOfWork.CommitAsync(CancellationToken cancellationToken) in D:\Programming\Domic\Domic-UserService\src\Infrastructure\Domic.Infrastructure\Implementations.Domain\Repositories\C\CommandUnitOfWork.cs:line 33
+   at Domic.Core.Infrastructure.Concretes.Mediator._InvokeHandleMethodAsync[TResult](Object commandHandler, MethodInfo commandHandlerMethod, MethodInfo commandAfterHandlerMethod, ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.Core.Infrastructure.Concretes.Mediator.DispatchAsync[TResult](ICommand`1 command, CancellationToken cancellationToken)
+   at Domic.WebAPI.EntryPoints.GRPCs.UserRPC.Create(CreateRequest request, ServerCallContext context) in D:\Programming\Domic\Domic-UserService\src\Presentation\Domic.WebAPI\EntryPoints\GRPCs\UserRPC.cs:line 91
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Domic.Core.WebAPI.Middlewares.FullExceptionHandlerInterceptor.UnaryServerHandler[TRequest,TResponse](TRequest request, ServerCallContext context, UnaryServerMethod`2 continuation) 
+
