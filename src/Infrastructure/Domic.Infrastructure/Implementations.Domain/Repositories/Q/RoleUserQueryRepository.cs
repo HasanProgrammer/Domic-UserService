@@ -16,15 +16,16 @@ public partial class RoleUserQueryRepository : IRoleUserQueryRepository
 //Transaction
 public partial class RoleUserQueryRepository
 {
-    public void Add(RoleUserQuery entity) => _sqlContext.RoleUsers.Add(entity);
-
-    public void Remove(RoleUserQuery entity) => _sqlContext.RoleUsers.Remove(entity);
-
-    public void RemoveRange(IEnumerable<RoleUserQuery> entities) => _sqlContext.RoleUsers.RemoveRange(entities);
-
     public Task AddRangeAsync(IEnumerable<RoleUserQuery> entities, CancellationToken cancellationToken)
     {
         _sqlContext.RoleUsers.AddRange(entities);
+
+        return Task.CompletedTask;
+    }
+
+    public Task RemoveRangeAsync(IEnumerable<RoleUserQuery> entities, CancellationToken cancellationToken)
+    {
+        _sqlContext.RoleUsers.RemoveRange(entities);
 
         return Task.CompletedTask;
     }

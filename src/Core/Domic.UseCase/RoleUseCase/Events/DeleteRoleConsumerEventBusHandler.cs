@@ -28,13 +28,14 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
-    public void BeforeHandle(RoleDeleted @event){}
+    public Task BeforeHandleAsync(RoleDeleted @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [WithCleanCache(Keies = Cache.Roles)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(RoleDeleted @event)
+    public async Task HandleAsync(RoleDeleted @event, CancellationToken cancellationToken)
     {
-        var targetRole = _roleQueryRepository.FindByIdEagerLoadingAsync(@event.Id, default).Result;
+        var targetRole = await _roleQueryRepository.FindByIdEagerLoadingAsync(@event.Id, cancellationToken);
 
         if (targetRole is not null) //Replication management
         {
@@ -42,7 +43,7 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
 
             targetRole.IsDeleted = IsDeleted.Delete;
             
-            _roleQueryRepository.Change(targetRole);
+            await _roleQueryRepository.ChangeAsync(targetRole, cancellationToken);
 
             #endregion
         
@@ -52,16 +53,16 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
             {
                 permission.IsDeleted = IsDeleted.Delete;
                 
-                _permissionQueryRepository.Change(permission);
+                await _permissionQueryRepository.ChangeAsync(permission, cancellationToken);
             }
 
             #endregion
             
             #region HardDelete RoleUser
 
-            var roleUsers = _roleUserQueryRepository.FindAllByRoleIdAsync(@event.Id, default).Result;
+            var roleUsers = await _roleUserQueryRepository.FindAllByRoleIdAsync(@event.Id, cancellationToken);
             
-            _roleUserQueryRepository.RemoveRange(roleUsers);
+            await _roleUserQueryRepository.RemoveRangeAsync(roleUsers, cancellationToken);
 
             #endregion
             
@@ -69,15 +70,15 @@ public class DeleteRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleDe
 
             foreach (var permission in targetRole.Permissions)
             {
-                var permissionUsers = 
-                    _permissionUserQueryRepository.FindAllByPermissionIdAsync(permission.Id, default).Result;
+                var permissionUsers = await _permissionUserQueryRepository.FindAllByPermissionIdAsync(permission.Id, cancellationToken);
             
-                _permissionUserQueryRepository.RemoveRange(permissionUsers);
+                await _permissionUserQueryRepository.RemoveRangeAsync(permissionUsers, cancellationToken);
             }
 
             #endregion
         }
     }
 
-    public void AfterHandle(RoleDeleted @event){}
+    public Task AfterHandleAsync(RoleDeleted @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

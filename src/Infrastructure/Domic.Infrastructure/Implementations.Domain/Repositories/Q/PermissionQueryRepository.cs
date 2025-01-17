@@ -16,13 +16,19 @@ public partial class PermissionQueryRepository : IPermissionQueryRepository
 //Transaction
 public partial class PermissionQueryRepository
 {
-    public void Add(PermissionQuery entity) => _context.Permissions.Add(entity);
+    public Task AddAsync(PermissionQuery entity, CancellationToken cancellationToken)
+    {
+        _context.Permissions.Add(entity);
 
-    public void Change(PermissionQuery entity) => _context.Permissions.Update(entity);
+        return Task.CompletedTask;
+    }
 
-    public void Remove(PermissionQuery entity) => _context.Permissions.Remove(entity);
+    public Task ChangeAsync(PermissionQuery entity, CancellationToken cancellationToken)
+    {
+        _context.Permissions.Update(entity);
 
-    public void RemoveRange(IEnumerable<PermissionQuery> entities) => _context.Permissions.RemoveRange(entities);
+        return Task.CompletedTask;
+    }
 }
 
 //Query

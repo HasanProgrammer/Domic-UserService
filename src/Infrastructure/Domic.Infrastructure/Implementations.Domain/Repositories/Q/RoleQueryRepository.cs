@@ -16,13 +16,19 @@ public partial class RoleQueryRepository : IRoleQueryRepository
 //Command
 public partial class RoleQueryRepository
 {
-    public void Add(RoleQuery entity) => _context.Roles.Add(entity);
+    public Task AddAsync(RoleQuery entity, CancellationToken cancellationToken)
+    {
+        _context.Roles.Add(entity);
 
-    public void Change(RoleQuery entity) => _context.Roles.Update(entity);
+        return Task.CompletedTask;
+    }
+    
+    public Task ChangeAsync(RoleQuery entity, CancellationToken cancellationToken)
+    {
+        _context.Roles.Update(entity);
 
-    public void Remove(RoleQuery entity) => _context.Roles.Remove(entity);
-
-    public void SoftDelete(RoleQuery entity) => _context.Roles.Update(entity);
+        return Task.CompletedTask;
+    }
 }
 
 //Query

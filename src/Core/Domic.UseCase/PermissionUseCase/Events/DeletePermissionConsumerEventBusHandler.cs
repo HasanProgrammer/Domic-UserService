@@ -21,13 +21,14 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
         _permissionUserQueryRepository = permissionUserQueryRepository;
     }
 
-    public void BeforeHandle(PermissionDeleted @event){}
+    public Task BeforeHandleAsync(PermissionDeleted @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(PermissionDeleted @event)
+    public async Task Handle(PermissionDeleted @event, CancellationToken cancellationToken)
     {
-        var targetPermission = _permissionQueryRepository.FindByIdAsync(@event.Id, default).Result;
+        var targetPermission = await _permissionQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetPermission is not null) //Replication management
         {
@@ -35,19 +36,20 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
 
             targetPermission.IsDeleted = IsDeleted.Delete;
             
-            _permissionQueryRepository.Change(targetPermission);
+            await _permissionQueryRepository.ChangeAsync(targetPermission, cancellationToken);
 
             #endregion
 
             #region HardDelete PermissionUser
             
-            var permissionUsers =_permissionUserQueryRepository.FindAllByPermissionIdAsync(@event.Id, default).Result;
+            var permissionUsers =
+                await _permissionUserQueryRepository.FindAllByPermissionIdAsync(@event.Id, cancellationToken);
             
-            _permissionUserQueryRepository.RemoveRange(permissionUsers);
+            await _permissionUserQueryRepository.RemoveRangeAsync(permissionUsers, cancellationToken);
 
             #endregion
         }
     }
 
-    public void AfterHandle(PermissionDeleted @event){}
+    public Task AfterHandleAsync(PermissionDeleted @event, CancellationToken cancellationToken) => Task.CompletedTask;
 }

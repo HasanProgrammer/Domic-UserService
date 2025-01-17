@@ -14,13 +14,14 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
     public CreateRoleConsumerEventBusHandler(IRoleQueryRepository roleQueryRepository) 
         => _roleQueryRepository = roleQueryRepository;
 
-    public void BeforeHandle(RoleCreated @event){}
+    public Task BeforeHandleAsync(RoleCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [WithCleanCache(Keies = Cache.Roles)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(RoleCreated @event)
+    public async Task HandleAsync(RoleCreated @event, CancellationToken cancellationToken)
     {
-        var targetRole = _roleQueryRepository.FindByIdAsync(@event.Id, default).Result;
+        var targetRole = await _roleQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetRole is null) //Replication management
         {
@@ -33,9 +34,10 @@ public class CreateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleCr
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
 
-            _roleQueryRepository.Add(newRole);
+            await _roleQueryRepository.AddAsync(newRole, cancellationToken);
         }
     }
 
-    public void AfterHandle(RoleCreated @event){}
+    public Task AfterHandleAsync(RoleCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

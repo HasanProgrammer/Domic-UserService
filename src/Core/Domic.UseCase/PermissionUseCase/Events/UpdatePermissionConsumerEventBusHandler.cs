@@ -13,19 +13,21 @@ public class UpdatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
     public UpdatePermissionConsumerEventBusHandler(IPermissionQueryRepository permissionQueryRepository) 
         =>  _permissionQueryRepository = permissionQueryRepository;
 
-    public void BeforeHandle(PermissionUpdated @event){}
+    public Task BeforeHandleAsync(PermissionUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 
     [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(PermissionUpdated @event)
+    public async Task HandleAsync(PermissionUpdated @event, CancellationToken cancellationToken)
     {
-        var targetPermission = _permissionQueryRepository.FindByIdAsync(@event.Id, default).Result;
+        var targetPermission = await _permissionQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         targetPermission.Name   = @event.Name;
         targetPermission.RoleId = @event.RoleId;
 
-        _permissionQueryRepository.Change(targetPermission);
+        await _permissionQueryRepository.ChangeAsync(targetPermission, cancellationToken);
     }
 
-    public void AfterHandle(PermissionUpdated @event){}
+    public Task AfterHandleAsync(PermissionUpdated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }

@@ -16,8 +16,6 @@ public partial class PermissionUserQueryRepository : IPermissionUserQueryReposit
 //Transaction
 public partial class PermissionUserQueryRepository
 {
-    public void Add(PermissionUserQuery entity) => _sqlContext.PermissionUsers.Add(entity);
-
     public Task AddRangeAsync(IEnumerable<PermissionUserQuery> entities, CancellationToken cancellationToken)
     {
         _sqlContext.PermissionUsers.AddRange(entities);
@@ -25,9 +23,12 @@ public partial class PermissionUserQueryRepository
         return Task.CompletedTask;
     }
 
-    public void Remove(PermissionUserQuery entity) => _sqlContext.PermissionUsers.Remove(entity);
+    public Task RemoveRangeAsync(IEnumerable<PermissionUserQuery> entities, CancellationToken cancellationToken)
+    {
+        _sqlContext.PermissionUsers.RemoveRange(entities);
 
-    public void RemoveRange(IEnumerable<PermissionUserQuery> entities) => _sqlContext.PermissionUsers.RemoveRange(entities);
+        return Task.CompletedTask;
+    }
 }
 
 //Query

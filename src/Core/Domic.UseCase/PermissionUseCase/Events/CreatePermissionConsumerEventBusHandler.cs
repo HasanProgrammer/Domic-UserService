@@ -19,10 +19,9 @@ public class CreatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
 
     [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public void Handle(PermissionCreated @event)
+    public async Task HandleAsync(PermissionCreated @event, CancellationToken cancellationToken)
     {
-        var targetPermission =
-            _permissionQueryRepository.FindByIdAsync(@event.Id, default).Result;
+        var targetPermission = await _permissionQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
         if (targetPermission is null) //Replication management
         {
@@ -36,9 +35,10 @@ public class CreatePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
                 CreatedAt_PersianDate = @event.CreatedAt_PersianDate
             };
         
-            _permissionQueryRepository.Add(newPermission);
+            await _permissionQueryRepository.AddAsync(newPermission, cancellationToken);
         }
     }
 
-    public void AfterHandle(PermissionCreated @event){}
+    public Task AfterHandleAsync(PermissionCreated @event, CancellationToken cancellationToken)
+        => Task.CompletedTask;
 }
