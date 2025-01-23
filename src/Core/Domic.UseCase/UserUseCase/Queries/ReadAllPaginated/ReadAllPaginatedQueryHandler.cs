@@ -21,8 +21,16 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
         int pageNumber   = Convert.ToInt32(query.PageNumber);
         int countPerPage = Convert.ToInt32(query.CountPerPage);
 
-        var result = await _cacheMediator.GetAsync<List<UsersDto>>(cancellationToken);
+        var users = await _cacheMediator.GetAsync<List<UsersDto>>(cancellationToken);
 
-        return result.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
+        var usersFiltered = users.Where(u => 
+            ( string.IsNullOrEmpty(query.FirstName) || u.FirstName == query.FirstName ) &&
+            ( string.IsNullOrEmpty(query.LastName) || u.LastName == query.LastName ) &&
+            ( string.IsNullOrEmpty(query.Username) || u.Username == query.Username ) &&
+            ( string.IsNullOrEmpty(query.PhoneNumber) || u.PhoneNumber == query.PhoneNumber ) &&
+            ( string.IsNullOrEmpty(query.Email) || u.Email == query.Email )
+        );
+
+        return usersFiltered.ToPaginatedCollection(usersFiltered.Count(), countPerPage, pageNumber);
     }
 }

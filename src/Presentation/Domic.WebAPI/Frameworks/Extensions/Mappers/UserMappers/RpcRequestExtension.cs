@@ -62,8 +62,13 @@ public static partial class RpcRequestExtension
         if (typeof(T) == typeof(ReadAllPaginatedQuery))
         {
             Request = new ReadAllPaginatedQuery {
-                PageNumber   = request.PageNumber?.Value ,
-                CountPerPage = request.CountPerPage?.Value 
+                PageNumber   = request.PageNumber?.Value   ,
+                CountPerPage = request.CountPerPage?.Value ,
+                FirstName    = request.FirstName?.Value    ,
+                LastName     = request.LastName?.Value     ,
+                Username     = request.Username?.Value     ,
+                PhoneNumber  = request.PhoneNumber?.Value  ,
+                Email        = request.Email?.Value
             };
         }
         

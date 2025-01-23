@@ -18,7 +18,7 @@ public class UsersEagerLoadingMemoryCache : IInternalDistributedCacheHandler<Lis
     public async Task<List<UsersDto>> SetAsync(CancellationToken cancellationToken)
     {
         var result =
-            await _userQueryRepository.FindAllWithOrderingAsync(Order.Id, false, cancellationToken);
+            await _userQueryRepository.FindAllWithOrderingAsync(Order.Date, false, cancellationToken);
 
         return result.Select(user => new UsersDto {
             Id          = user.Id          ,
