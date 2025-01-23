@@ -22,7 +22,11 @@ public class UpdateRoleConsumerEventBusHandler : IConsumerEventBusHandler<RoleUp
     {
         var targetRole = await _roleQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 
-        targetRole.Name = @event.Name;
+        targetRole.Name        = @event.Name;
+        targetRole.UpdatedBy   = @event.UpdatedBy;
+        targetRole.UpdatedRole = @event.UpdatedRole;
+        targetRole.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;
+        targetRole.UpdatedAt_PersianDate = @event.UpdatedAt_PersianDate;
 
         await _roleQueryRepository.ChangeAsync(targetRole, cancellationToken);
     }
