@@ -28,19 +28,20 @@ public class ActiveCommandHandler : ICommandHandler<ActiveCommand, string>
         _identityUser           = identityUser;
     }
 
-    public Task BeforeHandleAsync(ActiveCommand command, CancellationToken cancellationToken) => Task.CompletedTask;
+    public Task BeforeHandleAsync(ActiveCommand command, CancellationToken cancellationToken) 
+        => Task.CompletedTask;
 
     [WithValidation]
     [WithTransaction]
-    public Task<string> HandleAsync(ActiveCommand command, CancellationToken cancellationToken)
+    public async Task<string> HandleAsync(ActiveCommand command, CancellationToken cancellationToken)
     {
         var targetUser = _validationResult as User;
         
         targetUser.Active(_dateTime, _identityUser, _serializer);
 
-        _userCommandRepository.Change(targetUser);
+        await _userCommandRepository.ChangeAsync(targetUser, cancellationToken);
 
-        return Task.FromResult(targetUser.Id);
+        return targetUser.Id;
     }
 
     public Task AfterHandleAsync(ActiveCommand command, CancellationToken cancellationToken)

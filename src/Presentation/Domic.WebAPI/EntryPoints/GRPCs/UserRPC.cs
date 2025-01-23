@@ -2,7 +2,6 @@ using Grpc.Core;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.User.Grpc;
-using Domic.Core.WebAPI.Extensions;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.CheckExist;
 using Domic.UseCase.UserUseCase.Commands.Create;
@@ -117,7 +116,7 @@ public class UserRPC : UserService.UserServiceBase
     /// <returns></returns>
     public override async Task<ActiveResponse> Active(ActiveRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<ActiveCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<ActiveCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         
@@ -132,7 +131,7 @@ public class UserRPC : UserService.UserServiceBase
     /// <returns></returns>
     public override async Task<InActiveResponse> InActive(InActiveRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<InActiveCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<InActiveCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         

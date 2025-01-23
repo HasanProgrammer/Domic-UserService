@@ -4,6 +4,5 @@ namespace Domic.UseCase.UserUseCase.Commands.Active;
 
 public class ActiveCommand : ICommand<string>
 {
-    public required string Id    { get; set; }
-    public required string Token { get; set; }
+    public required string Id { get; set; }
 }

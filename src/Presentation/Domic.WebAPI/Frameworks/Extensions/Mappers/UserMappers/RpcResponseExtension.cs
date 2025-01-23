@@ -106,6 +106,22 @@ public partial class RpcResponseExtension
                 Body    = new UpdateResponseBody { UserId = response }
             };
         }
+        else if (typeof(T) == typeof(ActiveResponse))
+        {
+            Response = new ActiveResponse {
+                Code    = configuration.GetSuccessStatusCode()    ,
+                Message = configuration.GetSuccessUpdateMessage() ,
+                Body    = new ActiveResponseBody { UserId = response }
+            };
+        }
+        else if (typeof(T) == typeof(InActiveResponse))
+        {
+            Response = new InActiveResponse {
+                Code    = configuration.GetSuccessStatusCode()    ,
+                Message = configuration.GetSuccessUpdateMessage() ,
+                Body    = new InActiveResponseBody { UserId = response }
+            };
+        }
 
         return (T)Response;
     }

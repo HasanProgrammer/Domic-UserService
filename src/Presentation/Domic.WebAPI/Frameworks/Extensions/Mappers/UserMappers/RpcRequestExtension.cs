@@ -168,18 +168,16 @@ public partial class RpcRequestExtension
     /// 
     /// </summary>
     /// <param name="request"></param>
-    /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this ActiveRequest request, string token)
+    public static T ToCommand<T>(this ActiveRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(ActiveCommand))
         {
             Request = new ActiveCommand {
-                Id    = request.TargetId?.Value ,
-                Token = token
+                Id = request.TargetId?.Value
             };
         }
 
@@ -190,18 +188,16 @@ public partial class RpcRequestExtension
     /// 
     /// </summary>
     /// <param name="request"></param>
-    /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this InActiveRequest request, string token)
+    public static T ToCommand<T>(this InActiveRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(InActiveCommand))
         {
             Request = new InActiveCommand {
-                Id    = request.TargetId?.Value ,
-                Token = token
+                Id = request.TargetId?.Value
             };
         }
 
