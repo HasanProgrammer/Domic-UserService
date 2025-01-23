@@ -1,7 +1,7 @@
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Role.Grpc;
 using Domic.Core.Infrastructure.Extensions;
-using Domic.UseCase.RoleUseCase.DTOs.ViewModels;
+using Domic.UseCase.RoleUseCase.DTOs;
 
 namespace Domic.WebAPI.Frameworks.Extensions.Mappers.RoleMappers;
 
@@ -15,7 +15,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this RolesViewModel model, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this RoleDto model, IConfiguration configuration)
     {
         object Response = null;
 
@@ -40,7 +40,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this PaginatedCollection<RolesViewModel> models, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this PaginatedCollection<RoleDto> models, IConfiguration configuration)
     {
         object Response = null;
 

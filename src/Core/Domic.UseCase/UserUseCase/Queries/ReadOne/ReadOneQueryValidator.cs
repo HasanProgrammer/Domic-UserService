@@ -13,10 +13,10 @@ public class ReadOneQueryValidator : IValidator<ReadOneQuery>
 
     public async Task<object> ValidateAsync(ReadOneQuery input, CancellationToken cancellationToken)
     {
-        var targetUserQuery = await _userQueryRepository.FindByIdEagerLoadingAsync(input.UserId, cancellationToken);
+        var targetUserQuery = await _userQueryRepository.FindByIdEagerLoadingAsync(input.Id, cancellationToken);
         
         if(targetUserQuery is null)
-            throw new UseCaseException( string.Format("کاربری با شناسه {0} وجود خارجی ندارد !", input.UserId) );
+            throw new UseCaseException( string.Format("کاربری با شناسه {0} وجود خارجی ندارد !", input.Id) );
 
         return targetUserQuery;
     }

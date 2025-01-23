@@ -6,7 +6,7 @@ using Domic.Core.WebAPI.Extensions;
 using Domic.UseCase.PermissionUseCase.Commands.Create;
 using Domic.UseCase.PermissionUseCase.Commands.Delete;
 using Domic.UseCase.PermissionUseCase.Commands.Update;
-using Domic.UseCase.PermissionUseCase.DTOs.ViewModels;
+using Domic.UseCase.PermissionUseCase.DTOs;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions.Mappers.PermissionMappers;
@@ -39,7 +39,7 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
     {
         var query = request.ToQuery<ReadOneQuery>();
         
-        var result = await _mediator.DispatchAsync<PermissionsViewModel>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<PermissionDto>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
@@ -57,7 +57,7 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
         var query = request.ToQuery<ReadAllPaginatedQuery>();
 
         var result =
-            await _mediator.DispatchAsync<PaginatedCollection<PermissionsViewModel>>(query, context.CancellationToken);
+            await _mediator.DispatchAsync<PaginatedCollection<PermissionDto>>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadAllPaginatedResponse>(_configuration);
     }

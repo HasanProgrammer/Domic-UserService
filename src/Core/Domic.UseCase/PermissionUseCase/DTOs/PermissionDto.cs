@@ -1,8 +1,6 @@
-using Domic.Core.UseCase.DTOs.ViewModels;
+namespace Domic.UseCase.PermissionUseCase.DTOs;
 
-namespace Domic.UseCase.PermissionUseCase.DTOs.ViewModels;
-
-public class PermissionsViewModel : ViewModel
+public class PermissionDto
 {
     public string Id       { get; set; }
     public string Name     { get; set; }

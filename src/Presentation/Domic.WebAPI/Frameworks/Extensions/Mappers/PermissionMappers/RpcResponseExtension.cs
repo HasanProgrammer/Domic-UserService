@@ -1,7 +1,7 @@
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Permission.Grpc;
 using Domic.Core.Infrastructure.Extensions;
-using Domic.UseCase.PermissionUseCase.DTOs.ViewModels;
+using Domic.UseCase.PermissionUseCase.DTOs;
 
 namespace Domic.WebAPI.Frameworks.Extensions.Mappers.PermissionMappers;
 
@@ -15,7 +15,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this PermissionsViewModel model, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this PermissionDto model, IConfiguration configuration)
     {
         object Response = null;
 
@@ -45,7 +45,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this PaginatedCollection<PermissionsViewModel> models, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this PaginatedCollection<PermissionDto> models, IConfiguration configuration)
     {
         object Response = null;
     

@@ -6,7 +6,7 @@ using Domic.Core.WebAPI.Extensions;
 using Domic.UseCase.RoleUseCase.Commands.Create;
 using Domic.UseCase.RoleUseCase.Commands.Delete;
 using Domic.UseCase.RoleUseCase.Commands.Update;
-using Domic.UseCase.RoleUseCase.DTOs.ViewModels;
+using Domic.UseCase.RoleUseCase.DTOs;
 using Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.RoleUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions.Mappers.RoleMappers;
@@ -34,7 +34,7 @@ public class RoleRPC : RoleService.RoleServiceBase
     {
         var query = request.ToQuery<ReadOneQuery>();
 
-        var result = await _mediator.DispatchAsync<RolesViewModel>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<RoleDto>(query, context.CancellationToken);
             
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
@@ -51,7 +51,7 @@ public class RoleRPC : RoleService.RoleServiceBase
     {
         var query = request.ToQuery<ReadAllPaginatedQuery>();
 
-        var result = await _mediator.DispatchAsync<PaginatedCollection<RolesViewModel>>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<PaginatedCollection<RoleDto>>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadAllPaginatedResponse>(_configuration);
     }

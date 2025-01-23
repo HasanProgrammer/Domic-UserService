@@ -1,9 +1,9 @@
-using Domic.UseCase.PermissionUseCase.DTOs.ViewModels;
-using Domic.UseCase.RoleUseCase.DTOs.ViewModels;
+using Domic.UseCase.PermissionUseCase.DTOs;
+using Domic.UseCase.RoleUseCase.DTOs;
 
-namespace Domic.UseCase.UserUseCase.DTOs.ViewModels;
+namespace Domic.UseCase.UserUseCase.DTOs;
 
-public class UsersDto
+public class UserDto
 {
     public string Id { get; set; }
     public string FirstName { get; set; }
@@ -15,6 +15,6 @@ public class UsersDto
     
     /*---------------------------------------------------------------*/
     
-    public IEnumerable<RolesViewModel> Roles             { get; set; }
-    public IEnumerable<PermissionsViewModel> Permissions { get; set; }
+    public IEnumerable<RoleDto> Roles             { get; set; }
+    public IEnumerable<PermissionDto> Permissions { get; set; }
 }

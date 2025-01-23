@@ -7,7 +7,7 @@ using Domic.UseCase.UserUseCase.Commands.CheckExist;
 using Domic.UseCase.UserUseCase.Commands.Create;
 using Domic.UseCase.UserUseCase.Commands.InActive;
 using Domic.UseCase.UserUseCase.Commands.Update;
-using Domic.UseCase.UserUseCase.DTOs.ViewModels;
+using Domic.UseCase.UserUseCase.DTOs;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.UserUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions.Mappers.UserMappers;
@@ -55,7 +55,7 @@ public class UserRPC : UserService.UserServiceBase
     {
         var query = request.ToQuery<ReadOneQuery>();
 
-        var result = await _mediator.DispatchAsync<UsersDto>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<UserDto>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
@@ -73,7 +73,7 @@ public class UserRPC : UserService.UserServiceBase
     {
         var query = request.ToQuery<ReadAllPaginatedQuery>();
 
-        var result = await _mediator.DispatchAsync<PaginatedCollection<UsersDto>>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<PaginatedCollection<UserDto>>(query, context.CancellationToken);
         
         return result.ToRpcResponse<ReadAllPaginatedResponse>(_configuration);
     }

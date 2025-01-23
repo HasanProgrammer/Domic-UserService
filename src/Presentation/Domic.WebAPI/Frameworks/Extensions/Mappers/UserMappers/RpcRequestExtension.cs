@@ -42,7 +42,7 @@ public static partial class RpcRequestExtension
         if (typeof(T) == typeof(ReadOneQuery))
         {
             Request = new ReadOneQuery {
-                UserId = request.TargetId?.Value
+                Id = request.TargetId?.Value
             };
         }
         

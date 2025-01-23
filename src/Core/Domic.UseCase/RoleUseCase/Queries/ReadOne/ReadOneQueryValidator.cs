@@ -1,4 +1,3 @@
-using Domic.Core.Domain.Exceptions;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.UseCase.Exceptions;
 using Domic.Domain.Role.Contracts.Interfaces;

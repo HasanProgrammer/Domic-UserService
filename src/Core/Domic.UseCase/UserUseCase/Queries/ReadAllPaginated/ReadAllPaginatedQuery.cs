@@ -1,11 +1,11 @@
-using Domic.UseCase.UserUseCase.DTOs.ViewModels;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.UseCase.Contracts.Abstracts;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.UseCase.UserUseCase.DTOs;
 
 namespace Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
 
-public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<PaginatedCollection<UsersDto>>
+public class ReadAllPaginatedQuery : PaginatedQuery, IQuery<PaginatedCollection<UserDto>>
 {
     public string FirstName   { get; set; }
     public string LastName    { get; set; }
