@@ -82,9 +82,9 @@ public class Role : Entity<string>
         AddEvent(
             new RoleCreated {
                 Id                    = Id                 ,
+                Name                  = name               ,
                 CreatedBy             = CreatedBy          , 
                 CreatedRole           = CreatedRole        , 
-                Name                  = name               ,
                 CreatedAt_EnglishDate = nowDateTime        ,
                 CreatedAt_PersianDate = nowPersianDateTime
             }

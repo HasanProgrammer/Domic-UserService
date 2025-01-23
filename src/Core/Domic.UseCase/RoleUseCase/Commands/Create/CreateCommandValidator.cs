@@ -1,5 +1,4 @@
-﻿using Domic.Core.Domain.Exceptions;
-using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.UseCase.Exceptions;
 using Domic.Domain.Role.Contracts.Interfaces;
 
@@ -14,8 +13,8 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 
     public async Task<object> ValidateAsync(CreateCommand input, CancellationToken cancellationToken)
     {
-        if (await _roleCommandRepository.FindByNameAsync(input.Name, cancellationToken) is not null)
-            throw new UseCaseException("فیلد نام نقش قبلا انتخاب شده است !");
+        if (await _roleCommandRepository.IsExistByNameAsync(input.Name, cancellationToken))
+            throw new UseCaseException("نام نقش ارسالی قبلا انتخاب شده است !");
 
         return default;
     }

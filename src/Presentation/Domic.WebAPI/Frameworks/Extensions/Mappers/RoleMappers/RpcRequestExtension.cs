@@ -69,7 +69,6 @@ public partial class RpcRequestExtension
         if (typeof(T) == typeof(CreateCommand))
         {
             Request = new CreateCommand {
-                Token = token,
                 Name  = request.Name?.Value
             };
         }

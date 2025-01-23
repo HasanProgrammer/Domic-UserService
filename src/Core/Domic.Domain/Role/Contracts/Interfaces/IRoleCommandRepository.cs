@@ -21,4 +21,12 @@ public interface IRoleCommandRepository : ICommandRepository<Entities.Role, stri
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
     public Task<bool> IsExistByIdAsync(string id, CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="cancellationToken"></param>
+    /// <returns></returns>
+    public Task<bool> IsExistByNameAsync(string name, CancellationToken cancellationToken);
 }

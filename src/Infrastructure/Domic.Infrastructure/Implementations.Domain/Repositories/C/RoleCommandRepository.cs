@@ -34,6 +34,9 @@ public partial class RoleCommandRepository
 
     public Task<bool> IsExistByIdAsync(string id, CancellationToken cancellationToken) 
         => _context.Roles.AnyAsync(r => r.Id == id, cancellationToken);
+    
+    public Task<bool> IsExistByNameAsync(string name, CancellationToken cancellationToken) 
+        => _context.Roles.AnyAsync(r => r.Name.Value == name, cancellationToken);
 
     public async Task<Role> FindByIdAsync(object id, CancellationToken cancellationToken)
         => await _context.Roles.FirstOrDefaultAsync(Role => Role.Id.Equals(id), cancellationToken);
