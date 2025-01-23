@@ -51,29 +51,29 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         targetRole.Delete(_dateTime, _identityUser, _serializer);
         
-        _roleCommandRepository.Change(targetRole);
+        await _roleCommandRepository.ChangeAsync(targetRole, cancellationToken);
 
         #endregion
 
         #region SoftDeletePermission
 
         var permissions =
-            await _permissionCommandRepository.FindByRoleIdAsync(command.RoleId, cancellationToken);
+            await _permissionCommandRepository.FindByRoleIdAsync(command.Id, cancellationToken);
 
         foreach (var permission in permissions)
         {
             permission.Delete(_dateTime, _identityUser, _serializer, false);
             
-            _permissionCommandRepository.Change(permission);
+            await _permissionCommandRepository.ChangeAsync(permission, cancellationToken);
         }
 
         #endregion
 
         #region HardDeleteRoleUser
 
-        var roleUsers = await _roleUserCommandRepository.FindAllByRoleIdAsync(command.RoleId, cancellationToken);
+        var roleUsers = await _roleUserCommandRepository.FindAllByRoleIdAsync(command.Id, cancellationToken);
         
-        _roleUserCommandRepository.RemoveRange(roleUsers);
+        await _roleUserCommandRepository.RemoveRangeAsync(roleUsers, cancellationToken);
 
         #endregion
 
@@ -81,15 +81,15 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         foreach (var permission in permissions)
         {
-            var permissionUsers = 
+            var permissionUsers =
                 await _permissionUserCommandRepository.FindAllByPermissionIdAsync(permission.Id, cancellationToken);
         
-            _permissionUserCommandRepository.RemoveRange(permissionUsers);
+            await _permissionUserCommandRepository.RemoveRangeAsync(permissionUsers, cancellationToken);
         }
 
         #endregion
 
-        return command.RoleId;
+        return command.Id;
     }
 
     public Task AfterHandleAsync(DeleteCommand command, CancellationToken cancellationToken)

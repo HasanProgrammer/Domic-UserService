@@ -32,15 +32,15 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     [WithValidation]
     [WithTransaction]
-    public Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
+    public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
         var targetRole = _validationResult as Role;
 
         targetRole.Change(_dateTime, _identityUser, _serializer, command.Name);
 
-        _roleCommandRepository.Change(targetRole);
+        await _roleCommandRepository.ChangeAsync(targetRole, cancellationToken);
 
-        return Task.FromResult(targetRole.Id);
+        return targetRole.Id;
     }
 
     public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken)

@@ -23,7 +23,7 @@ public class UpdateCommandValidator : IValidator<UpdateCommand>
         
         if 
         (
-            await _roleCommandRepository.FindByNameAsync(input.Name, cancellationToken) is not null 
+            await _roleCommandRepository.IsExistByNameAsync(input.Name, cancellationToken) 
             && 
             !input.Name.Equals(targetRole.Name.Value)
         ) throw new UseCaseException("فیلد نام نقش قبلا انتخاب شده است !");

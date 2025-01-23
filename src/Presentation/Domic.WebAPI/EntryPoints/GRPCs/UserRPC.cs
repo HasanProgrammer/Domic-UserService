@@ -60,7 +60,6 @@ public class UserRPC : UserService.UserServiceBase
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
 
-    //todo: shoud be used [ReadAllPaginated] insted [ReadAllPaginate] in gRPC
     /// <summary>
     /// 
     /// </summary>

@@ -1,5 +1,4 @@
-﻿using Domic.Core.Domain.Exceptions;
-using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.UseCase.Exceptions;
 using Domic.Domain.Role.Contracts.Interfaces;
 
@@ -14,11 +13,11 @@ public class DeleteCommandValidator : IValidator<DeleteCommand>
 
     public async Task<object> ValidateAsync(DeleteCommand input, CancellationToken cancellationToken)
     {
-        var targetRole = await _roleCommandRepository.FindByIdAsync(input.RoleId, cancellationToken);
+        var targetRole = await _roleCommandRepository.FindByIdAsync(input.Id, cancellationToken);
         
         if(targetRole is null)
             throw new UseCaseException(
-                string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", input.RoleId ?? "_خالی_")
+                string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", input.Id ?? "_خالی_")
             );
 
         return targetRole;

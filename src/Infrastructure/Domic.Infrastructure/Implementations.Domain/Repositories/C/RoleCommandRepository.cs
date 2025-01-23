@@ -19,11 +19,12 @@ public partial class RoleCommandRepository
     public async Task AddAsync(Role entity, CancellationToken cancellationToken) 
         => await _context.Roles.AddAsync(entity, cancellationToken);
 
-    public void Change(Role entity) => _context.Roles.Update(entity);
+    public Task ChangeAsync(Role entity, CancellationToken cancellationToken)
+    {
+        _context.Roles.Update(entity);
 
-    public void Remove(Role entity) => _context.Roles.Remove(entity);
-
-    public void SoftDelete(Role entity) => _context.Roles.Update(entity);
+        return Task.CompletedTask;
+    }
 }
 
 //Query

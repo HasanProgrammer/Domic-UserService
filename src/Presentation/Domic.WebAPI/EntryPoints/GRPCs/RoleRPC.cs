@@ -79,16 +79,22 @@ public class RoleRPC : RoleService.RoleServiceBase
     /// <returns></returns>
     public override async Task<UpdateResponse> Update(UpdateRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<UpdateCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<UpdateCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         
         return result.ToRpcResponse<UpdateResponse>(_configuration);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
     public override async Task<DeleteResponse> Delete(DeleteRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<DeleteCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<DeleteCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         
