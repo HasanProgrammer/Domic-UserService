@@ -1,7 +1,5 @@
 ﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Domain.Contracts.Interfaces;
-using Domic.Core.Domain.Enumerations;
-using Domic.Core.Domain.Extensions;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.PermissionUser.Contracts.Interfaces;
@@ -66,7 +64,6 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
         targetUser.Description           = @event.Description;
         targetUser.PhoneNumber           = @event.PhoneNumber;
         targetUser.Email                 = @event.Email;
-        targetUser.IsActive              = @event.IsActive ? IsActive.Active : IsActive.InActive;
         targetUser.UpdatedBy             = @event.UpdatedBy;
         targetUser.UpdatedRole           = @event.UpdatedRole;
         targetUser.UpdatedAt_EnglishDate = @event.UpdatedAt_EnglishDate;

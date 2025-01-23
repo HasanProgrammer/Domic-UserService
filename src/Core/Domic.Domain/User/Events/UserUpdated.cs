@@ -15,7 +15,6 @@ public class UserUpdated : UpdateDomainEvent<string>
     public string Description              { get; init; }
     public string PhoneNumber              { get; init; }
     public string Email                    { get; init; }
-    public bool IsActive                   { get; init; }
     public IEnumerable<string> Roles       { get; init; }
     public IEnumerable<string> Permissions { get; init; }
 }

@@ -220,7 +220,6 @@ public class User : Entity<string>
                 Email                 = email                       , 
                 Roles                 = roleIds                     ,
                 Permissions           = permissionIds               ,
-                IsActive              = IsActive == IsActive.Active ,
                 UpdatedAt_EnglishDate = nowDateTime                 ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }
