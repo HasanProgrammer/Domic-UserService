@@ -10,9 +10,7 @@ public interface IPermissionCommandRepository : ICommandRepository<Entities.Perm
     /// <param name="name"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<Entities.Permission> FindByNameAsync(string name, CancellationToken cancellationToken) 
-        => throw new NotImplementedException();
+    public Task<bool> IsExistByNameAsync(string name, CancellationToken cancellationToken);
     
     /// <summary>
     /// 

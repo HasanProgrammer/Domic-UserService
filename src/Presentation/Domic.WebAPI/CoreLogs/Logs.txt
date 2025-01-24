@@ -1,0 +1,89 @@
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: HandleAsync function not found ! | Source: System.Exception: HandleAsync function not found !
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker._EventOfQueueHandleAsync(IModel channel, BasicDeliverEventArgs args, Event event, IServiceProvider serviceProvider, CancellationToken cancellationToken) 
+
+
+ Date: 1403/11/05 | Message: Unexpected character encountered while parsing number: q. Path '', line 1, position 3. | Source: Newtonsoft.Json.JsonReaderException: Unexpected character encountered while parsing number: q. Path '', line 1, position 3.
+   at Newtonsoft.Json.JsonTextReader.ReadNumberCharIntoBuffer(Char currentChar, Int32 charPos)
+   at Newtonsoft.Json.JsonTextReader.ReadNumberIntoBuffer()
+   at Newtonsoft.Json.JsonTextReader.ParseNumber(ReadType readType)
+   at Newtonsoft.Json.JsonTextReader.ParseValue()
+   at Newtonsoft.Json.JsonTextReader.Read()
+   at Newtonsoft.Json.JsonReader.ReadAndMoveToContent()
+   at Newtonsoft.Json.JsonReader.ReadForType(JsonContract contract, Boolean hasConverter)
+   at Newtonsoft.Json.Serialization.JsonSerializerInternalReader.Deserialize(JsonReader reader, Type objectType, Boolean checkAdditionalContent)
+   at Newtonsoft.Json.JsonSerializer.DeserializeInternal(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonSerializer.Deserialize(JsonReader reader, Type objectType)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject(String value, Type type, JsonSerializerSettings settings)
+   at Newtonsoft.Json.JsonConvert.DeserializeObject[T](String value, JsonSerializerSettings settings)
+   at Domic.Core.Infrastructure.Extensions.StringExtension.DeSerialize[T](String input)
+   at Domic.WebAPI.Frameworks.Extensions.Mappers.PermissionMappers.RpcRequestExtension.ToQuery[T](ReadAllBasedOnRolesPaginatedRequest request) in D:\Programming\Domic\Domic-UserService\src\Presentation\Domic.WebAPI\Frameworks\Extensions\Mappers\PermissionMappers\RpcRequestExtension.cs:line 68
+   at Domic.WebAPI.EntryPoints.GRPCs.PermissionRPC.ReadAllBasedOnRolesPaginated(ReadAllBasedOnRolesPaginatedRequest request, ServerCallContext context) in D:\Programming\Domic\Domic-UserService\src\Presentation\Domic.WebAPI\EntryPoints\GRPCs\PermissionRPC.cs:line 75
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Grpc.Shared.Server.UnaryServerMethodInvoker`3.ResolvedInterceptorInvoker(TRequest resolvedRequest, ServerCallContext resolvedContext)
+   at Domic.Core.WebAPI.Middlewares.FullExceptionHandlerInterceptor.UnaryServerHandler[TRequest,TResponse](TRequest request, ServerCallContext context, UnaryServerMethod`2 continuation) 
+

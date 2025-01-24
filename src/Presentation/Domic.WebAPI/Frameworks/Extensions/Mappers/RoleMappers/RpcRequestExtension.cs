@@ -23,7 +23,7 @@ public static partial class RpcRequestExtension
         if (typeof(T) == typeof(ReadOneQuery))
         {
             Request = new ReadOneQuery {
-                RoleId = request.TargetId?.Value
+                Id = request.TargetId?.Value
             };
         }
         

@@ -45,7 +45,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
         var permissionUsers =
             await _permissionUserCommandRepository.FindAllByPermissionIdAsync(targetPermission.Id, cancellationToken);
         
-        _permissionUserCommandRepository.RemoveRange(permissionUsers);
+        await _permissionUserCommandRepository.RemoveRangeAsync(permissionUsers, cancellationToken);
 
         #endregion
 
@@ -53,7 +53,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
         targetPermission.Delete(_dateTime, _identityUser, _serializer);
 
-        _permissionCommandRepository.Change(targetPermission);
+        await _permissionCommandRepository.ChangeAsync(targetPermission, cancellationToken);
 
         #endregion
 

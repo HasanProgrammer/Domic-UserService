@@ -20,12 +20,12 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 
     public async Task<object> ValidateAsync(CreateCommand input, CancellationToken cancellationToken)
     {
-        if (await _roleCommandRepository.FindByIdAsync(input.RoleId, cancellationToken) is null)
+        if (!await _roleCommandRepository.IsExistByIdAsync(input.RoleId, cancellationToken))
             throw new UseCaseException(
                 string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", input.RoleId ?? "_خالی_")
             );
         
-        if (await _permissionCommandRepository.FindByNameAsync(input.Name, cancellationToken) is not null) 
+        if (await _permissionCommandRepository.IsExistByNameAsync(input.Name, cancellationToken)) 
             throw new UseCaseException("فیلد نام سطح دسترسی قبلا انتخاب شده است !");
 
         return default;

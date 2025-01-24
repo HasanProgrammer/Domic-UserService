@@ -14,11 +14,11 @@ public class DeleteCommandValidator : IValidator<DeleteCommand>
     public async Task<object> ValidateAsync(DeleteCommand input, CancellationToken cancellationToken)
     {
         var permission = 
-            await _permissionCommandRepository.FindByIdAsync(input.PermissionId, cancellationToken);
+            await _permissionCommandRepository.FindByIdAsync(input.Id, cancellationToken);
         
         if(permission is null)
             throw new UseCaseException(
-                string.Format("سطح دسترسی با شناسه {0} وجود خارجی ندارد !", input.PermissionId ?? "_خالی_")
+                string.Format("سطح دسترسی با شناسه {0} وجود خارجی ندارد !", input.Id ?? "_خالی_")
             );
 
         return permission;

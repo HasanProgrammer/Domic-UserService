@@ -5,5 +5,5 @@ namespace Domic.UseCase.PermissionUseCase.Queries.ReadOne;
 
 public class ReadOneQuery : IQuery<PermissionDto>
 {
-    public string PermissionId { get; set; }
+    public string Id { get; set; }
 }

@@ -16,7 +16,7 @@ public class ReadOneQueryValidator : IValidator<ReadOneQuery>
         var targetUserQuery = await _userQueryRepository.FindByIdEagerLoadingAsync(input.Id, cancellationToken);
         
         if(targetUserQuery is null)
-            throw new UseCaseException( string.Format("کاربری با شناسه {0} وجود خارجی ندارد !", input.Id) );
+            throw new UseCaseException( string.Format("کاربری با شناسه {0} وجود خارجی ندارد !", input.Id ?? "_خالی_") );
 
         return targetUserQuery;
     }

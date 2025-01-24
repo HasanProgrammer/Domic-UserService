@@ -45,7 +45,7 @@ public class RoleRPC : RoleService.RoleServiceBase
     /// <param name="request"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public override async Task<ReadAllPaginatedResponse> ReadAllPaginate(ReadAllPaginatedRequest request,
+    public override async Task<ReadAllPaginatedResponse> ReadAllPaginated(ReadAllPaginatedRequest request,
         ServerCallContext context
     )
     {

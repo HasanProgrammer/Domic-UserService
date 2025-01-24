@@ -6,22 +6,23 @@ using Domic.UseCase.PermissionUseCase.DTOs;
 
 namespace Domic.UseCase.PermissionUseCase.Caches;
 
-public class PermissionsMemoryCache : IInternalDistributedCacheHandler<List<PermissionDto>>
+public class PermissionsInternalDistributedCache : IInternalDistributedCacheHandler<List<PermissionDto>>
 {
     private readonly IPermissionQueryRepository _permissionQueryRepository;
 
-    public PermissionsMemoryCache(IPermissionQueryRepository permissionQueryRepository) 
+    public PermissionsInternalDistributedCache(IPermissionQueryRepository permissionQueryRepository) 
         => _permissionQueryRepository = permissionQueryRepository;
 
     [Config(Key = Cache.Permissions, Ttl = 1)]
     public async Task<List<PermissionDto>> SetAsync(CancellationToken cancellationToken)
     {
-        var result = await _permissionQueryRepository.FindAllAsync(cancellationToken);
+        var result = await _permissionQueryRepository.FindAllEagerLoadingAsync(cancellationToken);
         
         return result.Select(query => new PermissionDto {
-            Id     = query.Id     ,
-            RoleId = query.RoleId ,
-            Name   = query.Name
+            Id       = query.Id        ,
+            RoleId   = query.RoleId    ,
+            RoleName = query.Role.Name ,
+            Name     = query.Name
         }).ToList();
     }
 }

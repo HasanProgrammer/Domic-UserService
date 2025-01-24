@@ -5,6 +5,7 @@ using Domic.Core.Domain.Contracts.Interfaces;
 using Domic.Core.UseCase.Attributes;
 using Domic.Domain.Permission.Contracts.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
+
 using Permission = Domic.Domain.Permission.Entities.Permission;
 
 namespace Domic.UseCase.PermissionUseCase.Commands.Update;
@@ -32,15 +33,15 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     [WithValidation]
     [WithTransaction]
-    public Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
+    public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
         var targetPermission = _validationResult as Permission;
 
         targetPermission.Change(_dateTime, _identityUser, _serializer, command.Name, command.RoleId);
 
-        _permissionCommandRepository.Change(targetPermission);
+        await _permissionCommandRepository.ChangeAsync(targetPermission, cancellationToken);
 
-        return Task.FromResult(targetPermission.Id);
+        return targetPermission.Id;
     }
 
     public Task AfterHandleAsync(UpdateCommand command, CancellationToken cancellationToken)

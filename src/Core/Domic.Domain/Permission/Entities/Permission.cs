@@ -81,20 +81,20 @@ public class Permission : Entity<string>
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
         Id          = globalUniqueIdGenerator.GetRandom(6);
-        CreatedBy   = identityUser.GetIdentity();
-        CreatedRole = serializer.Serialize(identityUser.GetRoles());
         RoleId      = roleId;
         Name        = new Name(name);
-        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
         IsActive    = IsActive.Active;
+        CreatedBy   = identityUser.GetIdentity();
+        CreatedRole = serializer.Serialize(identityUser.GetRoles());
+        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new PermissionCreated {
                 Id          = Id          ,
-                CreatedBy   = CreatedBy   ,
-                CreatedRole = CreatedRole ,
                 RoleId      = roleId      ,
                 Name        = name        ,
+                CreatedBy   = CreatedBy   ,
+                CreatedRole = CreatedRole ,
                 CreatedAt_EnglishDate = nowDateTime ,
                 CreatedAt_PersianDate = nowPersianDateTime 
             }
@@ -120,19 +120,19 @@ public class Permission : Entity<string>
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        UpdatedBy   = identityUser.GetIdentity();
-        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         RoleId      = roleId;
         Name        = new Name(name);
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
+        UpdatedBy   = identityUser.GetIdentity();
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new PermissionUpdated {
                 Id                    = Id          ,
-                UpdatedBy             = UpdatedBy   ,
-                UpdatedRole           = UpdatedRole , 
                 RoleId                = roleId      ,
                 Name                  = name        ,
+                UpdatedBy             = UpdatedBy   ,
+                UpdatedRole           = UpdatedRole , 
                 UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }

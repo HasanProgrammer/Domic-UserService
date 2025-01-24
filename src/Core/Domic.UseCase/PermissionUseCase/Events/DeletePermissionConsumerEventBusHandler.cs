@@ -26,7 +26,7 @@ public class DeletePermissionConsumerEventBusHandler : IConsumerEventBusHandler<
 
     [WithCleanCache(Keies = Cache.Permissions)]
     [TransactionConfig(Type = TransactionType.Query)]
-    public async Task Handle(PermissionDeleted @event, CancellationToken cancellationToken)
+    public async Task HandleAsync(PermissionDeleted @event, CancellationToken cancellationToken)
     {
         var targetPermission = await _permissionQueryRepository.FindByIdAsync(@event.Id, cancellationToken);
 

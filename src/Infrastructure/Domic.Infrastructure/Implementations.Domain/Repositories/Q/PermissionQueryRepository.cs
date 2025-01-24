@@ -51,6 +51,9 @@ public partial class PermissionQueryRepository
     public async Task<IEnumerable<PermissionQuery>> FindAllAsync(CancellationToken cancellationToken)
         => await _context.Permissions.AsNoTracking().ToListAsync(cancellationToken);
 
+    public Task<List<PermissionQuery>> FindAllEagerLoadingAsync(CancellationToken cancellationToken) 
+        => _context.Permissions.AsNoTracking().Include(Permission => Permission.Role).ToListAsync(cancellationToken);
+
     public async Task<PermissionQuery> FindByIdEagerLoadingAsync(object id, CancellationToken cancellationToken)
         => await _context.Permissions.Where(Permission => Permission.Id.Equals(id))
                                      .Include(Permission => Permission.Role)

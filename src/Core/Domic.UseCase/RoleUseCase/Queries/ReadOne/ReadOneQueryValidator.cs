@@ -13,11 +13,11 @@ public class ReadOneQueryValidator : IValidator<ReadOneQuery>
 
     public async Task<object> ValidateAsync(ReadOneQuery input, CancellationToken cancellationToken)
     {
-        var targetRoleQuery = await _roleQueryRepository.FindByIdEagerLoadingAsync(input.RoleId, cancellationToken);
+        var targetRoleQuery = await _roleQueryRepository.FindByIdEagerLoadingAsync(input.Id, cancellationToken);
         
         if(targetRoleQuery is null)
             throw new UseCaseException(
-                string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", input.RoleId) 
+                string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", input.Id ?? "_خالی_") 
             );
 
         return targetRoleQuery;

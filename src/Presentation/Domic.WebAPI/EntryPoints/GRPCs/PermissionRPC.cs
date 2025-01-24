@@ -2,11 +2,11 @@ using Grpc.Core;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Permission.Grpc;
 using Domic.Core.UseCase.Contracts.Interfaces;
-using Domic.Core.WebAPI.Extensions;
 using Domic.UseCase.PermissionUseCase.Commands.Create;
 using Domic.UseCase.PermissionUseCase.Commands.Delete;
 using Domic.UseCase.PermissionUseCase.Commands.Update;
 using Domic.UseCase.PermissionUseCase.DTOs;
+using Domic.UseCase.PermissionUseCase.Queries.ReadAllBasedOnRolesPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.PermissionUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions.Mappers.PermissionMappers;
@@ -50,7 +50,7 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
     /// <param name="request"></param>
     /// <param name="context"></param>
     /// <returns></returns>
-    public override async Task<ReadAllPaginatedResponse> ReadAllPaginate(ReadAllPaginatedRequest request,
+    public override async Task<ReadAllPaginatedResponse> ReadAllPaginated(ReadAllPaginatedRequest request,
         ServerCallContext context
     )
     {
@@ -61,6 +61,24 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
         
         return result.ToRpcResponse<ReadAllPaginatedResponse>(_configuration);
     }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public override async Task<ReadAllBasedOnRolesPaginatedResponse> ReadAllBasedOnRolesPaginated(ReadAllBasedOnRolesPaginatedRequest request,
+        ServerCallContext context
+    )
+    {
+        var query = request.ToQuery<ReadAllBasedOnRolesPaginatedQuery>();
+    
+        var result =
+            await _mediator.DispatchAsync<PaginatedCollection<PermissionDto>>(query, context.CancellationToken);
+        
+        return result.ToRpcResponse<ReadAllBasedOnRolesPaginatedResponse>(_configuration);
+    }
 
     /// <summary>
     /// 
@@ -70,7 +88,7 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
     /// <returns></returns>
     public override async Task<CreateResponse> Create(CreateRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<CreateCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<CreateCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         
@@ -85,7 +103,7 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
     /// <returns></returns>
     public override async Task<UpdateResponse> Update(UpdateRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<UpdateCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<UpdateCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         
@@ -100,7 +118,7 @@ public class PermissionRPC : PermissionService.PermissionServiceBase
     /// <returns></returns>
     public override async Task<DeleteResponse> Delete(DeleteRequest request, ServerCallContext context)
     {
-        var command = request.ToCommand<DeleteCommand>(context.GetHttpContext().GetTokenOfGrpcHeader());
+        var command = request.ToCommand<DeleteCommand>();
 
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         

@@ -17,13 +17,19 @@ public partial class PermissionCommandRepository
     public async Task AddAsync(Permission entity, CancellationToken cancellationToken) 
         => await _Context.Permissions.AddAsync(entity, cancellationToken);
 
-    public void Change(Permission entity) => _Context.Permissions.Update(entity);
+    public Task ChangeAsync(Permission entity, CancellationToken cancellationToken)
+    {
+        _Context.Permissions.Update(entity);
 
-    public void Remove(Permission entity) => _Context.Permissions.Remove(entity);
+        return Task.CompletedTask;
+    }
 
-    public void RemoveRange(IEnumerable<Permission> entities) => _Context.Permissions.RemoveRange(entities);
+    public Task RemoveRangeAsync(IEnumerable<Permission> entities, CancellationToken cancellationToken)
+    {
+        _Context.Permissions.RemoveRange(entities);
 
-    public void SoftDelete(Permission entity) => _Context.Permissions.Update(entity);
+        return Task.CompletedTask;
+    }
 }
 
 public partial class PermissionCommandRepository
@@ -47,8 +53,8 @@ public partial class PermissionCommandRepository
                                      .Include(Permission => Permission.Role)
                                      .SingleOrDefaultAsync(cancellationToken);
 
-    public async Task<Permission> FindByNameAsync(string name, CancellationToken cancellationToken)
-        => await _Context.Permissions.FirstOrDefaultAsync(Permission => Permission.Name.Value.Equals(name), cancellationToken);
+    public Task<bool> IsExistByNameAsync(string name, CancellationToken cancellationToken)
+        => _Context.Permissions.AnyAsync(permission => permission.Name.Value == name, cancellationToken);
 
     public async Task<IEnumerable<Permission>> FindByRoleIdAsync(string roleId, CancellationToken cancellationToken)
         => await _Context.Permissions.Where(Permission => Permission.RoleId.Equals(roleId))

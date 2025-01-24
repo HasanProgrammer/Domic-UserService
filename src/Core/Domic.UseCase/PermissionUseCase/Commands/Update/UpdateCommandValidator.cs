@@ -29,12 +29,12 @@ public class UpdateCommandValidator : IValidator<UpdateCommand>
             );
 
         var permissionByName =
-            await _permissionCommandRepository.FindByNameAsync(input.Name, cancellationToken);
+            await _permissionCommandRepository.IsExistByNameAsync(input.Name, cancellationToken);
         
-        if (permissionByName is not null && !input.Name.Equals(targetPermission.Name.Value)) 
+        if (permissionByName && !input.Name.Equals(targetPermission.Name.Value))
             throw new UseCaseException("فیلد نام سطح دسترسی قبلا انتخاب شده است !");
         
-        if (await _roleCommandRepository.FindByIdAsync(input.RoleId, cancellationToken) is null)
+        if (!await _roleCommandRepository.IsExistByIdAsync(input.RoleId, cancellationToken))
             throw new UseCaseException(
                 string.Format("نقشی با شناسه {0} وجود خارجی ندارد !", input.RoleId ?? "_خالی_")
             );
