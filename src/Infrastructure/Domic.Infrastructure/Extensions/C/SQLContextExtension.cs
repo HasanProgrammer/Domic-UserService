@@ -127,10 +127,17 @@ public static class SQLContextExtension
     {
         List<string> newPermissions = new() {
             "Ticket.Create",
+            "Ticket.Update",
+            "Ticket.Active",
+            "Ticket.InActive",
+            "Ticket.Delete",
             "AggregateTicket.ReadOne",
             "AggregateTicket.ReadAllPaginated",
             "Financial.Create",
-            "Financial.PaymentVerification"
+            "Financial.PaymentVerification",
+            "Financial.DecreaseWallet",
+            "Financial.CreateTransactionRequest",
+            "Financial.ChangeStatusTransactionRequest",
         };
         
         foreach (var permission in newPermissions)
