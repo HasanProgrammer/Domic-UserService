@@ -11,7 +11,7 @@
 
 2 . If there are no files in the respective folder, a `.keep` file must be placed inside
 
-3 . The overall architecture of the project follows the structure below :
+3 . The overall architecture of the project follows the structure below ( **very very important** ) :
 
 ```
 - src
@@ -75,7 +75,8 @@
                 - Filters
                 - Middlewares
 - test
-    - E2ETests ( load test with NBomber package )
+    - E2ETests 
+        - Presentation ( load test with NBomber package )
     - IntegrationTests
         - Infrastructure ( mocking with NSubstitute package )
         - Presentation ( mocking with NSubstitute package )
@@ -176,6 +177,7 @@ Example :
                 - Middlewares
 - test
     - E2ETests
+        - Presentation
     - IntegrationTests
         - Infrastructure
         - Presentation
@@ -222,6 +224,8 @@ Example :
 5 . Be sure to implement different tests for each business you implement according to the architecture mentioned in the instructions above; that is, E2E, Integration, and UnitTest tests for different layers of the project
 
 6 . Make sure that any methods you create in `Repositories` or various service contracts in the inner `Core` layers are implemented in the concretes of those contracts and in the `Infrastructure` layer
+
+7 . Make sure that you are use `NSubstitute` package for mocking **Core Layers** in `Integration` and `UnitTest`
 
 ## Domain Folder Structure Details
 Every entity created in the respective path must have the following folders :
