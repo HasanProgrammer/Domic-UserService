@@ -1,0 +1,37 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## Presentation Folder Structure Details
+This layer is the last layer of the project and contains appropriate EndPoints with `gRPC`, `HTTP`, and `Hub` inside it, which follows the following structure. :
+
+```
+- Configs
+- CoreLogs
+- EntryPoints
+    - GRPCs
+    - HTTPs
+    - Hubs
+- Frameworks
+    - Middlewares
+    - Filters
+    - Extensions
+```
+
+**Example :**
+```
+- Configs
+- CoreLogs
+- EntryPoints
+    - GRPCs
+        UserRpcController.cs
+    - HTTPs
+        - V1
+            UserController.cs
+    - Hubs
+- Frameworks
+    - Middlewares
+    - Filters
+    - Extensions
+```

@@ -1,0 +1,653 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## UseCase Folder Structure Details
+For each entity in the `Domain` layer, a folder must be created with the following structure :
+
+```
+- Caches
+- Commands
+- Contracts
+- DTOs
+- Events
+- Exceptions
+- Extensions
+- Queries
+```
+
+**Example :**
+```
+- CategoryUseCase
+    - Caches
+    - Commands
+    - Contracts
+        - Interfaces
+        - Abstracts
+    - DTOs
+    - Events
+    - Exceptions
+    - Extensions
+    - Queries
+```
+
+## Position of Caches
+The location for creating a `Cache` manager is as follows :
+
+**Example :**
+```
+- CategoryUseCase
+    - Caches
+        AllCategoryInternalDistributedCache.cs
+    - Commands
+    - Contracts
+        - Interfaces
+        - Abstracts
+    - DTOs
+    - Events
+    - Exceptions
+    - Extensions
+    - Queries
+```
+
+## Implementation of Cache
+To implement a `Cache` manager class, follow the examples below :
+
+**Example :**
+```csharp
+//for current service distributed cache
+public class AllCategoryInternalDistributedCache : IInternalDistributedCacheHandler<List<Dto>>
+{
+    public AllCategoryInternalDistributedCache(){}
+
+    [Config(Key = 'Key', Ttl = 60 /*time to live based on minute*/)]
+    public List<Dto> Set()
+    {
+        //query
+        
+        return new();
+    }
+    
+    //must be used
+    [Config(Key = 'Key', Ttl = 60 /*time to live based on minute*/)]
+    public Task<List<Dto>> SetAsync(CancellationToken cancellationToken)
+    {
+        //query
+        
+        return Task.FromResult(new());
+    }
+}
+
+/*---------------------------------------------------------------*/
+
+//for all services distributed cache (global | shared cache)
+public class AllCategoryExternalDistributedCache : IExternalDistributedCacheHandler<List<Dto>>
+{
+    public AllCategoryExternalDistributedCache(){}
+
+    [Config(Key = 'Key', Ttl = 60 /*time to live based on minute*/)]
+    public List<Dto> Set()
+    {
+        //query
+        
+        return new();
+    }
+    
+    //must be used
+    [Config(Key = 'Key', Ttl = 60 /*time to live based on minute*/)]
+    public Task<List<Dto>> SetAsync(CancellationToken cancellationToken)
+    {
+        //query
+        
+        return Task.FromResult(new());
+    }
+}
+```
+
+In the implementation of `Cache` according to the above instructions, there are a few points to note :
+
+1 . If you do not set a value for `Ttl` in the `ConfigAttribute` above, or set this `Property` to 0, the corresponding `Cache` will remain permanently and without expiration in `Redis`
+
+2 . To use the cached value ( according to the above instructions ), you must use the interface corresponding to `InternalCache` or `ExternalCache`. For this purpose, two interfaces `IInternalDistributedCacheMediator` and `IExternalDistributedCacheMediator` have been implemented, which can be used as follows :
+
+**Example :**
+```csharp
+public class Query : IQuery<List<Dto>>
+{
+}
+
+public class QueryHandler : IQueryHandler<Query, List<Dto>>
+{
+    private readonly IInternalDistributedCacheMediator _cacheMediator;
+
+    public QueryHandler(IInternalDistributedCacheMediator cacheMediator) => _cacheMediator = cacheMediator;
+
+    public List<Dto> Handle(Query query)
+    {
+        var result = _cacheMediator.Get<List<Dto>>(cancellationToken);
+
+        return result;
+    }
+    
+    //must be used
+    public async Task<List<Dto>> HandleAsync(Query query, CancellationToken cancellationToken)
+    {
+        var result = await _cacheMediator.GetAsync<List<Dto>>(cancellationToken);
+
+        return result;
+    }
+}
+```
+
+## Position of Commands
+The location for creating a `Command` manager is as follows :
+
+**Example :**
+```
+- CategoryUseCase
+    - Caches
+    - Commands
+        - Create
+            CreateCommand.cs
+            CreateCommandHandler.cs
+            CreateCommandValidator.cs
+    - Contracts
+        - Interfaces
+        - Abstracts
+    - DTOs
+    - Events
+    - Exceptions
+    - Extensions
+    - Queries
+```
+
+## Implementation of Command
+To implement a `Command` manager class, follow the examples below :
+
+**Example :**
+```csharp
+public class CreateCommand : ICommand<string> //any result type
+{
+    //some properties
+}
+
+public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
+{
+    public CreateCommandHandler(){}
+    
+    [WithTransaction]
+    public string Handle(CreateCommand command)
+    {
+       //logic
+        
+        return default;
+    }
+
+    //must be used
+    [WithTransaction]
+    public Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
+    {
+       //logic
+        
+       return Task.FromResult<string>(default);
+    }
+}
+```
+
+In the implementation of the above codes, there are items that need to be managed if necessary :
+
+1 . Using `WithValidationAttribute`
+
+This `Attribute` is used when you need to validate your `Command` or `Query`. To start, you must create the corresponding `Validator` class and then apply `WithValidation` .
+
+**Example :**
+```csharp
+public class CreateCommandValidator : IValidator<CreateCommand>
+{
+    public CreateCommandValidator(){}
+    
+    public object Validate(CreateCommand input)
+    {
+        //validations
+        
+        return default;
+    }
+
+    //must be used
+    public Task<object> ValidateAsync(CreateCommand input, CancellationToken cancellationToken)
+    {
+        //validations
+        
+        return Task.FromResult(default(object));
+    }
+}
+```
+
+2 . In the above code, in the section related to the corresponding `Validator` class, you can use the result of the `Validate` or `ValidateAsync` method, which is an `object`, inside the corresponding `CommandHandler`
+
+To do this, simply create a `readonly` variable of type object named `_validationResult` in your `CommandHandler` .
+
+**Example :**
+```csharp
+public class CreateCommand : ICommand<string> //any result type
+{
+    //some properties
+}
+
+public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
+{
+    private readonly object _validationResult;
+
+    public CreateCommandHandler(){}
+
+    [WithValidation]
+    [WithTransaction]
+    public string Handle(CreateCommand command)
+    {
+       //logic
+        
+        return default;
+    }
+
+    [WithValidation]
+    [WithTransaction]
+    public Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
+    {
+       //logic
+        
+       return Task.FromResult<string>(default);
+    }
+}
+```
+
+3 . Using `WithCleanCacheAttribute`
+
+In the `Command` section, when you need to delete the `Cache` related to the desired entity after executing the logic of the relevant section, so that the corresponding `Cache` is created again in another request sent for the relevant `Query` section, you can use this `Attribute` according to the codes below .
+
+**Example :**
+```csharp
+public class CreateCommand : ICommand<string> //any result type
+{
+    //some properties
+}
+
+public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
+{
+    public CreateCommandHandler(){}
+
+    [WithCleanCache(Keies = "Key1|Key2|...")]
+    public string Handle(CreateCommand command)
+    {
+       //logic
+        
+        return default;
+    }
+
+    [WithCleanCache(Keies = "Key1|Key2|...")]
+    public Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
+    {
+       //logic
+        
+       return Task.FromResult<string>(default);
+    }
+}
+```
+
+4 . Using `WithPessimisticConcurrencyAttribute`
+
+When you need to place the logic of your `Command` section, which is a `Critical Section`, inside a `lock` block so that only one or a specific number of `Threads` can access that `Critical` section, you can use this `Attribute`. For the `Handle` method, you must create a variable of type `object` in your `CommandHandler`, and for `HandleAsync`, you must create a variable of type `SemaphoreSlim` .
+
+**Example :**
+```csharp
+//for sync method (handle)
+public class CreateCommand : ICommand<string> //any result type
+{
+    //some properties
+}
+
+public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
+{
+    private static object _lock = new();
+    
+    public CreateCommandHandler(){}
+
+    [WithPessimisticConcurrency]
+    public string Handle(CreateCommand command)
+    {
+       //logic
+        
+        return default;
+    }
+}
+
+/*---------------------------------------------------------------*/
+
+//for async method (handle async)
+
+public class CreateCommand : ICommand<string> //any result type
+{
+    //some properties
+}
+
+public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
+{
+    private static SemaphoreSlim _asyncLock = new(1, 1); //custom count of thread
+    
+    public CreateCommandHandler(){}
+
+    [WithPessimisticConcurrency]
+    public Task<string> HandleAsync(CreateCommand command, CancellationToken cancellationToken)
+    {
+       //logic
+        
+       return Task.FromResult<string>(default);
+    }
+}
+```
+
+## Position of Contracts
+Any contract other than repository-related contracts created in the `Domain` layer should be created in this folder .
+
+**Example :**
+```
+- CategoryUseCase
+    - Caches
+    - Commands
+        - Create
+            CreateCommand.cs
+            CreateCommandHandler.cs
+            CreateCommandValidator.cs
+    - Contracts
+        - Interfaces
+            INotificationService.cs
+        - Abstracts
+    - DTOs
+    - Events
+    - Exceptions
+    - Extensions
+    - Queries
+```
+
+## Implementation of Event ( for rabbitmq tool )
+To implement an `Event` manager class, follow the examples below .
+
+**Example :**
+```csharp
+//define in [Domain] layer of consumer service
+[EventConfig(Queue = "queue")]
+public class UpdatedEvent : UpdateDomainEvent<string> //any type of identity key
+{
+    //payload
+}
+
+//define in [UseCase] layer of consumer service
+public class UpdatedConsumerEventBusHandler : IConsumerEventBusHandler<UpdatedEvent>
+{
+    public UpdatedConsumerEventBusHandler(){}
+
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public void Handle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public Task HandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+}
+```
+
+In the implementation of the above instructions, a few points are necessary to mention :
+
+1 . Using `WithMaxRetryAttribute`
+
+This `Attribute` allows you to manage the retry attempts of the corresponding `Consumer` for processing the relevant `Message` or `Event` .
+
+To use this `Attribute`, you can follow the instructions below .
+
+**Example :**
+```csharp
+//for [Event] consuming
+public class UpdatedConsumerEventBusHandler : IConsumerEventBusHandler<UpdatedEvent>
+{
+    public UpdatedConsumerEventBusHandler(){}
+
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public void Handle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public Task HandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+}
+```
+
+In using `WithMaxRetryAttribute`, there is a feature called `HasAfterMaxRetryHandle`, which indicates whether there is a need to separately manage the relevant message if it has been retried more than the allowed limit. If this feature is set to false, which is the default value of this variable, the relevant message will be removed from the corresponding `Queue` after the maximum attempt to process it .
+If the desired message in the corresponding `Queue` reaches the maximum retry limit (in case of possible errors), to separately manage the processing of the relevant message, you must follow the instructions below .
+
+**Example :**
+```csharp
+//for [Event] consuming
+public class UpdatedConsumerEventBusHandler : IConsumerEventBusHandler<UpdatedEvent>
+{
+    public UpdatedConsumerEventBusHandler(){}
+
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public void Handle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public Task HandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+    
+    //for handle max retry
+    
+    public void AfterMaxRetryHandle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    public Task AfterMaxRetryHandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+}
+```
+
+2 . Using `WithCleanCacheAttribute`
+
+As explained in the `Mediator` tool, here too, we can use this `Attribute` according to the previously mentioned instructions .
+
+## Implementation of Event ( for kafka tool )
+To implement an `Event` manager class, follow the examples below .
+
+**Example :**
+```csharp
+//define in [Domain] layer of consumer service
+[EventConfig(Topic = "Topic")]
+public class UpdatedEvent : UpdateDomainEvent<string> //any type of identity key
+{
+    //payload
+}
+
+//define in [UseCase] layer of consumer service
+public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<UpdatedEvent>
+{
+    public UpdatedConsumerEventStreamHandler(){}
+
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public void Handle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public Task HandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+}
+```
+
+In the implementation of the above instructions, a few points are necessary to mention :
+
+1 . Using `WithMaxRetryAttribute`
+
+This `Attribute` allows you to manage the retry attempts of the corresponding `Consumer` for processing the relevant `Message` or `Event` .
+
+To use this `Attribute`, you can follow the instructions below .
+
+**Example :**
+```csharp
+//for [Event] consuming
+public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<UpdatedEvent>
+{
+    public UpdatedConsumerEventStreamHandler(){}
+
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public void Handle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public Task HandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+}
+```
+
+In using `WithMaxRetryAttribute`, there is a feature called `HasAfterMaxRetryHandle`, which indicates whether there is a need to separately manage the relevant message if it has been retried more than the allowed limit. If this feature is set to false, which is the default value of this variable, the relevant message will be removed from the corresponding `Queue` after the maximum attempt to process it .
+If the desired message in the corresponding `Queue` reaches the maximum retry limit (in case of possible errors), to separately manage the processing of the relevant message, you must follow the instructions below .
+
+**Example :**
+```csharp
+//for [Event] consuming
+public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<UpdatedEvent>
+{
+    public UpdatedConsumerEventStreamHandler(){}
+
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public void Handle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    [WithMaxRetry(Count = 100, HasAfterMaxRetryHandle = true)] //Count = 100 -> this message will be reprocessed a maximum of 100 times in case of an error
+    [TransactionConfig(Type = TransactionType.Command)] //or => Type = TransactionType.Query
+    public Task HandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+    
+    //for handle max retry
+    
+    public void AfterMaxRetryHandle(UpdatedEvent @event)
+    {
+        //logic
+    }
+    
+    //must be used
+    public Task AfterMaxRetryHandleAsync(UpdatedEvent @event, CancellationToken cancellationToken)
+    {
+        //logic
+        
+        return Task.CompleteTask;
+    }
+}
+```
+
+2 . Using `WithCleanCacheAttribute`
+
+As explained in the `Mediator` tool, here too, we can use this `Attribute` according to the previously mentioned instructions .
+
+## Position of Queries
+The location for creating a `Query` manager is as follows :
+
+**Example :**
+```
+- CategoryUseCase
+    - Caches
+    - Commands
+    - Contracts
+        - Interfaces
+        - Abstracts
+    - DTOs
+    - Events
+    - Exceptions
+    - Extensions
+    - Queries
+        - ReadAllPagination
+            ReadAllPaginationQuery.cs
+            ReadAllPaginationQueryHandler.cs
+            ReadAllPaginationQueryValidator.cs
+```
+
+## Implementation of Query
+To implement a `Query` manager class, follow the examples below .
+
+**Example :**
+```csharp
+public class ReadAllQuery : IQuery<Dto> //any result type
+{
+}
+
+public class ReadAllQueryHandler : IQueryHandler<ReadAllQuery, Dto>
+{
+    public ReadAllQueryHandler(){}
+
+    public Dto Handle(ReadAllQuery query)
+    {
+        //query
+        
+        return default;
+    }
+    
+    //must be used
+    public Task<Dto> HandleAsync(ReadAllQuery query, CancellationToken cancellationToken)
+    {
+        //query
+        
+        return Task.FromResult<Dto>(default);
+    }
+}
+```

@@ -1,0 +1,264 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## Stack & Technology
+
+- .Net 8
+- C#
+- EF Core
+- Docker
+
+## Global Rules
+
+1 . All methods must be implemented using `async` and `await`
+
+2 . If there are no files in the respective folder, a `.keep` file must be placed inside
+
+3 . The overall architecture of the project follows the structure below ( **very very important** ) :
+
+```
+- src
+    - Core
+        - Domic.Common
+            - ClassConsts
+            - ClassCustoms
+            - ClassDelegates
+            - ClassExtensions
+            - ClassExceptions
+            - ClassHelpers
+            - ClassWrappers
+        - Domic.Domain ( entities define in here )
+            - Commons
+                - Contracts
+                    - Interfaces
+                    - Abstracts
+                - Entities
+                - Enumerations
+                - Events
+                - Exceptions
+                - ValueObjects
+        - Domic.UseCase ( business logics define in here )
+            - Commons
+                - Caches
+                - Contracts
+                    - Interfaces
+                    - Abstracts
+                - DTOs
+                - Exceptions
+                - Extensions
+    - Infrastructure
+        - Domic.Infrastructure ( implementation of all domain & usecase contracts and all packages install in here )
+            - Extensions
+            - Implementations.Domain
+                - Repositories
+                    - C
+                    - Q
+                - Services
+            - Implementations.UseCase
+                - Services
+        - Domic.Persistence ( database context and configs )
+            - Configs
+                - C
+                - Q
+            - Contexts
+                - C
+                - Q
+            - Migrations
+                - C ( any migration of database for command side )
+                - Q ( any migration of database for query side )
+    - Presentation
+        - Domic.WebAPI ( api )
+            - DTOs
+            - EntryPoints
+                - GRPCs ( google RPC call )
+                - HTTPs ( REST api )
+                - HUbs
+            - Frameworks
+                - Extensions
+                - Filters
+                - Middlewares
+- test
+    - E2ETests 
+        - Presentation ( load test with NBomber package )
+    - IntegrationTests
+        - Infrastructure ( mocking with NSubstitute package )
+        - Presentation ( mocking with NSubstitute package )
+    - UnitTests
+        - Core ( mocking with NSubstitute package )
+        - Infrastructure ( mocking with NSubstitute package )
+        - Presentation ( mocking with NSubstitute package )
+```
+
+**Example :**
+```
+- src
+    - Core
+        - Domic.Common
+            - ClassConsts
+            - ClassCustom
+            - ClassDelegates
+            - ClassExtensions
+            - ClassExceptions
+            - ClassHelpers
+            - ClassWrappers
+        - Domic.Domain
+            - Commons
+                - Contracts
+                    - Interfaces
+                    - Abstracts
+                - Entities
+                - Enumerations
+                - Events
+                - Exceptions
+                - ValueObjects
+            - Category
+                - Contracts
+                    - Interfaces
+                        ICategoryCommandRepository.cs
+                    - Abstracts
+                - Entities
+                - Enumerations
+                - Events
+                - Exceptions
+                - ValueObjects
+        - Domic.UseCase
+            - Commons
+                - Caches
+                - Contracts
+                    - Interfaces
+                        INotificationService.cs
+                    - Abstracts
+                - DTOs
+                - Exceptions
+                - Extensions
+            - CategoryUseCase
+                - Caches
+                - Commands
+                - Contracts
+                    - Interfaces
+                    - Abstracts
+                - DTOs
+                - Events
+                - Exceptions
+                - Extensions
+                - Queries
+    - Infrastructure
+        - Domic.Infrastructure
+            - Extensions
+            - Implementations.Domain
+                - Repositories
+                    - C
+                        CategoryCommandRepository.cs
+                    - Q
+                - Services
+            - Implementations.UseCase
+                - Services
+                    NotificationService.cs
+        - Domic.Persistence
+            - Configs
+                - C
+                    CategoryConfig.cs
+                - Q
+            - Contexts
+                - C
+                - Q
+            - Migrations
+                - C
+                - Q
+    - Presentation
+        - Domic.WebAPI
+            - DTOs
+            - EntryPoints
+                - GRPCs
+                - HTTPs
+                    - V1
+                        CategoryController.cs
+                - HUbs
+            - Frameworks
+                - Extensions
+                - Filters
+                - Middlewares
+- test
+    - E2ETests
+        - Presentation
+    - IntegrationTests
+        - Infrastructure
+        - Presentation
+    - UnitTests
+        - Core
+        - Infrastructure
+        - Presentation
+```
+
+4 . Be sure to apply the changes to the following path in the migration file when you make changes to the entities in the Domain layer
+
+**Example :**
+```
+- src
+    - Core
+    - Infrastructure
+        - Domic.Infrastructure
+            - Extensions
+            - Implementations.Domain
+                - Repositories
+                    - C
+                    - Q
+                - Services
+            - Implementations.UseCase
+                - Services
+        - Domic.Persistence
+            - Configs
+                - C
+                - Q
+            - Contexts
+                - C
+                - Q
+            - Migrations
+                - C ( any migration of database for command side - execute ef migration command base on Guidance.txt file )
+                - Q ( any migration of database for query side - execute ef migration command base on Guidance.txt file )
+                Guidance.txt
+    - Presentation
+- test
+    - E2ETests
+    - IntegrationTests
+    - UnitTests
+```
+
+5 . Be sure to implement different tests for each business you implement according to the architecture mentioned in the instructions above; that is, `E2E`, `Integration`, and `UnitTest` tests for different layers of the project
+
+6 . Make sure that any methods you create in `Repositories` or various service contracts in the inner `Core` layers are implemented in the concretes of those contracts and in the `Infrastructure` layer
+
+7 . Make sure that you are use `NSubstitute` package for mocking **Core Layers** in `Integration` and `UnitTest`
+
+8 . Make sure to put all the settings that the program requires in the following path
+
+**Example :**
+```
+- src
+    - Presentation
+        - Domic.WebAPI
+            - Configs
+                Config.json
+```
+
+9 . Make sure to include all settings such as database connection string, `API Key`, etc. in the following path
+
+**Example :**
+```
+- src
+    - Presentation
+        - Domic.WebAPI
+            - Properties
+                launchSettings.json 
+                {
+                    "profiles": {
+                        "Domic.WebAPI": {
+                            "environmentVariables": {
+                                "Elastic-Host": "http://localhost:9200" ( example)
+                            }
+                        }
+                    }
+                }
+```

@@ -1,0 +1,34 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+## Infrastructure Folder Structure Details
+The infrastructure layer, where all contract implementations built in the `Domain` and `UseCase` layers must be implemented, according to the following pattern :
+
+```
+- Extensions
+- Implementations.Domain
+    - Repositories
+        - C
+        - Q
+    - Services
+- Implementations.UseCase
+    - Services
+```
+
+**Example :**
+```
+- Extensions
+- Implementations.Domain
+    - Repositories
+        - C
+            UserCommandRepository.cs ( UserCommandRepository inherit from IUserCommandRepository interface in domain layer )
+        - Q
+            UserQueryRepository.cs ( UserQueryRepository inherit from IUserQueryRepository interface in domain layer )
+    - Services
+        UserValidationService.cs ( UserValidationService inherit from IUserValidationService interface in domain layer )
+- Implementations.UseCase
+    - Services
+        NotificationService.cs ( NotificationService inherit from INotificationService interface in usecase layer )
+```

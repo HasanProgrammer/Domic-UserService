@@ -86,7 +86,7 @@
         - Presentation ( mocking with NSubstitute package )
 ```
 
-Example :
+**Example :**
 ```
 - src
     - Core
@@ -189,7 +189,7 @@ Example :
 
 4 . Be sure to apply the changes to the following path in the migration file when you make changes to the entities in the Domain layer
 
-Example :
+**Example :**
 ```
 - src
     - Core
@@ -221,11 +221,42 @@ Example :
     - UnitTests
 ```
 
-5 . Be sure to implement different tests for each business you implement according to the architecture mentioned in the instructions above; that is, E2E, Integration, and UnitTest tests for different layers of the project
+5 . Be sure to implement different tests for each business you implement according to the architecture mentioned in the instructions above; that is, `E2E`, `Integration`, and `UnitTest` tests for different layers of the project
 
 6 . Make sure that any methods you create in `Repositories` or various service contracts in the inner `Core` layers are implemented in the concretes of those contracts and in the `Infrastructure` layer
 
 7 . Make sure that you are use `NSubstitute` package for mocking **Core Layers** in `Integration` and `UnitTest`
+
+8 . Make sure to put all the settings that the program requires in the following path
+
+**Example :**
+```
+- src
+    - Presentation
+        - Domic.WebAPI
+            - Configs
+                Config.json
+```
+
+9 . Make sure to include all settings such as database connection string, `API Key`, etc. in the following path
+
+**Example :**
+```
+- src
+    - Presentation
+        - Domic.WebAPI
+            - Properties
+                launchSettings.json 
+                {
+                    "profiles": {
+                        "Domic.WebAPI": {
+                            "environmentVariables": {
+                                "Elastic-Host": "http://localhost:9200" ( example)
+                            }
+                        }
+                    }
+                }
+```
 
 ## Domain Folder Structure Details
 Every entity created in the respective path must have the following folders :
@@ -241,7 +272,7 @@ Every entity created in the respective path must have the following folders :
 - ValueObjects
 ```
 
-Example :
+**Example :**
 ```
 - Category
     - Contracts
@@ -257,7 +288,7 @@ Example :
 ## Position of Entities
 The location for creating an entity is as follows :
 
-Example :
+**Example :**
 ```
 - Category
     - Contracts
@@ -276,7 +307,7 @@ To implement an entity class, follow the examples below :
 
 1 . If the desired entity is for the `Query` part, it must inherit from the `EntityQuery<string>` class
 
-Example :
+**Example :**
 ```csharp
 public class TicketQuery : EntityQuery<string>
 {
@@ -286,7 +317,7 @@ public class TicketQuery : EntityQuery<string>
 
 2 . If the desired entity is for the `Command` part, it must inherit from the `Entity<string>` class and be implemented as a `Rich Domain Model`
 
-Example :
+**Example :**
 ```csharp
 public class Ticket : Entity<string>
 {
@@ -298,7 +329,7 @@ When implementing an entity for the `Command` part, consider the following :
 
 1 . The class must have two constructors as shown in the example below :
 
-Example :
+**Example :**
 ```csharp
 public class Ticket : Entity<string>
 {
@@ -310,7 +341,7 @@ public class Ticket : Entity<string>
 
     /*---------------------------------------------------------------*/
 
-    //Relations (Navigation Properties)
+    //Relations ( Navigation Properties )
 
     /*---------------------------------------------------------------*/
 
@@ -346,7 +377,7 @@ According to the above code, the following contracts must be injected into the p
 
 2 . If a method is written in the desired entity that edits the entity, it must be implemented as shown in the example below :
 
-Example :
+**Example :**
 ```csharp
 public class Ticket : Entity<string>
 {
@@ -358,7 +389,7 @@ public class Ticket : Entity<string>
 
     /*---------------------------------------------------------------*/
 
-    //Relations (Navigation Properties)
+    //Relations ( Navigation Properties )
 
     /*---------------------------------------------------------------*/
 
@@ -426,7 +457,7 @@ public class Ticket : Entity<string>
 ## Position of Events
 To create event classes, follow the path below :
 
-Example :
+**Example :**
 ```
 - Category
     - Contracts
@@ -435,7 +466,7 @@ Example :
     - Entities
     - Enumerations
     - Events
-        - TicketCreated.cs
+        TicketCreated.cs
     - Exceptions
     - ValueObjects
 ```
@@ -443,7 +474,7 @@ Example :
 ## Implementation of Event ( for rabbitmq tool )
 To implement event classes related to an entity, follow the example below :
 
-Example :
+**Example :**
 ```csharp
 [EventConfig(ExchangeType = Exchange.FanOut, Exchange = "Ticket_Ticket_Exchange")]
 public class TicketCreated : CreateDomainEvent<string>
@@ -458,7 +489,7 @@ public class TicketCreated : CreateDomainEvent<string>
 
 General rules for defining an event are stated below :
 
-Example :
+**Example :**
 ```csharp
 //ExchangeType : Exchange.FanOut | Exchange.Direct | Exchange.Headers | Exchange.Topic
 
@@ -515,7 +546,7 @@ public class TicketDeleted : DeleteDomainEvent<string> //any type of identity ke
 
 If the service mentioned above, in addition to producing these events ( Producer ), is also a consumer of these events ( Consumer ), it must be implemented as follows :
 
-Example :
+**Example :**
 ```csharp
 //FanOut-Exchange
 
@@ -569,7 +600,7 @@ public class TicketDeleted : DeleteDomainEvent<string> //any type of identity ke
 ## Implementation of Event ( for kafka tool )
 To implement event classes related to an entity, follow the example below :
 
-Example :
+**Example :**
 ```csharp
 [EventConfig(Topic = "Ticket")]
 public class TicketCreated : CreateDomainEvent<string>
@@ -584,7 +615,7 @@ public class TicketCreated : CreateDomainEvent<string>
 
 General rules for defining an event are stated below :
 
-Example :
+**Example :**
 ```csharp
 //create event
 [EventConfig(Topic = "Topic")]
@@ -616,7 +647,7 @@ Example :
 - Category
     - Contracts
         - Interfaces
-            - ICategoryCommandRepository.cs
+            ICategoryCommandRepository.cs
         - Abstracts
     - Entities
     - Enumerations
@@ -658,7 +689,7 @@ For each entity in the `Domain` layer, a folder must be created with the followi
 - Queries
 ```
 
-Example :
+**Example :**
 ```
 - CategoryUseCase
     - Caches
@@ -676,7 +707,7 @@ Example :
 ## Position of Caches
 The location for creating a `Cache` manager is as follows :
 
-Example :
+**Example :**
 ```
 - CategoryUseCase
     - Caches
@@ -695,7 +726,7 @@ Example :
 ## Implementation of Cache
 To implement a `Cache` manager class, follow the examples below :
 
-Example :
+**Example :**
 ```csharp
 //for current service distributed cache
 public class AllCategoryInternalDistributedCache : IInternalDistributedCacheHandler<List<Dto>>
@@ -750,9 +781,9 @@ In the implementation of `Cache` according to the above instructions, there are 
 
 1 . If you do not set a value for `Ttl` in the `ConfigAttribute` above, or set this `Property` to 0, the corresponding `Cache` will remain permanently and without expiration in `Redis`
 
-2 . To use the cached value (according to the above instructions), you must use the interface corresponding to `InternalCache` or `ExternalCache`. For this purpose, two interfaces `IInternalDistributedCacheMediator` and `IExternalDistributedCacheMediator` have been implemented, which can be used as follows :
+2 . To use the cached value ( according to the above instructions ), you must use the interface corresponding to `InternalCache` or `ExternalCache`. For this purpose, two interfaces `IInternalDistributedCacheMediator` and `IExternalDistributedCacheMediator` have been implemented, which can be used as follows :
 
-Example :
+**Example :**
 ```csharp
 public class Query : IQuery<List<Dto>>
 {
@@ -784,7 +815,7 @@ public class QueryHandler : IQueryHandler<Query, List<Dto>>
 ## Position of Commands
 The location for creating a `Command` manager is as follows :
 
-Example :
+**Example :**
 ```
 - CategoryUseCase
     - Caches
@@ -806,7 +837,7 @@ Example :
 ## Implementation of Command
 To implement a `Command` manager class, follow the examples below :
 
-Example :
+**Example :**
 ```csharp
 public class CreateCommand : ICommand<string> //any result type
 {
@@ -842,7 +873,7 @@ In the implementation of the above codes, there are items that need to be manage
 
 This `Attribute` is used when you need to validate your `Command` or `Query`. To start, you must create the corresponding `Validator` class and then apply `WithValidation` .
 
-Example :
+**Example :**
 ```csharp
 public class CreateCommandValidator : IValidator<CreateCommand>
 {
@@ -869,7 +900,7 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 
 To do this, simply create a `readonly` variable of type object named `_validationResult` in your `CommandHandler` .
 
-Example :
+**Example :**
 ```csharp
 public class CreateCommand : ICommand<string> //any result type
 {
@@ -906,7 +937,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
 In the `Command` section, when you need to delete the `Cache` related to the desired entity after executing the logic of the relevant section, so that the corresponding `Cache` is created again in another request sent for the relevant `Query` section, you can use this `Attribute` according to the codes below .
 
-Example :
+**Example :**
 ```csharp
 public class CreateCommand : ICommand<string> //any result type
 {
@@ -939,7 +970,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
 When you need to place the logic of your `Command` section, which is a `Critical Section`, inside a `lock` block so that only one or a specific number of `Threads` can access that `Critical` section, you can use this `Attribute`. For the `Handle` method, you must create a variable of type `object` in your `CommandHandler`, and for `HandleAsync`, you must create a variable of type `SemaphoreSlim` .
 
-Example :
+**Example :**
 ```csharp
 //for sync method (handle)
 public class CreateCommand : ICommand<string> //any result type
@@ -990,7 +1021,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 ## Position of Contracts
 Any contract other than repository-related contracts created in the `Domain` layer should be created in this folder .
 
-Example :
+**Example :**
 ```
 - CategoryUseCase
     - Caches
@@ -1013,7 +1044,7 @@ Example :
 ## Implementation of Event ( for rabbitmq tool )
 To implement an `Event` manager class, follow the examples below .
 
-Example :
+**Example :**
 ```csharp
 //define in [Domain] layer of consumer service
 [EventConfig(Queue = "queue")]
@@ -1052,7 +1083,7 @@ This `Attribute` allows you to manage the retry attempts of the corresponding `C
 
 To use this `Attribute`, you can follow the instructions below .
 
-Example :
+**Example :**
 ```csharp
 //for [Event] consuming
 public class UpdatedConsumerEventBusHandler : IConsumerEventBusHandler<UpdatedEvent>
@@ -1080,7 +1111,7 @@ public class UpdatedConsumerEventBusHandler : IConsumerEventBusHandler<UpdatedEv
 In using `WithMaxRetryAttribute`, there is a feature called `HasAfterMaxRetryHandle`, which indicates whether there is a need to separately manage the relevant message if it has been retried more than the allowed limit. If this feature is set to false, which is the default value of this variable, the relevant message will be removed from the corresponding `Queue` after the maximum attempt to process it .
 If the desired message in the corresponding `Queue` reaches the maximum retry limit (in case of possible errors), to separately manage the processing of the relevant message, you must follow the instructions below .
 
-Example :
+**Example :**
 ```csharp
 //for [Event] consuming
 public class UpdatedConsumerEventBusHandler : IConsumerEventBusHandler<UpdatedEvent>
@@ -1128,7 +1159,7 @@ As explained in the `Mediator` tool, here too, we can use this `Attribute` accor
 ## Implementation of Event ( for kafka tool )
 To implement an `Event` manager class, follow the examples below .
 
-Example :
+**Example :**
 ```csharp
 //define in [Domain] layer of consumer service
 [EventConfig(Topic = "Topic")]
@@ -1167,7 +1198,7 @@ This `Attribute` allows you to manage the retry attempts of the corresponding `C
 
 To use this `Attribute`, you can follow the instructions below .
 
-Example :
+**Example :**
 ```csharp
 //for [Event] consuming
 public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<UpdatedEvent>
@@ -1196,7 +1227,7 @@ public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<Upd
 In using `WithMaxRetryAttribute`, there is a feature called `HasAfterMaxRetryHandle`, which indicates whether there is a need to separately manage the relevant message if it has been retried more than the allowed limit. If this feature is set to false, which is the default value of this variable, the relevant message will be removed from the corresponding `Queue` after the maximum attempt to process it .
 If the desired message in the corresponding `Queue` reaches the maximum retry limit (in case of possible errors), to separately manage the processing of the relevant message, you must follow the instructions below .
 
-Example :
+**Example :**
 ```csharp
 //for [Event] consuming
 public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<UpdatedEvent>
@@ -1241,11 +1272,10 @@ public class UpdatedConsumerEventStreamHandler : IConsumerEventStreamHandler<Upd
 
 As explained in the `Mediator` tool, here too, we can use this `Attribute` according to the previously mentioned instructions .
 
-
 ## Position of Queries
 The location for creating a `Query` manager is as follows :
 
-Example :
+**Example :**
 ```
 - CategoryUseCase
     - Caches
@@ -1267,7 +1297,7 @@ Example :
 ## Implementation of Query
 To implement a `Query` manager class, follow the examples below .
 
-Example :
+**Example :**
 ```csharp
 public class ReadAllQuery : IQuery<Dto> //any result type
 {
@@ -1309,7 +1339,7 @@ The structure of this layer is as follows :
     - Q
 ```
 
-Example:
+**Example :**
 ```
 - Configs
     - C
@@ -1332,7 +1362,7 @@ Regarding the above structure, there are some points to note :
 
 1 . All entities created in the `Domain` layer must be defined in the `SQLContext.cs` file
 
-Example :
+**Example :**
 ```csharp
 /*Setting*/
 public partial class SQLContext : DbContext
@@ -1372,7 +1402,7 @@ public partial class SQLContext
 
 3 . All entity configurations of the `Domain` layer must be placed in the `Configs` folder
 
-Example :
+**Example :**
 ```csharp
 //for [Query] entity
 public class CategoryQueryConfig : BaseEntityQueryConfig<CategoryQuery, string>
@@ -1413,4 +1443,67 @@ public class CategoryConfig : BaseEntityConfig<Category, string>
                .HasForeignKey(ticket => ticket.CategoryId);
     }
 }
+```
+
+## Infrastructure Folder Structure Details
+The infrastructure layer, where all contract implementations built in the `Domain` and `UseCase` layers must be implemented, according to the following pattern :
+
+```
+- Extensions
+- Implementations.Domain
+    - Repositories
+        - C
+        - Q
+    - Services
+- Implementations.UseCase
+    - Services
+```
+
+**Example :**
+```
+- Extensions
+- Implementations.Domain
+    - Repositories
+        - C
+            UserCommandRepository.cs ( UserCommandRepository inherit from IUserCommandRepository interface in domain layer )
+        - Q
+            UserQueryRepository.cs ( UserQueryRepository inherit from IUserQueryRepository interface in domain layer )
+    - Services
+        UserValidationService.cs ( UserValidationService inherit from IUserValidationService interface in domain layer )
+- Implementations.UseCase
+    - Services
+        NotificationService.cs ( NotificationService inherit from INotificationService interface in usecase layer )
+```
+
+## Presentation Folder Structure Details
+This layer is the last layer of the project and contains appropriate EndPoints with `gRPC`, `HTTP`, and `Hub` inside it, which follows the following structure. :
+
+```
+- Configs
+- CoreLogs
+- EntryPoints
+    - GRPCs
+    - HTTPs
+    - Hubs
+- Frameworks
+    - Middlewares
+    - Filters
+    - Extensions
+```
+
+**Example :**
+```
+- Configs
+- CoreLogs
+- EntryPoints
+    - GRPCs
+        UserRpcController.cs
+    - HTTPs
+        - V1
+            UserController.cs
+    - Hubs
+- Frameworks
+    - Middlewares
+    - Filters
+    - Extensions
 ```
