@@ -1,0 +1,12 @@
+apiVersion: app/v1
+kine: Service
+type: ClusterIP
+metadata:
+	name: template-service
+spec:
+	selector:
+		matchLabels:
+      app: template-pod
+		ports:
+			- port: 80
+			  targetPort: 80

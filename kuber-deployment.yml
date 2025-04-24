@@ -1,0 +1,145 @@
+apiVersion: apps/v1
+kine: Deployment
+metadata:
+	name: user-deployment
+spec:
+  replicas: 3
+	selector:
+		matchLabels:
+      app: user-pod
+  template:
+    metadata:
+      labels:
+        app: user-pod
+    spec:
+      containers:
+        - name: user-container
+          image: user:1.0.0
+          volumeMounts:
+            - name: log
+              mountPath: /CoreLogs
+          ports:
+            - containerPort: 80
+          env:
+            # Global
+            - name: ASPNETCORE_ENVIRONMENT
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: ASPNETCORE_ENVIRONMENT
+            - name: ASPNETCORE_URLS
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: ASPNETCORE_URLS
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Password
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: ASPNETCORE_Kestrel__Certificates__Default__Password
+            - name: ASPNETCORE_Kestrel__Certificates__Default__Path
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: ASPNETCORE_Kestrel__Certificates__Default__Path
+            # Elastic
+            - name: Elastic-Host
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: Elastic-Host
+            - name: Elastic-Username
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: Elastic-Username
+            - name: Elastic-Password
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: Elastic-Password
+            - name: Elastic-Index
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-Elastic-Index
+            # External-RabbitMQ
+            - name: E-RabbitMQ-Host
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: E-RabbitMQ-Host
+            - name: E-RabbitMQ-Port
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: E-RabbitMQ-Port
+            - name: E-RabbitMQ-Username
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: E-RabbitMQ-Username
+            - name: E-RabbitMQ-Password
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: E-RabbitMQ-Password
+            # Internal-RabbitMQ
+            - name: I-RabbitMQ-Host
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-I-RabbitMQ-Host
+            - name: I-RabbitMQ-Port
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-I-RabbitMQ-Port
+            - name: I-RabbitMQ-Username
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-I-RabbitMQ-Username
+            - name: I-RabbitMQ-Password
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-I-RabbitMQ-Password
+            # External-Redis
+            - name: E-RedisConnectionString
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: E-RedisConnectionString
+            # Internal-Redis
+            - name: I-RedisConnectionString
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-I-RedisConnectionString
+            # Command-SqlServer
+            - name: C-SqlServerConnectionString
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-C-SqlServerConnectionString
+            # Query-SqlServer
+            - name: Q-SqlServerConnectionString
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-Q-SqlServerConnectionString
+            # Core
+            - name: Host
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-Host
+            - name: Port
+              valueFrom:
+                configMapKeyRef:
+                  name: global-config-map
+                  key: User-Port
+      volumes:
+        - name: log
+          emptyDir: {}
