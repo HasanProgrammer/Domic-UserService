@@ -84,7 +84,7 @@ services:
     container_name: 'user_redis'
     command: 'redis-server'
     ports:
-      - 6380:6379
+      - 3380:6379
   
   domic.user.rabbit.mq:
     networks:
