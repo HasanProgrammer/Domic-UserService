@@ -1,4 +1,5 @@
 using Domic.Core.Infrastructure.Extensions;
+using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.WebAPI.Extensions;
 using Domic.Infrastructure.Extensions.C;
 using Domic.WebAPI.EntryPoints.GRPCs;
@@ -36,6 +37,7 @@ builder.RegisterEventsPublisher();
 builder.RegisterEventsSubscriber();
 builder.RegisterAsyncCommandsSubscriber();
 builder.RegisterServices();
+builder.RegisterAssemblyTypesInMemory();
 
 builder.Services.AddMvc();
 builder.Services.AddHttpContextAccessor();

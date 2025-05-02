@@ -1,4 +1,5 @@
 ﻿using Domic.Core.Common.ClassConsts;
+using Domic.Core.Common.ClassEnums;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.Permission.Contracts.Interfaces;
