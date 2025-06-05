@@ -13,7 +13,7 @@
 
   <!--CorePackage | UseCase-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.UseCase" Version="5.3.4" />
+    <PackageReference Include="Domic.Architecture.UseCase" Version="5.4.0" />
   </ItemGroup>
   <!--CorePackage | UseCase-->
 
