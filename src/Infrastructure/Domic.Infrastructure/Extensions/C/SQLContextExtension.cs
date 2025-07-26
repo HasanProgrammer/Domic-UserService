@@ -30,21 +30,16 @@ public static class SQLContextExtension
 
         var adminRoleId = uniqueIdGenerator.GetRandom(6);
         var newSuperAdminRole = new Role(persianDateTime, adminRoleId, userId, new List<string>{ "SuperAdmin" }.Serialize(), "SuperAdmin");
-
-        var clientRoleId = uniqueIdGenerator.GetRandom(6);
-        var newClientRole = new Role(persianDateTime, clientRoleId, userId, new List<string>{ "Client" }.Serialize(), "Client");
         
         _roleIds.Add(adminRoleId);
         
         context.Roles.Add(newSuperAdminRole);
-        context.Roles.Add(newClientRole);
 
         #endregion
 
         #region Permission Seeder
 
         _permissionsBuilder(context, adminRoleId, uniqueIdGenerator, persianDateTime, userId, new List<string>{ "SuperAdmin" }.Serialize());
-        _permissionsClientBuilder(context, clientRoleId, uniqueIdGenerator, persianDateTime, userId, new List<string>{ "SuperAdmin" }.Serialize());
 
         #endregion
 
@@ -105,39 +100,6 @@ public static class SQLContextExtension
         List<string> newPermissions = new() {
             "AggregateTicket.ReadOne",
             "AggregateTicket.ReadAllPaginated"
-        };
-        
-        foreach (var permission in newPermissions)
-        {
-            var uniqueId = uniqueIdGenerator.GetRandom(6);
-            
-            _permissionIds.Add(uniqueId);
-            
-            var newPermission =
-                new Permission(dateTime, uniqueId, createdBy, createdRole, permission, roleId);
-
-            context.Permissions.Add(newPermission);
-        }
-    }
-    
-    private static void _permissionsClientBuilder(SQLContext context, string roleId, 
-        IGlobalUniqueIdGenerator uniqueIdGenerator, IDateTime dateTime, string createdBy, 
-        string createdRole
-    )
-    {
-        List<string> newPermissions = new() {
-            "Ticket.Create",
-            "Ticket.Update",
-            "Ticket.Active",
-            "Ticket.InActive",
-            "Ticket.Delete",
-            "AggregateTicket.ReadOne",
-            "AggregateTicket.ReadAllPaginated",
-            "Financial.Create",
-            "Financial.PaymentVerification",
-            "Financial.DecreaseWallet",
-            "Financial.CreateTransactionRequest",
-            "Financial.ChangeStatusTransactionRequest",
         };
         
         foreach (var permission in newPermissions)

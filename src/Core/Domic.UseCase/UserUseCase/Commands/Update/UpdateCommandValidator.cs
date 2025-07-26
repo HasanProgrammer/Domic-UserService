@@ -73,7 +73,7 @@ public class UpdateCommandValidator : IValidator<UpdateCommand>
             if(targetPermission is null)
                 errors.Add(string.Format("سطح دسترسی با شناسه {0} وجود خارجی ندارد !", permissionId ?? "_خالی_"));
 
-            if (input.Roles.All(role => role != targetPermission?.RoleId)) 
+            if (!input.Roles.Any(role => role == targetPermission?.RoleId)) 
                 errors.Add(string.Format("سطح دسترسی با شناسه {0} متعلق به نقوش انتخاب شده نمی باشد !", permissionId));
         }
         
