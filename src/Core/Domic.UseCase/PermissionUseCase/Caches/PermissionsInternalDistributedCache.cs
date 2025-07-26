@@ -19,10 +19,11 @@ public class PermissionsInternalDistributedCache : IInternalDistributedCacheHand
         var result = await _permissionQueryRepository.FindAllEagerLoadingAsync(cancellationToken);
         
         return result.Select(query => new PermissionDto {
-            Id       = query.Id        ,
-            RoleId   = query.RoleId    ,
-            RoleName = query.Role.Name ,
-            Name     = query.Name
+            Id        = query.Id        ,
+            RoleId    = query.RoleId    ,
+            RoleName  = query.Role.Name ,
+            Name      = query.Name      ,
+            CreatedAt = query.CreatedAt_EnglishDate
         }).ToList();
     }
 }

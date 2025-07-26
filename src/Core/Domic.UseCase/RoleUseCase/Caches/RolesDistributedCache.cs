@@ -24,7 +24,8 @@ public class RolesDistributedCache : IInternalDistributedCacheHandler<List<RoleD
             Permissions = role.Permissions.Select(permission => new PermissionDto {
                 Id   = permission.Id,
                 Name = permission.Name 
-            })
+            }),
+            CreatedAt = role.CreatedAt_EnglishDate
         }).ToList();
     }
 }
