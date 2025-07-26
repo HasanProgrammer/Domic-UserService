@@ -32,6 +32,6 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
             ? rolesFiltered.OrderByDescending(role => role.CreatedAt)
             : rolesFiltered.OrderBy(role => role.CreatedAt);
 
-        return rolesFiltered.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
+        return rolesFiltered.ToPaginatedCollection(rolesFiltered.Count(), countPerPage, pageNumber);
     }
 }

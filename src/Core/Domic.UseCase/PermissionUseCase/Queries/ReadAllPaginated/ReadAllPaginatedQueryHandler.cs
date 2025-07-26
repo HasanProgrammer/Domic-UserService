@@ -34,6 +34,6 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
             ? permissionsFiltered.OrderByDescending(permission => permission.CreatedAt)
             : permissionsFiltered.OrderBy(permission => permission.CreatedAt);
         
-        return permissionsFiltered.ToPaginatedCollection(result.Count, countPerPage, pageNumber, true);
+        return permissionsFiltered.ToPaginatedCollection(permissionsFiltered.Count(), countPerPage, pageNumber, true);
     }
 }
