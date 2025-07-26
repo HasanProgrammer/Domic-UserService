@@ -1,4 +1,5 @@
 using Domic.Core.Role.Grpc;
+using Domic.Domain.Commons.Enumerations;
 using Domic.UseCase.RoleUseCase.Commands.Create;
 using Domic.UseCase.RoleUseCase.Commands.Delete;
 using Domic.UseCase.RoleUseCase.Commands.Update;
@@ -43,8 +44,10 @@ public static partial class RpcRequestExtension
         if (typeof(T) == typeof(ReadAllPaginatedQuery))
         {
             Request = new ReadAllPaginatedQuery {
-                PageNumber   = request.PageNumber?.Value ,
-                CountPerPage = request.CountPerPage?.Value 
+                PageNumber   = request.PageNumber?.Value   ,
+                CountPerPage = request.CountPerPage?.Value ,
+                SearchText   = request.SearchText?.Value   ,
+                Sort         = (Sort)request.Sort.Value 
             };
         }
         

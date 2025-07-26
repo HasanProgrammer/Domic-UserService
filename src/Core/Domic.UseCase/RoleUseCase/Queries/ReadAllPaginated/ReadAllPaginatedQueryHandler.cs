@@ -2,6 +2,7 @@ using Domic.Core.Common.ClassExtensions;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Domain.Commons.Enumerations;
 using Domic.UseCase.RoleUseCase.DTOs;
 
 namespace Domic.UseCase.RoleUseCase.Queries.ReadAllPaginated;
@@ -22,7 +23,15 @@ public class ReadAllPaginatedQueryHandler : IQueryHandler<ReadAllPaginatedQuery,
         var countPerPage = Convert.ToInt32(query.CountPerPage);
         
         var result = await _cacheMediator.GetAsync<List<RoleDto>>(cancellationToken);
+        
+        var rolesFiltered = result.Where(u =>
+            string.IsNullOrEmpty(query.SearchText) || u.Name.Contains(query.SearchText)
+        );
 
-        return result.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
+        rolesFiltered = query.Sort == Sort.Newest
+            ? rolesFiltered.OrderByDescending(role => role.CreatedAt)
+            : rolesFiltered.OrderBy(role => role.CreatedAt);
+
+        return rolesFiltered.ToPaginatedCollection(result.Count, countPerPage, pageNumber);
     }
 }
