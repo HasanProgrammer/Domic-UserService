@@ -1,6 +1,7 @@
 using Domic.Core.User.Grpc;
 using Domic.Core.Infrastructure.Extensions;
 using Domic.Core.UseCase.Contracts.Interfaces;
+using Domic.Domain.Commons.Enumerations;
 using Domic.UseCase.UserUseCase.AsyncCommands.Create;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.CheckExist;
@@ -64,11 +65,8 @@ public static partial class RpcRequestExtension
             Request = new ReadAllPaginatedQuery {
                 PageNumber   = request.PageNumber?.Value   ,
                 CountPerPage = request.CountPerPage?.Value ,
-                FirstName    = request.FirstName?.Value    ,
-                LastName     = request.LastName?.Value     ,
-                Username     = request.Username?.Value     ,
-                PhoneNumber  = request.PhoneNumber?.Value  ,
-                Email        = request.Email?.Value
+                SearchText   = request.SearchText?.Value   ,
+                Sort         = (Sort)request.Sort?.Value
             };
         }
         

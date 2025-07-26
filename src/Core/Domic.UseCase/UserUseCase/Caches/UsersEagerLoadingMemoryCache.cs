@@ -27,7 +27,9 @@ public class UsersEagerLoadingMemoryCache : IInternalDistributedCacheHandler<Lis
             LastName    = user.LastName    ,
             Email       = user.Email       ,
             Description = user.Description ,
-            PhoneNumber = user.PhoneNumber
+            PhoneNumber = user.PhoneNumber ,
+            IsActive    = user.IsActive == IsActive.Active,
+            CreatedAt   = user.CreatedAt_EnglishDate
         }).ToList();
     }
 }
