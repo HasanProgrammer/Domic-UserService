@@ -5,8 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Domic.Persistence.Migrations.C
 {
+    /// <inheritdoc />
     public partial class Init : Migration
     {
+        /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
@@ -19,7 +21,6 @@ namespace Domic.Persistence.Migrations.C
                     Payload = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Table = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Action = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    User = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     CreatedAt_PersianDate = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UpdatedAt_EnglishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -60,6 +61,7 @@ namespace Domic.Persistence.Migrations.C
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
@@ -232,6 +234,7 @@ namespace Domic.Persistence.Migrations.C
                 columns: new[] { "Id", "IsDeleted" });
         }
 
+        /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(

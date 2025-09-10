@@ -20,6 +20,10 @@
   <ItemGroup>
     <PackageReference Include="Domic.Architecture.Persistence" Version="7.5.1" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Migrations\C\" />
+    <Folder Include="Migrations\Q\" />
+  </ItemGroup>
   <!--CorePackage | Persistence-->
 
 </Project>

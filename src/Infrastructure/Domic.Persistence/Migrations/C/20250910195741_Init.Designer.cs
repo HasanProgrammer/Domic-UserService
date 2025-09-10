@@ -12,17 +12,18 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domic.Persistence.Migrations.C
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20240607102929_Init")]
+    [Migration("20250910195741_Init")]
     partial class Init
     {
+        /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.9")
+                .HasAnnotation("ProductVersion", "8.0.0")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
             modelBuilder.Entity("Domic.Core.Domain.Entities.Event", b =>
                 {
@@ -61,9 +62,6 @@ namespace Domic.Persistence.Migrations.C
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedAt_PersianDate")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("User")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -255,6 +253,9 @@ namespace Domic.Persistence.Migrations.C
 
                     b.Property<string>("CreatedRole")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("IsActive")

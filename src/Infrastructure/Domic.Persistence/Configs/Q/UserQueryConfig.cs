@@ -16,6 +16,8 @@ public class UserQueryConfig : BaseEntityQueryConfig<UserQuery, string>
         //Configs
         
         builder.ToTable("Users");
+        
+        builder.Property(user => user.ImageUrl).IsRequired(false);
 
         /*-----------------------------------------------------------*/
         

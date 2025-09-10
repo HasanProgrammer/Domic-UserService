@@ -17,6 +17,8 @@ public class UserConfig : BaseEntityConfig<User, string>
 
         builder.ToTable("Users");
 
+        builder.Property(user => user.ImageUrl).IsRequired(false);
+
         builder.OwnsOne(user => user.FirstName)
                .Property(firstName => firstName.Value)
                .IsRequired()

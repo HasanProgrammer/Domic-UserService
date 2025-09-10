@@ -8,6 +8,7 @@ namespace Domic.Domain.User.Entities;
 
 public class UserQuery : EntityQuery<string>
 {
+    public string ImageUrl    { get; set; }
     public string FirstName   { get; set; }
     public string LastName    { get; set; }
     public string Description { get; set; }

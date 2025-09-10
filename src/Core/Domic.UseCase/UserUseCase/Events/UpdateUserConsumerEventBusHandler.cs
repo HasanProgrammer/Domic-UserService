@@ -58,6 +58,7 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
             CreatedAt_PersianDate = @event.UpdatedAt_PersianDate
         });
         
+        targetUser.ImageUrl              = @event.ImageUrl;
         targetUser.FirstName             = @event.FirstName;
         targetUser.LastName              = @event.LastName;
         targetUser.Username              = @event.Username;
