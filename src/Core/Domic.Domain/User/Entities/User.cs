@@ -11,6 +11,12 @@ namespace Domic.Domain.User.Entities;
 
 public class User : Entity<string>
 {
+    //Fields
+    
+    public string ImageUrl { get; private set; }
+    
+    /*---------------------------------------------------------------*/
+    
     //Value Objects
 
     public FirstName FirstName     { get; private set; }
@@ -47,16 +53,16 @@ public class User : Entity<string>
     /// <param name="password"></param>
     /// <param name="phoneNumber"></param>
     /// <param name="email"></param>
+    /// <param name="imageUrl"></param>
     public User(IDateTime dateTime, string id, string createdBy, string createdRole, string firstName, string lastName, 
-        string description, string username, string password, string phoneNumber, string email
+        string description, string username, string password, string phoneNumber, string email, string imageUrl
     )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Id          = id;
-        CreatedBy   = createdBy;
-        CreatedRole = createdRole;
+        ImageUrl    = imageUrl;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
@@ -64,6 +70,10 @@ public class User : Entity<string>
         Password    = new Password(password);
         PhoneNumber = new PhoneNumber(phoneNumber);
         Email       = new Email(email);
+        
+        //audit
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
     }
     
@@ -76,8 +86,6 @@ public class User : Entity<string>
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Id          = id;
-        CreatedBy   = createdBy;
-        CreatedRole = createdRole;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
@@ -85,13 +93,15 @@ public class User : Entity<string>
         Password    = new Password(password);
         PhoneNumber = new PhoneNumber(phoneNumber);
         Email       = new Email(email);
+        
+        //audit
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new UserCreated {
                 Id                    = Id                          ,
-                CreatedBy             = CreatedBy                   , 
-                CreatedRole           = CreatedRole                 , 
                 FirstName             = firstName                   ,
                 LastName              = lastName                    ,
                 Username              = username                    ,
@@ -102,6 +112,8 @@ public class User : Entity<string>
                 Roles                 = roleIds                     ,
                 Permissions           = permissionIds               ,
                 IsActive              = IsActive == IsActive.Active ,
+                CreatedBy             = CreatedBy                   , 
+                CreatedRole           = CreatedRole                 , 
                 CreatedAt_EnglishDate = nowDateTime                 ,
                 CreatedAt_PersianDate = nowPersianDateTime
             }
@@ -122,11 +134,12 @@ public class User : Entity<string>
     /// <param name="password"></param>
     /// <param name="phoneNumber"></param>
     /// <param name="email"></param>
+    /// <param name="imageUrl"></param>
     /// <param name="roleIds"></param>
     /// <param name="permissionIds"></param>
     public User(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer, 
         IGlobalUniqueIdGenerator globalUniqueIdGenerator, string firstName, string lastName, string description, 
-        string username, string password, string phoneNumber, string email, IEnumerable<string> roleIds, 
+        string username, string password, string phoneNumber, string email, string imageUrl, IEnumerable<string> roleIds, 
         IEnumerable<string> permissionIds
     )
     {
@@ -134,8 +147,7 @@ public class User : Entity<string>
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Id          = globalUniqueIdGenerator.GetRandom(6);
-        CreatedBy   = identityUser.GetIdentity();
-        CreatedRole = serializer.Serialize(identityUser.GetRoles());
+        ImageUrl    = imageUrl;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
@@ -143,13 +155,16 @@ public class User : Entity<string>
         Password    = new Password(password);
         PhoneNumber = new PhoneNumber(phoneNumber);
         Email       = new Email(email);
+        
+        //audit
+        CreatedBy   = identityUser.GetIdentity();
+        CreatedRole = serializer.Serialize(identityUser.GetRoles());
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new UserCreated {
                 Id                    = Id                          ,
-                CreatedBy             = CreatedBy                   , 
-                CreatedRole           = CreatedRole                 , 
+                ImageUrl              = imageUrl                    ,
                 FirstName             = firstName                   ,
                 LastName              = lastName                    ,
                 Username              = username                    ,
@@ -160,6 +175,8 @@ public class User : Entity<string>
                 Roles                 = roleIds                     ,
                 Permissions           = permissionIds               ,
                 IsActive              = IsActive == IsActive.Active ,
+                CreatedBy             = CreatedBy                   , 
+                CreatedRole           = CreatedRole                 , 
                 CreatedAt_EnglishDate = nowDateTime                 ,
                 CreatedAt_PersianDate = nowPersianDateTime
             }
@@ -182,25 +199,29 @@ public class User : Entity<string>
     /// <param name="username"></param>
     /// <param name="email"></param>
     /// <param name="phoneNumber"></param>
+    /// <param name="imageUrl"></param>
     /// <param name="roleIds"></param>
     /// <param name="permissionIds"></param>
     /// <param name="password"></param>
     public void Change(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer, string firstName, 
         string lastName, string description, string username, string email, string phoneNumber, 
-        IEnumerable<string> roleIds, IEnumerable<string> permissionIds, string password = null
+        string imageUrl, IEnumerable<string> roleIds, IEnumerable<string> permissionIds, string password = null
     )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
-        UpdatedBy   = identityUser.GetIdentity();
-        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
+        ImageUrl    = imageUrl;
         FirstName   = new FirstName(firstName);
         LastName    = new LastName(lastName);
         Description = new Description(description);
         Username    = new Username(username);
         Email       = new Email(email);
         PhoneNumber = new PhoneNumber(phoneNumber);
+        
+        //audit
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         if (password != null)
@@ -208,19 +229,20 @@ public class User : Entity<string>
 
         AddEvent(
             new UserUpdated {
-                Id                    = Id                          ,
-                FirstName             = firstName                   ,
-                UpdatedBy             = UpdatedBy                   , 
-                UpdatedRole           = UpdatedRole                 , 
-                LastName              = lastName                    ,
-                Username              = username                    ,
-                Password              = password                    ,
-                Description           = description                 ,
-                PhoneNumber           = phoneNumber                 ,
-                Email                 = email                       , 
-                Roles                 = roleIds                     ,
-                Permissions           = permissionIds               ,
-                UpdatedAt_EnglishDate = nowDateTime                 ,
+                Id                    = Id            ,
+                ImageUrl              = imageUrl      , 
+                FirstName             = firstName     ,
+                UpdatedBy             = UpdatedBy     , 
+                UpdatedRole           = UpdatedRole   , 
+                LastName              = lastName      ,
+                Username              = username      ,
+                Password              = password      ,
+                Description           = description   ,
+                PhoneNumber           = phoneNumber   ,
+                Email                 = email         , 
+                Roles                 = roleIds       ,
+                Permissions           = permissionIds ,
+                UpdatedAt_EnglishDate = nowDateTime   ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }
         );

@@ -8,6 +8,7 @@ namespace Domic.Domain.User.Events;
 [EventConfig(ExchangeType = Exchange.FanOut, Exchange = Broker.User_User_Exchange, Queue = Broker.User_User_Queue)]
 public class UserUpdated : UpdateDomainEvent<string>
 {
+    public string ImageUrl                 { get; init; }
     public string Username                 { get; init; }
     public string Password                 { get; init; }
     public string FirstName                { get; init; }

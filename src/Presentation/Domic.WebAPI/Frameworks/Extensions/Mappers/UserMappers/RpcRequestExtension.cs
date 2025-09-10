@@ -91,6 +91,7 @@ public partial class RpcRequestExtension
         if (typeof(T) == typeof(CreateCommand))
         {
             Request = new CreateCommand {
+                ImageUrl    = request.ImageUrl?.Value    ,
                 Username    = request.Username?.Value    ,
                 Password    = request.Password?.Value    ,
                 FirstName   = request.FirstName?.Value   ,
@@ -151,6 +152,7 @@ public partial class RpcRequestExtension
         {
             Request = new UpdateCommand {
                 Id          = request.TargetId?.Value    ,
+                ImageUrl    = request.ImageUrl?.Value    ,  
                 FirstName   = request.FirstName?.Value   ,
                 LastName    = request.LastName?.Value    ,
                 Description = request.Description?.Value ,

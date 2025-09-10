@@ -22,7 +22,7 @@ public class UserTests
 
         //Act
 
-        User UserModel = new(default, Guid.NewGuid().ToString(), FirstName, LastName, Description, Username, Password, PhoneNumber, Email, null, null);
+        User UserModel = new(default, Guid.NewGuid().ToString(), FirstName, LastName, Description, Username, Password, PhoneNumber, Email, "", null, null);
 
         //Assert
         

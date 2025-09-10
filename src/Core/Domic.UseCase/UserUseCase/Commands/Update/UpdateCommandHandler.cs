@@ -66,6 +66,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
             command.Username    ,
             command.EMail       ,
             command.PhoneNumber ,
+            command.ImageUrl    ,
             command.Roles       ,
             command.Permissions ,
             command.Password

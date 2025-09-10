@@ -56,6 +56,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
             command.Password         ,
             command.PhoneNumber      ,
             command.EMail            ,
+            command.ImageUrl         ,
             command.Roles            ,
             command.Permissions
         );
