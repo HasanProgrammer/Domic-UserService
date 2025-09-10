@@ -20,6 +20,7 @@ public class ReadOneQueryHandler : IQueryHandler<ReadOneQuery, UserDto>
 
         return Task.FromResult<UserDto>(new UserDto {
             Id          = targetUserQuery.Id          ,
+            ImageUrl    = targetUserQuery.ImageUrl    ,
             FirstName   = targetUserQuery.FirstName   ,
             LastName    = targetUserQuery.LastName    ,
             Username    = targetUserQuery.Username    ,
