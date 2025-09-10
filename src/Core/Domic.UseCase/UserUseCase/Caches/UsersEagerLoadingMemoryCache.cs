@@ -22,6 +22,7 @@ public class UsersEagerLoadingMemoryCache : IInternalDistributedCacheHandler<Lis
 
         return result.Select(user => new UserDto {
             Id          = user.Id          ,
+            ImageUrl    = user.ImageUrl    ,
             Username    = user.Username    ,
             FirstName   = user.FirstName   ,
             LastName    = user.LastName    ,
