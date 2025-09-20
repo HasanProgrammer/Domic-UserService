@@ -59,6 +59,10 @@ services:
     image: 'mcr.microsoft.com/mssql/server'
     container_name: 'user_command_sql_server'
     restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     ports:
       - 1435:1433
     environment:
@@ -71,6 +75,10 @@ services:
     image: 'mcr.microsoft.com/mssql/server'
     container_name: 'user_query_sql_server'
     restart: on-failure
+    deploy:
+      resources:
+        limits:
+          memory: 1G
     ports:
       - 1400:1433
     environment:
