@@ -62,7 +62,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 2G
     ports:
       - 1435:1433
     environment:
@@ -78,7 +78,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1G
+          memory: 2G
     ports:
       - 1400:1433
     environment:
