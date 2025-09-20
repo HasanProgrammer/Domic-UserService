@@ -32,15 +32,19 @@ services:
       - E-RabbitMQ-Port=5672
       - E-RabbitMQ-Username=domic
       - E-RabbitMQ-Password=Domic123!@#
-      - I-RabbitMQ-Host=domic.user.rabbit.mq
+#     - I-RabbitMQ-Host=domic.user.rabbit.mq
+      - I-RabbitMQ-Host=domic.rabbit.mq
       - I-RabbitMQ-Port=5672
       - I-RabbitMQ-Username=domic
       - I-RabbitMQ-Password=Domic123!@#
       - E-RedisConnectionString=domic.redis:6379
-      - I-RedisConnectionString=domic.user.redis:6379
+#     - I-RedisConnectionString=domic.user.redis:6379
+      - I-RedisConnectionString=domic.redis:6379
       - MongoConnectionString=
-      - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;Encrypt=False;
-      - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;Encrypt=False;
+#     - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
+#     - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
+      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
+      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
       - Host=domic.user.api
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
@@ -48,10 +52,10 @@ services:
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
     depends_on:
-      - domic.user.command.sql.server
-      - domic.user.query.sql.server
-      - domic.user.redis
-      - domic.user.rabbit.mq
+#      - domic.user.command.sql.server
+#      - domic.user.query.sql.server
+#      - domic.user.redis
+#      - domic.user.rabbit.mq
   
   domic.user.command.sql.server:
     networks:
