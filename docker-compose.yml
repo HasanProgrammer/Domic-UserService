@@ -39,8 +39,8 @@ services:
       - E-RedisConnectionString=domic.redis:6379
       - I-RedisConnectionString=domic.user.redis:6379
       - MongoConnectionString=
-      - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-      - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
+      - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;Encrypt=False;
+      - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;Encrypt=False;
       - Host=domic.user.api
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
