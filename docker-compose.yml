@@ -43,8 +43,8 @@ services:
       - MongoConnectionString=
 #     - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
 #     - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
+      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=C-UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
+      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=Q-UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
       - Host=domic.user.api
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
