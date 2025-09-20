@@ -57,59 +57,59 @@ services:
 #      - domic.user.redis
 #      - domic.user.rabbit.mq
   
-  domic.user.command.sql.server:
-    networks:
-      - domic
-    image: 'mcr.microsoft.com/mssql/server'
-    container_name: 'user_command_sql_server'
-    restart: on-failure
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    ports:
-      - 1435:1433
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Domic123!@#
+#  domic.user.command.sql.server:
+#    networks:
+#      - domic
+#    image: 'mcr.microsoft.com/mssql/server'
+#    container_name: 'user_command_sql_server'
+#    restart: on-failure
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 2G
+#    ports:
+#      - 1435:1433
+#    environment:
+#      - ACCEPT_EULA=Y
+#      - SA_PASSWORD=Domic123!@#
   
-  domic.user.query.sql.server:
-    networks:
-      - domic
-    image: 'mcr.microsoft.com/mssql/server'
-    container_name: 'user_query_sql_server'
-    restart: on-failure
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-    ports:
-      - 1400:1433
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Domic123!@#
+#  domic.user.query.sql.server:
+#    networks:
+#      - domic
+#    image: 'mcr.microsoft.com/mssql/server'
+#    container_name: 'user_query_sql_server'
+#    restart: on-failure
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 2G
+#    ports:
+#      - 1400:1433
+#    environment:
+#      - ACCEPT_EULA=Y
+#      - SA_PASSWORD=Domic123!@#
   
-  domic.user.redis:
-    networks:
-      - domic
-    image: 'redis'
-    container_name: 'user_redis'
-    command: 'redis-server'
-    ports:
-      - 3380:6379
-  
-  domic.user.rabbit.mq:
-    networks:
-      - domic
-    image: 'rabbitmq:3-management'
-    container_name: 'user_rabbit_mq'
-    restart: on-failure
-    ports:
-      - '15660:15672'
-      - '5660:5672'
-    environment:
-      - RABBITMQ_DEFAULT_USER=domic
-      - RABBITMQ_DEFAULT_PASS=Domic123!@#
+#  domic.user.redis:
+#    networks:
+#      - domic
+#    image: 'redis'
+#    container_name: 'user_redis'
+#    command: 'redis-server'
+#    ports:
+#      - 3380:6379
+#  
+#  domic.user.rabbit.mq:
+#    networks:
+#      - domic
+#    image: 'rabbitmq:3-management'
+#    container_name: 'user_rabbit_mq'
+#    restart: on-failure
+#    ports:
+#      - '15660:15672'
+#      - '5660:5672'
+#    environment:
+#      - RABBITMQ_DEFAULT_USER=domic
+#      - RABBITMQ_DEFAULT_PASS=Domic123!@#
 
 volumes:
   log:
