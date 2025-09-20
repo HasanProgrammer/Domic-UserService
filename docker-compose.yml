@@ -51,7 +51,7 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
-    depends_on:
+#    depends_on:
 #      - domic.user.command.sql.server
 #      - domic.user.query.sql.server
 #      - domic.user.redis
