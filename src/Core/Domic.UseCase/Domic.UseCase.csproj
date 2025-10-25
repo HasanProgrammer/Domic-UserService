@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
@@ -13,7 +13,7 @@
 
   <!--CorePackage | UseCase-->
   <ItemGroup>
-    <PackageReference Include="Domic.Architecture.UseCase" Version="5.4.1" />
+    <PackageReference Include="Domic.Architecture.UseCase" Version="5.4.2" />
   </ItemGroup>
   <!--CorePackage | UseCase-->
 

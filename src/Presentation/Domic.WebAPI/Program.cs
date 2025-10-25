@@ -65,6 +65,8 @@ if (application.Environment.IsProduction())
 
 application.UseRouting();
 
+application.UseObservibility();
+
 application.UseEndpoints(endpoints => {
     
     endpoints.HealthCheck(application.Services);

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <!--CorePackage | Common-->
   <ItemGroup>
-    <PackageReference Include="Domic.Core.Common" Version="5.2.0" />
+    <PackageReference Include="Domic.Core.Common" Version="5.2.1" />
   </ItemGroup>
   <!--CorePackage | Common-->
 
