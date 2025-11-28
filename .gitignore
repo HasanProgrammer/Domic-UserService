@@ -5,13 +5,13 @@ project.lock.json
 *.pyc
 nupkg/
 
-src/Presentation/Domic.WebAPI/CoreLogs/Logs.txt
-
 # Visual Studio Code
 .vscode
 
 # Rider
 .idea
+
+src/Presentation/Domic.WebAPI/CoreLogs/Logs.txt
 
 # User-specific files
 *.suo
