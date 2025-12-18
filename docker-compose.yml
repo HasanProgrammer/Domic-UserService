@@ -2,11 +2,11 @@ name: 'user_service'
 
 services:
   
-  domic.user.api:
+  domic.user.service:
     networks:
       - domic
-    image: user_service_api_image:1.0.0
-    container_name: "user_service_api"
+    image: domic_user_service_image:1.0.0
+    container_name: "domic_user_service"
 #    deploy:
 #      replicas: 3
 #      resources:
@@ -21,9 +21,8 @@ services:
     ports:
       - "1160-1180:443"
     volumes:
-      - log:/app/CoreLogs
+      - ~/services/Logs/Domic-UserService/:/app/CoreLogs/
       - ~/services/Domic-UserService/.https/:/https/
-#     - C:\https\:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
       - Elastic-Index=user
@@ -44,11 +43,11 @@ services:
       - E-RedisConnectionString=domic.redis:6379
 #     - I-RedisConnectionString=domic.user.redis:6379
 #     - MongoConnectionString=
-#     - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-#     - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=C-UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=Q-UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;
-      - Host=domic.user.api
+#     - C-SqlServerConnectionString=Server=domic.user.command.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;TrustServerCertificate=True;
+#     - Q-SqlServerConnectionString=Server=domic.user.query.sql.server,1433;Database=UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=C-UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - Q-SqlServerConnectionString=Server=domic.sql.server,1433;Database=Q-UserService;User ID=sa;Password=Domic123!@#;Persist Security Info=True;MultipleActiveResultSets=True;TrustServerCertificate=True;
+      - Host=domic.user.service
       - Port=443
       - ASPNETCORE_ENVIRONMENT=Production
       - ASPNETCORE_URLS=https://+:443;http://+:80
@@ -65,7 +64,7 @@ services:
 #   networks:
 #     - domic
 #   image: 'mcr.microsoft.com/mssql/server'
-#   container_name: 'user_command_sql_server'
+#   container_name: 'domic_user_command_sql_server'
 #   restart: on-failure
 #   deploy:
 #     resources:
@@ -81,7 +80,7 @@ services:
 #   networks:
 #     - domic
 #   image: 'mcr.microsoft.com/mssql/server'
-#   container_name: 'user_query_sql_server'
+#   container_name: 'domic_user_query_sql_server'
 #   restart: on-failure
 #   deploy:
 #     resources:
@@ -97,7 +96,7 @@ services:
 #   networks:
 #     - domic
 #   image: 'redis'
-#   container_name: 'user_redis'
+#   container_name: 'domic_user_redis'
 #   command: 'redis-server'
 #   ports:
 #     - 3380:6379
@@ -106,7 +105,7 @@ services:
 #   networks:
 #     - domic
 #   image: 'rabbitmq:3-management'
-#   container_name: 'user_rabbit_mq'
+#   container_name: 'domic_user_rabbit_mq'
 #   restart: on-failure
 #   ports:
 #     - '15660:15672'
