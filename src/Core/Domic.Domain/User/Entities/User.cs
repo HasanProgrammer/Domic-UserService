@@ -14,8 +14,6 @@ public class User : Entity<string>
     //Fields
     
     public string ImageUrl { get; private set; }
-    public string EmailVerifyCode { get; private set; }
-    public bool EmailIsVerified { get; private set; }
     
     /*---------------------------------------------------------------*/
     
@@ -296,36 +294,6 @@ public class User : Entity<string>
         //audit
         UpdatedBy   = identityUser.GetIdentity();
         UpdatedRole = serializer.Serialize(identityUser.GetRoles());
-        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
-
-        AddEvent(
-            new UserInActived {
-                Id                    = Id            ,
-                UpdatedBy             = UpdatedBy     ,
-                UpdatedRole           = UpdatedRole   ,
-                UpdatedAt_EnglishDate = nowDateTime   ,
-                UpdatedAt_PersianDate = nowPersianDateTime
-            }
-        );
-    }
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="dateTime"></param>
-    /// <param name="identityUser"></param>
-    /// <param name="serializer"></param>
-    /// <param name="code"></param>
-    public void SetVerifyCode(IDateTime dateTime, string updatedBy, string updatedRole, string code)
-    {
-        var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
-
-        EmailVerifyCode = code;
-        
-        //audit
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
