@@ -1,4 +1,5 @@
-﻿using Domic.Core.UseCase.Contracts.Interfaces;
+﻿using Domic.Core.Domain.Extensions;
+using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Core.UseCase.Exceptions;
 using Domic.Domain.Permission.Contracts.Interfaces;
 using Domic.Domain.Role.Contracts.Interfaces;
@@ -24,6 +25,9 @@ public class CreateCommandValidator : IValidator<CreateCommand>
     public async Task<object> ValidateAsync(CreateCommand input, CancellationToken cancellationToken)
     {
         List<string> errors = new();
+        
+        if(!input.PhoneNumber.IsValidMobileNumber())
+            errors.Add("شماره تماس ارسالی معتبر نمی باشد!");
         
         if(await _userCommandRepository.IsExistByUsernameAsync(input.Username, cancellationToken))
             errors.Add("فیلد نام کاربری مورد نظر قبلا انتخاب شده است !");

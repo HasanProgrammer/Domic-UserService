@@ -248,6 +248,30 @@ public class User : Entity<string>
         );
     }
     
+    public void ResetPassword(IDateTime dateTime, string password, string updatedBy, string updatedRole)
+    {
+        var nowDateTime        = DateTime.Now;
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
+        
+        Password = new Password(password);
+        
+        //audit
+        UpdatedBy   = updatedBy;
+        UpdatedRole = updatedRole;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
+
+        AddEvent(
+            new UserPasswordChanged {
+                Id                    = Id            ,
+                UpdatedBy             = UpdatedBy     , 
+                UpdatedRole           = UpdatedRole   ,
+                NewPassword           = password      ,
+                UpdatedAt_EnglishDate = nowDateTime   ,
+                UpdatedAt_PersianDate = nowPersianDateTime
+            }
+        );
+    }
+    
     /// <summary>
     /// 
     /// </summary>
