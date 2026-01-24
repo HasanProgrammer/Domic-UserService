@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domic.Persistence.Migrations.C
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20250910195741_Init")]
+    [Migration("20260124045635_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -254,6 +254,15 @@ namespace Domic.Persistence.Migrations.C
                     b.Property<string>("CreatedRole")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EmailOtp")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("EmailOtpExpiredAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("EmailOtpIsVerified")
+                        .HasColumnType("bit");
 
                     b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");

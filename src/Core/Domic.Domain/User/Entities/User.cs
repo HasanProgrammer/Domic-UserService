@@ -14,6 +14,9 @@ public class User : Entity<string>
     //Fields
     
     public string ImageUrl { get; private set; }
+    public int EmailOtp { get; private set; }
+    public DateTime EmailOtpExpiredAt { get; private set; }
+    public bool EmailOtpIsVerified { get; private set; }
     
     /*---------------------------------------------------------------*/
     
@@ -248,7 +251,48 @@ public class User : Entity<string>
         );
     }
     
-    public void ResetPassword(IDateTime dateTime, string password, string updatedBy, string updatedRole)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    public void SetEmailOtpCode(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer)
+    {
+        var nowDateTime        = DateTime.Now;
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
+        
+        EmailOtp = Random.Shared.Next(0, 999999);
+        EmailOtpExpiredAt = nowDateTime.AddMinutes(2);
+        
+        //audit
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
+
+        AddEvent(
+            new EmailOtpCreated {
+                Id                    = Id                  ,
+                EmailAddress          = Email.Value         ,
+                MessageContent        = EmailOtp.ToString() ,
+                CreatedBy             = UpdatedBy           , 
+                CreatedRole           = UpdatedRole         ,
+                CreatedAt_EnglishDate = nowDateTime         ,
+                CreatedAt_PersianDate = nowPersianDateTime
+            }
+        );
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    /// <param name="password"></param>
+    public void ResetPassword(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer, 
+        string password
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
@@ -256,16 +300,16 @@ public class User : Entity<string>
         Password = new Password(password);
         
         //audit
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
 
         AddEvent(
             new UserPasswordChanged {
                 Id                    = Id            ,
+                NewPassword           = password      ,
                 UpdatedBy             = UpdatedBy     , 
                 UpdatedRole           = UpdatedRole   ,
-                NewPassword           = password      ,
                 UpdatedAt_EnglishDate = nowDateTime   ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }

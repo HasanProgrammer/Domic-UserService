@@ -1,3 +1,4 @@
+using Domic.Core.Common.ClassExtensions;
 using Grpc.Core;
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.UseCase.Contracts.Interfaces;
@@ -5,7 +6,9 @@ using Domic.Core.User.Grpc;
 using Domic.UseCase.UserUseCase.Commands.Active;
 using Domic.UseCase.UserUseCase.Commands.CheckExist;
 using Domic.UseCase.UserUseCase.Commands.Create;
+using Domic.UseCase.UserUseCase.Commands.EmailOtpGeneration;
 using Domic.UseCase.UserUseCase.Commands.InActive;
+using Domic.UseCase.UserUseCase.Commands.ResetPassword;
 using Domic.UseCase.UserUseCase.Commands.Update;
 using Domic.UseCase.UserUseCase.DTOs;
 using Domic.UseCase.UserUseCase.Queries.ReadAllPaginated;
@@ -135,5 +138,49 @@ public class UserRPC : UserService.UserServiceBase
         var result = await _mediator.DispatchAsync<string>(command, context.CancellationToken);
         
         return result.ToRpcResponse<InActiveResponse>(_configuration);
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public override async Task<EmailOtpGenerationResponse> EmailOtpGeneration(EmailOtpGenerationRequest request, 
+        ServerCallContext context
+    )
+    {
+        var command = new EmailOtpGenerationCommand { EmailAddress = request.EmailAddress.Value };
+        
+        var result = await _mediator.DispatchAsync(command, context.CancellationToken);
+
+        return new() {
+            Code    = _configuration.GetSuccessCreateStatusCode(),
+            Message = _configuration.GetSuccessCreateMessage(),
+            Body    = new EmailOtpGenerationResponseBody { Result = result }
+        };
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="request"></param>
+    /// <param name="context"></param>
+    /// <returns></returns>
+    public override async Task<ResetPasswordResponse> ResetPassword(ResetPasswordRequest request, ServerCallContext context)
+    {
+        var command = new ResetPasswordCommand {
+            NewPassword  = request.NewPassword.Value  , 
+            EmailAddress = request.EmailAddress.Value ,
+            EmailCode    = request.EmailCode.Value 
+        };
+        
+        var result = await _mediator.DispatchAsync(command, context.CancellationToken);
+
+        return new() {
+            Code    = _configuration.GetSuccessCreateStatusCode(),
+            Message = _configuration.GetSuccessCreateMessage(),
+            Body    = new ResetPasswordResponseBody { Result = result }
+        };
     }
 }

@@ -62,6 +62,9 @@ namespace Domic.Persistence.Migrations.C
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    EmailOtp = table.Column<int>(type: "int", nullable: false),
+                    EmailOtpExpiredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EmailOtpIsVerified = table.Column<bool>(type: "bit", nullable: false),
                     FirstName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),

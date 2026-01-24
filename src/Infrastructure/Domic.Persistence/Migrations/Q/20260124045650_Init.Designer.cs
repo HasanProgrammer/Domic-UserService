@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domic.Persistence.Migrations.Q
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20250910195757_Init")]
+    [Migration("20260124045650_Init")]
     partial class Init
     {
         /// <inheritdoc />
