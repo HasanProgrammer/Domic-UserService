@@ -262,7 +262,7 @@ public class User : Entity<string>
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
-        EmailOtp = Random.Shared.Next(0, 999999);
+        EmailOtp = Random.Shared.Next(0, 9999);
         EmailOtpExpiredAt = nowDateTime.AddMinutes(2);
         
         //audit
@@ -281,6 +281,25 @@ public class User : Entity<string>
                 CreatedAt_PersianDate = nowPersianDateTime
             }
         );
+    }
+    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
+    public void EmailOtpVerified(IDateTime dateTime, IIdentityUser identityUser, ISerializer serializer)
+    {
+        var nowDateTime        = DateTime.Now;
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
+
+        EmailOtpIsVerified = true;
+        
+        //audit
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
     }
     
     /// <summary>

@@ -38,6 +38,8 @@ public class ResetPasswordCommandHandler : ICommandHandler<ResetPasswordCommand,
     {
         var targetUser = _validationResult as User;
         
+        targetUser.EmailOtpVerified(_dateTime, _identityUser, _serializer);
+        
         targetUser.ResetPassword(_dateTime, _identityUser, _serializer, command.NewPassword);
         
         await _userCommandRepository.ChangeAsync(targetUser, cancellationToken);
