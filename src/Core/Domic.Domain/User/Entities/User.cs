@@ -264,6 +264,7 @@ public class User : Entity<string>
         
         EmailOtp = Random.Shared.Next(0, 9999);
         EmailOtpExpiredAt = nowDateTime.AddMinutes(2);
+        EmailOtpIsVerified = false;
         
         //audit
         UpdatedBy   = identityUser.GetIdentity();

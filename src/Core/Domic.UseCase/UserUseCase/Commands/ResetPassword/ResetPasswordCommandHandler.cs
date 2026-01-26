@@ -35,7 +35,7 @@ public class ResetPasswordCommandHandler : ICommandHandler<ResetPasswordCommand,
     [WithValidation]
     [WithTransaction]
     public async Task<bool> HandleAsync(ResetPasswordCommand command, CancellationToken cancellationToken)
-    { 
+    {
         var targetUser = _validationResult as User;
         
         targetUser.EmailOtpVerified(_dateTime, _identityUser, _serializer);
