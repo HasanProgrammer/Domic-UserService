@@ -20,7 +20,7 @@ public class ResetPasswordCommandValidator(IUserCommandRepository userCommandRep
         if (targetUser.IsActive == IsActive.InActive)
             throw new UseCaseException("حساب کاربری شما مسدود شده است!");
         
-        if(DateTime.Now >= targetUser.EmailOtpExpiredAt || targetUser.EmailOtpIsVerified)
+        if(DateTime.Now >= targetUser.EmailOtpExpiredAt || targetUser.EmailOtpIsVerified || targetUser.EmailOtp.ToString() != input.EmailCode)
             throw new UseCaseException("کد یکبار مصرف معتبر نمی باشد!");
 
         return targetUser;
