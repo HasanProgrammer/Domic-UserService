@@ -1,6 +1,7 @@
 ﻿using Domic.Core.Common.ClassConsts;
 using Domic.Core.Common.ClassEnums;
 using Domic.Core.Domain.Contracts.Interfaces;
+using Domic.Core.Domain.Extensions;
 using Domic.Core.UseCase.Attributes;
 using Domic.Core.UseCase.Contracts.Interfaces;
 using Domic.Domain.PermissionUser.Contracts.Interfaces;
@@ -58,11 +59,13 @@ public class UpdateUserConsumerEventBusHandler : IConsumerEventBusHandler<UserUp
             CreatedAt_PersianDate = @event.UpdatedAt_PersianDate
         });
         
+        if(!string.IsNullOrWhiteSpace(@event.Password))
+            targetUser.Password = await @event.Password.HashAsync(cancellationToken);
+        
         targetUser.ImageUrl              = @event.ImageUrl;
         targetUser.FirstName             = @event.FirstName;
         targetUser.LastName              = @event.LastName;
         targetUser.Username              = @event.Username;
-        targetUser.Password              = @event.Password;
         targetUser.Description           = @event.Description;
         targetUser.PhoneNumber           = @event.PhoneNumber;
         targetUser.Email                 = @event.Email;
